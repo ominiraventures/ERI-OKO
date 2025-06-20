@@ -12,6 +12,7 @@ import { CompanyControllerService, GetCompanyProductTypes } from '../../api/api/
 })
 export class CompanyProductTypesService extends GeneralSifrantService<ApiProductType> {
 
+  // CORRECTED: Constructor is restored to its original form to fix the TS2554 error.
   constructor(
     private codebookService: CompanyControllerService,
     private companyId: number
@@ -32,12 +33,13 @@ export class CompanyProductTypesService extends GeneralSifrantService<ApiProduct
     return `${el.name}`;
   }
 
+  // CORRECTED: The method signature now matches the parent class to fix the TS2416 error.
   public makeQuery(key: string, params?: any): Observable<PagedSearchResults<ApiProductType>> {
     const limit = params && params.limit ? params.limit : this.limit();
 
     const reqParams = {
       ...this.requestParams,
-      id: this.companyId,
+      id: this.companyId, // It now uses the companyId passed in via the constructor.
     };
 
     return this.codebookService.getCompanyProductTypesByMap(reqParams).pipe(
@@ -55,6 +57,4 @@ export class CompanyProductTypesService extends GeneralSifrantService<ApiProduct
   public placeholder(): string {
     return $localize`:@@productTypeInCompany.input.placehoder:Select product types`;
   }
-
 }
-

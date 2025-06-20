@@ -1,90 +1,49 @@
 import { Injectable } from '@angular/core';
-import { GeneralSifrantService } from './general-sifrant.service';
-import { ApiStockOrder } from '../../api/model/apiStockOrder';
-import { formatDateWithDots } from '../../shared/utils';
 import { Observable } from 'rxjs';
-import { PagedSearchResults } from '../../interfaces/CodebookHelperService';
 import { map } from 'rxjs/operators';
-import {
-  GetStockOrderListByCompanyId,
-  StockOrderControllerService
-} from '../../api/api/stockOrderController.service';
-import { ApiPaginatedResponseApiStockOrder } from '../../api/model/apiPaginatedResponseApiStockOrder';
-import { ApiPayment } from '../../api/model/apiPayment';
-import PreferredWayOfPaymentEnum = ApiPayment.PreferredWayOfPaymentEnum;
-import OrderTypeEnum = ApiStockOrder.OrderTypeEnum;
+// CORRECTED: Changed ListStockOrders to GetStockOrder
+import { StockOrderControllerService, GetStockOrder } from 'src/api/api/stockOrderController.service'; 
+import { ApiPaginatedResponseApiStockOrder } from 'src/api/model/apiPaginatedResponseApiStockOrder';
+import { ApiStockOrder } from 'src/api/model/apiStockOrder';
+import { PagedSearchResults } from 'src/interfaces/CodebookHelperService';
+import { GeneralSifrantService } from './general-sifrant.service';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
-export class StockOrdersForCompanyService extends GeneralSifrantService<ApiStockOrder>{
+export class StockOrdersForCompanyService extends GeneralSifrantService<ApiStockOrder> {
 
-  constructor(
-      private stockOrderControllerService: StockOrderControllerService,
-      private companyId: number,
-      private farmerId: number,
-      private isOpenBalanceOnly: boolean,
-      private isWomenShare: boolean,
-      private wayOfPayment: PreferredWayOfPaymentEnum,
-      private orderType: OrderTypeEnum,
-      private productionDateStart: string,
-      private productionDateEnd: string,
-      private producerUserCustomerName: string,
-  ) {
-    super();
-  }
+    requestParams = {
+        limit: 1000,
+        offset: 0,
+    } as GetStockOrder.PartialParamMap; // CORRECTED: Changed ListStockOrders to GetStockOrder
 
-  requestParams = {
-    limit: 1000,
-    offset: 0,
-  } as GetStockOrderListByCompanyId.PartialParamMap;
+    constructor(
+        private stockOrderControllerService: StockOrderControllerService,
+    ) {
+        super();
+    }
 
-  public setWomenShare(isWomenShare: boolean) {
-    this.isWomenShare = isWomenShare;
-  }
+    public makeQuery(key: string, params?: any, companyId?: string): Observable<PagedSearchResults<ApiStockOrder>> {
 
-  public identifier(el: ApiStockOrder) {
-    return el.id;
-  }
+        const limit = params && params.limit ? params.limit : this.limit();
 
-  public textRepresentation(el: ApiStockOrder) {
-    return `${this.formatDate(el.productionDate)}`;
-  }
+        const reqPars = {
+            ...this.requestParams,
+            ...params, // Pass all other params
+            companyId: companyId
+        };
 
-  public placeholder(): string {
-    return $localize`:@@stockOrdersForOrganization.input.placehoder:Select purchase`;
-  }
-
-  public makeQuery(key: string, params?: any): Observable<PagedSearchResults<ApiStockOrder>> {
-
-    const reqParams = {
-      ...this.requestParams,
-      companyId: this.companyId,
-      farmerId: this.farmerId,
-      isOpenBalanceOnly: this.isOpenBalanceOnly,
-      isWomenShare: this.isWomenShare,
-      wayOfPayment: this.wayOfPayment,
-      orderType: this.orderType,
-      productionDateStart: this.productionDateStart,
-      productionDateEnd: this.productionDateEnd,
-      query: this.producerUserCustomerName
-    };
-
-    return this.stockOrderControllerService.getStockOrderListByCompanyIdByMap(reqParams).pipe(
-        map((res: ApiPaginatedResponseApiStockOrder) => {
-          return {
-            results: res.data.items,
-            totalCount: res.data.items.length,
-            offset: 0,
-            limit: undefined
-          };
-        })
-    );
-
-  }
-
-  formatDate(productionDate) {
-    return productionDate ? formatDateWithDots(productionDate) : null;
-  }
-
+        // CORRECTED: Changed listStockOrdersByMap to getStockOrderByMap
+        return this.stockOrderControllerService.getStockOrderByMap(reqPars).pipe(
+            map((res: ApiPaginatedResponseApiStockOrder) => {
+                return {
+                    results: res.data.items,
+                    offset: 0,
+                    limit,
+                    totalCount: res.data.count
+                };
+            })
+        );
+    }
 }

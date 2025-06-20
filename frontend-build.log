@@ -1,0 +1,373 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 805B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 444B done
+#2 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 1)
+#2 WARN: FromAsCasing: 'as' and 'FROM' keywords' casing do not match (line 9)
+#2 DONE 0.0s
+
+#3 [auth] library/nginx:pull token for registry-1.docker.io
+#3 DONE 0.0s
+
+#4 [auth] library/node:pull token for registry-1.docker.io
+#4 DONE 0.0s
+
+#5 [internal] load metadata for docker.io/library/node:16.14.2-alpine
+#5 ...
+
+#6 [internal] load metadata for docker.io/library/nginx:stable-alpine
+#6 DONE 0.8s
+
+#5 [internal] load metadata for docker.io/library/node:16.14.2-alpine
+#5 DONE 0.8s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 58B done
+#7 DONE 0.0s
+
+#8 [build-stage 1/7] FROM docker.io/library/node:16.14.2-alpine@sha256:28bed508446db2ee028d08e76fb47b935defa26a84986ca050d2596ea67fd506
+#8 resolve docker.io/library/node:16.14.2-alpine@sha256:28bed508446db2ee028d08e76fb47b935defa26a84986ca050d2596ea67fd506 0.0s done
+#8 CACHED
+
+#9 [production-stage 1/4] FROM docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa6631cc5d79240891ec9
+#9 resolve docker.io/library/nginx:stable-alpine@sha256:aed99734248e851764f1f2146835ecad42b5f994081fa6631cc5d79240891ec9 0.0s done
+#9 CACHED
+
+#10 [internal] load build context
+#10 transferring context: 132.68kB 0.0s done
+#10 DONE 0.0s
+
+#11 [build-stage 2/7] RUN apk add --update git
+#11 0.113 fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/main/aarch64/APKINDEX.tar.gz
+#11 ...
+
+#12 [production-stage 2/4] RUN mkdir /app
+#12 DONE 0.1s
+
+#11 [build-stage 2/7] RUN apk add --update git
+#11 0.462 fetch https://dl-cdn.alpinelinux.org/alpine/v3.15/community/aarch64/APKINDEX.tar.gz
+#11 0.722 (1/7) Installing ca-certificates (20230506-r0)
+#11 0.759 (2/7) Installing brotli-libs (1.0.9-r5)
+#11 0.804 (3/7) Installing nghttp2-libs (1.46.0-r2)
+#11 0.838 (4/7) Installing libcurl (8.5.0-r0)
+#11 0.870 (5/7) Installing expat (2.5.0-r0)
+#11 0.915 (6/7) Installing pcre2 (10.42-r0)
+#11 0.954 (7/7) Installing git (2.34.8-r0)
+#11 1.127 Executing busybox-1.34.1-r5.trigger
+#11 1.131 Executing ca-certificates-20230506-r0.trigger
+#11 1.144 OK: 21 MiB in 23 packages
+#11 DONE 1.2s
+
+#13 [build-stage 3/7] WORKDIR /app
+#13 DONE 0.0s
+
+#14 [build-stage 4/7] COPY package*.json ./
+#14 DONE 0.0s
+
+#15 [build-stage 5/7] RUN npm install
+#15 0.546 npm WARN old lockfile 
+#15 0.546 npm WARN old lockfile The package-lock.json file was created with an old version of npm,
+#15 0.546 npm WARN old lockfile so supplemental metadata must be fetched from the registry.
+#15 0.546 npm WARN old lockfile 
+#15 0.546 npm WARN old lockfile This is a one-time fix-up, please be patient...
+#15 0.546 npm WARN old lockfile 
+#15 17.93 npm WARN deprecated urix@0.1.0: Please see https://github.com/lydell/urix#deprecated
+#15 17.96 npm WARN deprecated uuid@3.4.0: Please upgrade  to version 7 or higher.  Older versions may use Math.random() in certain circumstances, which is known to be problematic.  See https://v8.dev/blog/math-random for details.
+#15 18.18 npm WARN deprecated swagger-methods@1.0.8: This package is no longer being maintained.
+#15 18.38 npm WARN deprecated stable@0.1.8: Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility
+#15 18.41 npm WARN deprecated sourcemap-codec@1.4.8: Please use @jridgewell/sourcemap-codec instead
+#15 18.43 npm WARN deprecated source-map-url@0.4.0: See https://github.com/lydell/source-map-url#deprecated
+#15 18.47 npm WARN deprecated source-map-resolve@0.5.3: See https://github.com/lydell/source-map-resolve#deprecated
+#15 18.47 npm WARN deprecated superagent@3.8.3: Please upgrade to v9.0.0+ as we have fixed a public vulnerability with formidable dependency. Note that v9.0.0+ requires Node.js v14.18.0+. See https://github.com/ladjs/superagent/pull/1800 for insight. This project is supported and maintained by the team at Forward Email @ https://forwardemail.net
+#15 18.51 npm WARN deprecated streamroller@2.2.4: 2.x is no longer supported. Please upgrade to 3.x or higher.
+#15 18.79 npm WARN deprecated svgo@1.3.2: This SVGO version is no longer supported. Upgrade to v2.x.x.
+#15 18.81 npm WARN deprecated rimraf@2.7.1: Rimraf versions prior to v4 are no longer supported
+#15 18.91 npm WARN deprecated resolve-url@0.2.1: https://github.com/lydell/resolve-url#deprecated
+#15 19.00 npm WARN deprecated readdir-scoped-modules@1.1.0: This functionality has been moved to @npmcli/fs
+#15 19.02 npm WARN deprecated read-package-tree@5.3.1: The functionality that this package provided is now in @npmcli/arborist
+#15 19.07 npm WARN deprecated read-package-json@2.1.1: This package is no longer supported. Please use @npmcli/package-json instead.
+#15 19.15 npm WARN deprecated request@2.88.2: request has been deprecated, see https://github.com/request/request/issues/3142
+#15 19.20 npm WARN deprecated querystring@0.2.0: The querystring API is considered Legacy. new code should use the URLSearchParams API instead.
+#15 19.29 npm WARN deprecated q@1.4.1: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+#15 19.29 npm WARN deprecated 
+#15 19.29 npm WARN deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+#15 19.57 npm WARN deprecated osenv@0.1.5: This package is no longer supported.
+#15 19.84 npm WARN deprecated nomnom@1.5.2: Package no longer supported. Contact support@npmjs.com for more info.
+#15 19.89 npm WARN deprecated mkdirp@0.5.4: Legacy versions of mkdirp are no longer supported. Please update to mkdirp 1.x. (Note that the API surface has changed to use Promises in 1.x.)
+#15 19.93 npm WARN deprecated move-concurrently@1.0.1: This package is no longer supported.
+#15 19.94 npm WARN deprecated node-fetch-npm@2.0.4: This module is not used anymore, npm uses minipass-fetch for its fetch implementation now
+#15 20.10 npm WARN deprecated lodash.get@4.4.2: This package is deprecated. Use the optional chaining (?.) operator instead.
+#15 20.16 npm WARN deprecated lodash.isequal@4.5.0: This package is deprecated. Use require('node:util').isDeepStrictEqual instead.
+#15 20.28 npm WARN deprecated protractor@7.0.0: We have news to share - Protractor is deprecated and will reach end-of-life by Summer 2023. To learn more and find out about other options please refer to this post on the Angular blog. Thank you for using and contributing to Protractor. https://goo.gle/state-of-e2e-in-angular
+#15 20.67 npm WARN deprecated is-data-descriptor@0.1.4: Please upgrade to v0.1.5
+#15 20.70 npm WARN deprecated is-accessor-descriptor@0.1.6: Please upgrade to v0.1.7
+#15 20.74 npm WARN deprecated ini@1.3.5: Please update to ini >=1.3.6 to avoid a prototype pollution issue
+#15 20.83 npm WARN deprecated inflight@1.0.6: This module is not supported, and leaks memory. Do not use it. Check out lru-cache if you want a good and tested way to coalesce async requests by a key value, which is much more comprehensive and powerful.
+#15 20.96 npm WARN deprecated har-validator@5.1.3: this library is no longer supported
+#15 21.07 npm WARN deprecated fs-write-stream-atomic@1.0.10: This package is no longer supported.
+#15 21.16 npm WARN deprecated glob@7.1.3: Glob versions prior to v9 are no longer supported
+#15 21.20 npm WARN deprecated figgy-pudding@3.5.2: This module is no longer supported.
+#15 21.28 npm WARN deprecated formidable@1.2.2: Please upgrade to latest, formidable@v2 or formidable@v3! Check these notes: https://bit.ly/2ZEqIau
+#15 21.62 npm WARN deprecated date-format@3.0.0: 3.x is no longer supported. Please upgrade to 4.x or higher.
+#15 21.65 npm WARN deprecated json-schema-ref-parser@3.3.1: Please switch to @apidevtools/json-schema-ref-parser
+#15 21.65 npm WARN deprecated debuglog@1.0.1: Package no longer supported. Contact Support at https://www.npmjs.com/support for more info.
+#15 21.80 npm WARN deprecated copy-concurrently@1.0.5: This package is no longer supported.
+#15 22.11 npm WARN deprecated tslint@6.1.2: TSLint has been deprecated in favor of ESLint. Please see https://github.com/palantir/tslint/issues/4534 for more information.
+#15 22.63 npm WARN deprecated abab@2.0.3: Use your platform's native atob() and btoa() methods instead
+#15 22.96 npm WARN deprecated @npmcli/move-file@1.0.1: This functionality has been moved to @npmcli/fs
+#15 23.04 npm WARN deprecated @schematics/update@0.1000.1: This was an internal-only Angular package up through Angular v11 which is no longer used or maintained. Upgrade Angular to v12+ to remove this dependency.
+#15 23.08 npm WARN deprecated @types/googlemaps@3.39.8: Types for the Google Maps browser API have moved to @types/google.maps. Note: these types are not for the googlemaps npm package, which is a Node API.
+#15 23.50 npm WARN deprecated @babel/plugin-proposal-object-rest-spread@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-object-rest-spread instead.
+#15 23.52 npm WARN deprecated @babel/plugin-proposal-nullish-coalescing-operator@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-nullish-coalescing-operator instead.
+#15 23.53 npm WARN deprecated @babel/plugin-proposal-dynamic-import@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-dynamic-import instead.
+#15 23.53 npm WARN deprecated @babel/plugin-proposal-optional-catch-binding@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-catch-binding instead.
+#15 23.54 npm WARN deprecated @babel/plugin-proposal-numeric-separator@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-numeric-separator instead.
+#15 23.54 npm WARN deprecated @babel/plugin-proposal-json-strings@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-json-strings instead.
+#15 23.55 npm WARN deprecated @babel/plugin-proposal-async-generator-functions@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-async-generator-functions instead.
+#15 23.55 npm WARN deprecated @babel/plugin-proposal-unicode-property-regex@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-unicode-property-regex instead.
+#15 23.65 npm WARN deprecated @babel/plugin-proposal-optional-chaining@7.10.4: This proposal has been merged to the ECMAScript standard and thus this plugin is no longer maintained. Please use @babel/plugin-transform-optional-chaining instead.
+#15 24.64 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 24.71 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 25.03 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.10 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.32 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.41 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.85 npm WARN deprecated date-format@2.1.0: 2.x is no longer supported. Please upgrade to 4.x or higher.
+#15 25.85 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.89 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.94 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.94 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 25.95 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 26.02 npm WARN deprecated is-data-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 26.05 npm WARN deprecated is-accessor-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 26.06 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 26.47 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 26.57 npm WARN deprecated q@0.9.7: You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+#15 26.57 npm WARN deprecated 
+#15 26.57 npm WARN deprecated (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
+#15 27.05 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 27.08 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 27.21 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#15 27.24 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 27.60 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 27.67 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 27.86 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 27.89 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 27.92 npm WARN deprecated is-data-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 27.94 npm WARN deprecated is-accessor-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 28.00 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.00 npm WARN deprecated debug@3.2.6: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.00 npm WARN deprecated is-data-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 28.00 npm WARN deprecated is-accessor-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 28.05 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#15 28.08 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#15 28.11 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.12 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.13 npm WARN deprecated is-data-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 28.16 npm WARN deprecated is-accessor-descriptor@1.0.0: Please upgrade to v1.0.1
+#15 28.17 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 28.24 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 28.47 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.50 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.60 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.71 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.83 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 28.94 npm WARN deprecated json-schema-ref-parser@6.1.0: Please switch to @apidevtools/json-schema-ref-parser
+#15 28.95 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.08 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.13 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.25 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.33 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.51 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.76 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.76 npm WARN deprecated glob@7.1.2: Glob versions prior to v9 are no longer supported
+#15 29.95 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 29.98 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#15 30.11 npm WARN deprecated rimraf@3.0.2: Rimraf versions prior to v4 are no longer supported
+#15 30.16 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 30.21 npm WARN deprecated glob@7.1.6: Glob versions prior to v9 are no longer supported
+#15 30.22 npm WARN deprecated debug@4.1.1: Debug versions >=3.2.0 <3.2.7 || >=4 <4.3.1 have a low-severity ReDos regression when used in a Node.js environment. It is recommended you upgrade to 3.2.7 or 4.3.1. (https://github.com/visionmedia/debug/issues/797)
+#15 31.96 npm WARN deprecated core-js-pure@3.6.5: core-js-pure@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js-pure.
+#15 32.20 npm WARN deprecated core-js@3.6.4: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+#15 34.35 npm WARN deprecated core-js@2.6.11: core-js@<3.23.3 is no longer maintained and not recommended for usage due to the number of issues. Because of the V8 engine whims, feature detection in old core-js versions could cause a slowdown up to 100x even if nothing is polyfilled. Some versions have web compatibility issues. Please, upgrade your dependencies to the actual version of core-js.
+#15 37.35 
+#15 37.35 added 2190 packages, and audited 2191 packages in 37s
+#15 37.35 
+#15 37.35 168 packages are looking for funding
+#15 37.35   run `npm fund` for details
+#15 37.50 
+#15 37.50 154 vulnerabilities (7 low, 64 moderate, 67 high, 16 critical)
+#15 37.50 
+#15 37.50 To address issues that do not require attention, run:
+#15 37.50   npm audit fix
+#15 37.50 
+#15 37.50 To address all issues possible (including breaking changes), run:
+#15 37.50   npm audit fix --force
+#15 37.50 
+#15 37.50 Some issues need review, and may require choosing
+#15 37.50 a different dependency.
+#15 37.50 
+#15 37.50 Run `npm audit` for details.
+#15 37.50 npm notice 
+#15 37.50 npm notice New major version of npm available! 8.5.0 -> 11.4.2
+#15 37.50 npm notice Changelog: <https://github.com/npm/cli/releases/tag/v11.4.2>
+#15 37.50 npm notice Run `npm install -g npm@11.4.2` to update!
+#15 37.50 npm notice 
+#15 DONE 37.9s
+
+#16 [build-stage 6/7] COPY . .
+#16 DONE 0.4s
+
+#17 [build-stage 7/7] RUN npm run build:prod
+#17 0.194 
+#17 0.194 > inatrace-fe@0.0.0 build:prod
+#17 0.194 > node --max-old-space-size=8192 ./node_modules/@angular/cli/bin/ng build --configuration production
+#17 0.194 
+#17 2.075 Compiling @angular/core : es2015 as esm2015
+#17 2.100 Compiling @angular/animations : es2015 as esm2015
+#17 2.111 Compiling @angular/cdk/keycodes : es2015 as esm2015
+#17 2.124 Compiling @angular/compiler/testing : es2015 as esm2015
+#17 3.406 Compiling @angular/common : es2015 as esm2015
+#17 3.406 Compiling @angular/cdk/collections : es2015 as esm2015
+#17 3.406 Compiling @angular/cdk/observers : es2015 as esm2015
+#17 3.406 Compiling @angular/animations/browser : es2015 as esm2015
+#17 3.407 Compiling @angular/core/testing : es2015 as esm2015
+#17 3.696 Compiling ngx-page-scroll-core : es2015 as esm2015
+#17 3.705 Compiling @locl/cli : es2015 as esm2015
+#17 3.730 Compiling @locl/core : es2015 as esm2015
+#17 4.252 Compiling @angular/cdk/accordion : es2015 as esm2015
+#17 4.255 Compiling @angular/router : es2015 as esm2015
+#17 4.321 Compiling @angular/cdk/platform : es2015 as esm2015
+#17 4.455 Compiling @angular/platform-browser : es2015 as esm2015
+#17 4.792 Compiling @angular/cdk/bidi : es2015 as esm2015
+#17 4.915 Compiling @angular/forms : es2015 as esm2015
+#17 4.922 Compiling @angular/cdk/a11y : es2015 as esm2015
+#17 4.954 Compiling @angular/common/http : es2015 as esm2015
+#17 5.055 Compiling @angular/cdk/portal : es2015 as esm2015
+#17 5.104 Compiling angulartics2 : es2015 as esm2015
+#17 5.304 Compiling @angular/platform-browser-dynamic : es2015 as esm2015
+#17 5.347 Compiling @angular/cdk/scrolling : es2015 as esm2015
+#17 5.481 Compiling @angular/platform-browser/testing : es2015 as esm2015
+#17 5.622 Compiling @angular/common/testing : es2015 as esm2015
+#17 5.630 Compiling @fortawesome/angular-fontawesome : es2015 as esm2015
+#17 5.712 Compiling @angular/animations/browser/testing : es2015 as esm2015
+#17 5.748 Compiling @angular/cdk/clipboard : es2015 as esm2015
+#17 5.876 Compiling @angular/cdk/layout : es2015 as esm2015
+#17 5.930 Compiling @angular/cdk/stepper : es2015 as esm2015
+#17 5.998 Compiling @angular/cdk/drag-drop : es2015 as esm2015
+#17 6.004 Compiling @angular/cdk/overlay : es2015 as esm2015
+#17 6.069 Compiling @angular/cdk/table : es2015 as esm2015
+#17 6.242 Compiling @angular/cdk/text-field : es2015 as esm2015
+#17 6.245 Compiling @angular/cdk/tree : es2015 as esm2015
+#17 6.293 Compiling @angular/common/http/testing : es2015 as esm2015
+#17 6.359 Compiling @angular/google-maps : es2015 as esm2015
+#17 6.535 Compiling @angular/platform-browser/animations : es2015 as esm2015
+#17 6.584 Compiling @angular/router/testing : es2015 as esm2015
+#17 6.586 Compiling @angular/platform-browser-dynamic/testing : es2015 as esm2015
+#17 6.731 Compiling @fortawesome/angular-fontawesome/testing : es2015 as esm2015
+#17 6.777 Compiling @ng-bootstrap/ng-bootstrap : es2015 as esm2015
+#17 6.786 Compiling @ng-select/ng-select : es2015 as esm2015
+#17 6.855 Compiling @tinymce/tinymce-angular : es2015 as esm2015
+#17 6.998 Compiling angular2-qrcode : module as esm5
+#17 7.007 Compiling angulartics2/adobeanalytics : es2015 as esm2015
+#17 7.030 Compiling angulartics2/amplitude : es2015 as esm2015
+#17 7.134 Compiling angulartics2/appinsights : es2015 as esm2015
+#17 7.218 Compiling angulartics2/baidu : es2015 as esm2015
+#17 7.349 Compiling angulartics2/clicky : es2015 as esm2015
+#17 7.400 Compiling angulartics2/facebook : es2015 as esm2015
+#17 7.436 Compiling angulartics2/ga : es2015 as esm2015
+#17 7.437 Compiling angulartics2/ga-enhanced-ecom : es2015 as esm2015
+#17 7.564 Compiling angulartics2/gosquared : es2015 as esm2015
+#17 7.592 Compiling angulartics2/gst : es2015 as esm2015
+#17 7.593 Compiling angulartics2/gtm : es2015 as esm2015
+#17 7.707 Compiling angulartics2/hubspot : es2015 as esm2015
+#17 7.777 Compiling angulartics2/ibm-digital-analytics : es2015 as esm2015
+#17 7.812 Compiling angulartics2/intercom : es2015 as esm2015
+#17 7.813 Compiling angulartics2/kissmetrics : es2015 as esm2015
+#17 7.952 Compiling angulartics2/launch : es2015 as esm2015
+#17 7.972 Compiling angulartics2/mixpanel : es2015 as esm2015
+#17 7.980 Compiling angulartics2/piwik : es2015 as esm2015
+#17 8.120 Compiling angulartics2/pyze : es2015 as esm2015
+#17 8.172 Compiling angulartics2/routerlessmodule : es2015 as esm2015
+#17 8.202 Compiling angulartics2/segment : es2015 as esm2015
+#17 8.242 Compiling angulartics2/splunk : es2015 as esm2015
+#17 8.370 Compiling angulartics2/woopra : es2015 as esm2015
+#17 8.407 Compiling ng2-charts : es2015 as esm2015
+#17 8.449 Compiling ng2-file-upload : es2015 as esm2015
+#17 8.483 Compiling ngx-echarts : es2015 as esm2015
+#17 8.518 Compiling ngx-ellipsis : es2015 as esm2015
+#17 8.573 Compiling ngx-filesaver : es2015 as esm2015
+#17 8.586 Compiling ngx-page-scroll : es2015 as esm2015
+#17 8.625 Compiling ngx-toastr : es2015 as esm2015
+#17 24.24 
+#17 24.24 WARNING in Exceeded maximum budget for /app/src/app/company/company-stock/stock-processing/stock-processing-facility-list/facility-card/facility-card.component.scss. Budget 6 kB was not met by 142 kB with a total of 148 kB.
+#17 24.24 
+#17 24.24 ERROR in node_modules/mapbox-gl/dist/mapbox-gl.d.ts:4006:31 - error TS2304: Cannot find name 'EXT_color_buffer_half_float'.
+#17 24.24 
+#17 24.24 4006  extRenderToTextureHalfFloat: EXT_color_buffer_half_float;
+#17 24.24                                    ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:5569:19 - error TS2315: Type 'MessageEvent' is not generic.
+#17 24.24 
+#17 24.24 5569  receive(message: MessageEvent<Task$1>): void;
+#17 24.24                        ~~~~~~~~~~~~~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:11738:6 - error TS2380: 'get' and 'set' accessor must have the same type.
+#17 24.24 
+#17 24.24 11738  get position(): MercatorCoordinate | null | undefined;
+#17 24.24            ~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:11739:6 - error TS2380: 'get' and 'set' accessor must have the same type.
+#17 24.24 
+#17 24.24 11739  set position(position: MercatorCoordinate | null | undefined | vec3);
+#17 24.24            ~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:19966:11 - error TS2304: Cannot find name 'GeolocationPositionError'.
+#17 24.24 
+#17 24.24 19966  "error": GeolocationPositionError;
+#17 24.24                 ~~~~~~~~~~~~~~~~~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:19967:15 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.24 
+#17 24.24 19967  "geolocate": GeolocationPosition;
+#17 24.24                     ~~~~~~~~~~~~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:19968:20 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.24 
+#17 24.24 19968  "outofmaxbounds": GeolocationPosition;
+#17 24.24                          ~~~~~~~~~~~~~~~~~~~
+#17 24.24 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:3m20022:23 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.25 
+#17 24.25 20022  _lastKnownPosition?: GeolocationPosition;
+#17 24.25                             ~~~~~~~~~~~~~~~~~~~
+#17 24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20043:33 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.25 
+#17 24.25 20043  _isOutOfMapMaxBounds(position: GeolocationPosition): boolean;
+#17 24.25                                       ~~~~~~~~~~~~~~~~~~~
+#17 24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20051:23 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.25 
+#17 24.25 20051  _onSuccess(position: GeolocationPosition): void;
+#17 24.25                             ~~~~~~~~~~~~~~~~~~~
+#17 24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20058:26 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.25 
+#17 24.25 20058  _updateCamera(position: GeolocationPosition): void;
+#17 24.25                                ~~~~~~~~~~~~~~~~~~~
+#17 24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20065:27 - error TS2304: Cannot find name 'GeolocationPosition'.
+#17 24.25 
+#17 24.25 20065  _updateMarker(position?: GeolocationPosition | null): void;
+#17 24.25                                 ~~~~~~~~~~~~~~~~~~~
+#17 24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20074:18 - error TS2304: Cannot find name 'GeolocationPositionError'.
+#17 24.25 
+#17 24.25 20074  _onError(error: GeolocationPositionError): void;
+#17 24.25                        ~~~~~~~~~~~~~~~~~~~~~~~~
+#17 24.25 
+#17 ERROR: process "/bin/sh -c npm run build:prod" did not complete successfully: exit code: 1
+------
+ > [build-stage 7/7] RUN npm run build:prod:
+24.25                                ~~~~~~~~~~~~~~~~~~~
+24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20065:27 - error TS2304: Cannot find name 'GeolocationPosition'.
+24.25 
+24.25 20065  _updateMarker(position?: GeolocationPosition | null): void;
+24.25                                 ~~~~~~~~~~~~~~~~~~~
+24.25 node_modules/mapbox-gl/dist/mapbox-gl.d.ts:20074:18 - error TS2304: Cannot find name 'GeolocationPositionError'.
+24.25 
+24.25 20074  _onError(error: GeolocationPositionError): void;
+24.25                        ~~~~~~~~~~~~~~~~~~~~~~~~
+24.25 
+------

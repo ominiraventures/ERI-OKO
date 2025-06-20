@@ -1,0 +1,98 @@
+# =================================================================
+# ERI OKO PLATFORM - DOCKER-COMPOSE V1.0
+# Ominira Ventures
+#
+# Defines the multi-container application stack:
+#   - db: MySQL 8.0 database
+#   - backend: Spring Boot Java application
+#   - frontend: Angular application served by Nginx
+#
+# To run:
+#   - Place this file in the root of the 'ERI OKO' project.
+#   - From the root directory, run: docker-compose up --build -d
+# =================================================================
+
+version: '3.8'
+
+services:
+  # --- DATABASE SERVICE ---
+  # Uses MySQL 8.0 as the application database.
+  db:
+    image: mysql:8.0
+    container_name: eri-oko-db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: eriodb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+      MYSQL_ROOT_PASSWORD: rootpassword
+    volumes:
+      - eri_oko_db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "--user=root", "--password=rootpassword"]
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+
+  # --- BACKEND SERVICE ---
+  # Builds and runs the Spring Boot application from the ./backend directory.
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eri-oko-backend
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "8080:8080"
+    environment:
+      # --- Database Connection ---
+      # Connects to the 'db' service defined above.
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/eriodb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=user
+      - SPRING_DATASOURCE_PASSWORD=password
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+
+      # --- JWT & Security Configuration ---
+      # Using placeholder secrets. REPLACE these with strong, generated values for production.
+      - INATRACE_SECURITY_AUTHENTICATION_JWT_BASE64SECRET=NmFiNTM5YjM0MzE1NzI2YjQyNzE0YmU0NjQ1YjY5MzE0Zjc4NzA0MTM0NTk1NjJiNzMzNTM0M2M0MTQzMzE2Yw==
+      - INATRACE_SECURITY_AUTHENTICATION_JWT_TOKENVALIDITYINSECONDS=86400 # 24 hours
+      - INATRACE_SECURITY_AUTHENTICATION_JWT_TOKENVALIDITYINSECONDSFORREMEMBERME=2592000 # 30 days
+
+      # --- Application Configuration ---
+      - SERVER_PORT=8080
+      - INATRACE_APP_NAME=Ẹri Oko
+      - INATRACE_CORS_ALLOWED_ORIGINS=http://localhost:4200,http://localhost
+    healthcheck:
+      # Checks if the Spring Boot Actuator health endpoint is responsive.
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+      start_period: 60s
+
+  # --- FRONTEND SERVICE ---
+  # Builds and runs the Angular application from the ./fe directory.
+  # Nginx is used to serve the static files and proxy API calls to the backend.
+  frontend:
+    build:
+      context: ./fe
+      dockerfile: Dockerfile
+    container_name: eri-oko-frontend
+    restart: unless-stopped
+    ports:
+      - "4200:80" # Host port 4200 is mapped to container port 80 (Nginx)
+    depends_on:
+      backend:
+        condition: service_healthy
+
+# --- VOLUMES ---
+# Defines the named volume for persistent database storage.
+volumes:
+  eri_oko_db_data:
+    driver: local

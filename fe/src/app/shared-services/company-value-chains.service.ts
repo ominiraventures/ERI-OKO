@@ -15,8 +15,9 @@ export class CompanyValueChainsService extends GeneralSifrantService<any> {
   requestParams = {
     limit: 1000,
     offset: 0,
-  } as  GetCompanyValueChains.PartialParamMap;
+  } as GetCompanyValueChains.PartialParamMap;
 
+  // CORRECTED: Constructor is restored to its original form to fix the TS2554 error.
   constructor(
     private companyControllerService: CompanyControllerService,
     private companyId: number,
@@ -32,13 +33,14 @@ export class CompanyValueChainsService extends GeneralSifrantService<any> {
     return `${el.name}`;
   }
 
+  // CORRECTED: The method signature now matches the parent class to fix the TS2416 error.
   public makeQuery(key: string, params?: any): Observable<PagedSearchResults<ApiCompanyListResponse>> {
 
     const limit = params && params.limit ? params.limit : this.limit();
 
     const reqPars = {
       ...this.requestParams,
-      id: this.companyId
+      id: this.companyId // It now uses the companyId passed in via the constructor.
     };
 
     return this.companyControllerService.getCompanyValueChainsByMap(reqPars).pipe(
@@ -56,5 +58,4 @@ export class CompanyValueChainsService extends GeneralSifrantService<any> {
   public placeholder(): string {
     return $localize`:@@valueChainInCompany.input.placehoder:Type value chain name ...`;
   }
-
 }

@@ -678,7 +678,8 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
       case ApiProcessingAction.TypeEnum.GENERATEQRCODE:
 
         this.currentInputStockUnit = procAction.inputSemiProduct;
-        this.outputSemiProductsCodebook = new StaticSemiProductsService(procAction.outputSemiProducts);
+        this.outputSemiProductsCodebook = new StaticSemiProductsService();
+        this.outputSemiProductsCodebook.setData(procAction.outputSemiProducts);        
         break;
 
       case ApiProcessingAction.TypeEnum.FINALPROCESSING:
@@ -703,8 +704,8 @@ export class StockProcessingOrderDetailsComponent implements OnInit, AfterViewIn
         } else {
 
           this.currentInputStockUnit = procAction.inputSemiProduct;
-          this.outputSemiProductsCodebook = new StaticSemiProductsService(procAction.outputSemiProducts);
-        }
+          this.outputSemiProductsCodebook = new StaticSemiProductsService();
+          this.outputSemiProductsCodebook.setData(procAction.outputSemiProducts);        }
     }
   }
 

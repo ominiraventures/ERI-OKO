@@ -1,4 +1,4 @@
-FROM node:14-alpine as build-stage
+FROM node:16.14.2-alpine as build-stage
 RUN apk add --update git
 WORKDIR /app
 COPY package*.json ./
