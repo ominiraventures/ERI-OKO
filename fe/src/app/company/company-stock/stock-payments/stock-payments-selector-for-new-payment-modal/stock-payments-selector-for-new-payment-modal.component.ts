@@ -88,7 +88,6 @@ export class StockPaymentsSelectorForNewPaymentModalComponent implements OnInit 
         null,
         null
     );
-
   }
 
   purchaseOrderForPaymentChanged(event) {
@@ -111,5 +110,4 @@ export class StockPaymentsSelectorForNewPaymentModalComponent implements OnInit 
   cancel() {
     this.activeModal.close();
   }
-
 }

@@ -6,34 +6,36 @@
 */
 // TO JE ORIGINALNO OD Angular 10. Sem zakomentiral, ker ne dela pravilno VSCode in dodal tisto spodaj.  https://github.com/microsoft/TypeScript/issues/39411
 {
+  "compileOnSave": false,
   "compilerOptions": {
-  "baseUrl": "./",
-  "outDir": "./dist/out-tsc",
-  "sourceMap": true,
-  "declaration": false,
-  "downlevelIteration": true,
-  "experimentalDecorators": true,
-  "emitDecoratorMetadata": true,
-  "module": "es2020",
-  "moduleResolution": "node",
-  "importHelpers": true,
-  "resolveJsonModule": true,
-  "esModuleInterop": true,
-  "skipLibCheck": true,
-  "target": "es2015",
-  "typeRoots": [
-    "node_modules/@types"
-  ],
-  "lib": [
-    "es2020",
-    "dom",
-    "dom.iterable"
-  ]
-},
- "angularCompilerOptions": {
-  "fullTemplateTypeCheck": false,
-  "strictInjectionParameters": false
-}
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "downlevelIteration": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "es2020",
+    "moduleResolution": "node",
+    "importHelpers": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "target": "es2015",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "lib": [
+      "es2020",
+      "dom",
+      "dom.iterable"
+    ]
+  },
+  "angularCompilerOptions": {
+    "fullTemplateTypeCheck": false,
+    "strictInjectionParameters": false,
+    "strictTemplates": false
+  }
 }
 
 //{

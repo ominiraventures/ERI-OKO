@@ -1,0 +1,3633 @@
+.
+├── backend
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── ci
+│   │   └── docker-compose.yml
+│   ├── docker-build.sh
+│   ├── docs
+│   │   └── images
+│   │       └── inatrace_db.svg
+│   ├── fonts
+│   │   ├── archivo
+│   │   │   ├── ArchivoNarrow-Bold.otf
+│   │   │   ├── ArchivoNarrow-BoldItalic.otf
+│   │   │   ├── ArchivoNarrow-Italic.otf
+│   │   │   ├── ArchivoNarrow-Regular.otf
+│   │   │   └── SIL Open Font License.txt
+│   │   └── notice
+│   │       ├── Notice2Std.otf
+│   │       ├── Notice3Std.otf
+│   │       ├── NoticeStd.otf
+│   │       └── otlab.ru License.txt
+│   ├── import
+│   │   └── countries.csv
+│   ├── pom.xml
+│   ├── src
+│   │   ├── main
+│   │   │   ├── java
+│   │   │   │   └── com
+│   │   │   │       └── abelium
+│   │   │   │           └── inatrace
+│   │   │   │               ├── INATraceBackendApplication.java
+│   │   │   │               ├── api
+│   │   │   │               │   ├── ApiBaseEntity.java
+│   │   │   │               │   ├── ApiCodebookBaseEntity.java
+│   │   │   │               │   ├── ApiDefaultResponse.java
+│   │   │   │               │   ├── ApiPaginatedList.java
+│   │   │   │               │   ├── ApiPaginatedQueryStringRequest.java
+│   │   │   │               │   ├── ApiPaginatedRequest.java
+│   │   │   │               │   ├── ApiPaginatedResponse.java
+│   │   │   │               │   ├── ApiResponse.java
+│   │   │   │               │   ├── ApiStatus.java
+│   │   │   │               │   ├── ApiTimestampEntity.java
+│   │   │   │               │   ├── ApiUserRole.java
+│   │   │   │               │   ├── errors
+│   │   │   │               │   │   ├── ApiError.java
+│   │   │   │               │   │   ├── ApiException.java
+│   │   │   │               │   │   ├── ApiImageException.java
+│   │   │   │               │   │   ├── HtmlPageException.java
+│   │   │   │               │   │   └── validation
+│   │   │   │               │   │       ├── ApiValidationError.java
+│   │   │   │               │   │       ├── ApiValidationErrorDetails.java
+│   │   │   │               │   │       └── ApiValidationException.java
+│   │   │   │               │   ├── exceptions
+│   │   │   │               │   │   ├── ApiUpstreamApplicationException.java
+│   │   │   │               │   │   ├── ApiUpstreamNetworkException.java
+│   │   │   │               │   │   └── ApiUpstreamServiceException.java
+│   │   │   │               │   ├── formatters
+│   │   │   │               │   │   ├── InstantFormatter.java
+│   │   │   │               │   │   └── LocalDateFormatter.java
+│   │   │   │               │   └── types
+│   │   │   │               │       └── Lengths.java
+│   │   │   │               ├── components
+│   │   │   │               │   ├── agstack
+│   │   │   │               │   │   ├── AgStackClientService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiRegisterFieldBoundaryErrorResponse.java
+│   │   │   │               │   │       ├── ApiRegisterFieldBoundaryRequest.java
+│   │   │   │               │   │       └── ApiRegisterFieldBoundaryResponse.java
+│   │   │   │               │   ├── analytics
+│   │   │   │               │   │   ├── Aggregator.java
+│   │   │   │               │   │   ├── AnalyticsEngine.java
+│   │   │   │               │   │   ├── AnalyticsQueries.java
+│   │   │   │               │   │   ├── CountAggregator.java
+│   │   │   │               │   │   ├── CountryAggregator.java
+│   │   │   │               │   │   ├── IpGeoLocationEngine.java
+│   │   │   │               │   │   ├── LatLonAggregator.java
+│   │   │   │               │   │   ├── RequestLogService.java
+│   │   │   │               │   │   ├── SuccessAggregator.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiHogRequest.java
+│   │   │   │               │   │       └── ApiLogRequest.java
+│   │   │   │               │   ├── beycoorder
+│   │   │   │               │   │   ├── BeycoOrderController.java
+│   │   │   │               │   │   ├── BeycoOrderService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiBeycoCoffee.java
+│   │   │   │               │   │       ├── ApiBeycoCoffeeCertificate.java
+│   │   │   │               │   │       ├── ApiBeycoCoffeeGrade.java
+│   │   │   │               │   │       ├── ApiBeycoCoffeeQuality.java
+│   │   │   │               │   │       ├── ApiBeycoCoffeeVariety.java
+│   │   │   │               │   │       ├── ApiBeycoOrderCoffees.java
+│   │   │   │               │   │       ├── ApiBeycoOrderFields.java
+│   │   │   │               │   │       ├── ApiBeycoPortOfExport.java
+│   │   │   │               │   │       ├── ApiBeycoTokenRequest.java
+│   │   │   │               │   │       └── ApiBeycoTokenResponse.java
+│   │   │   │               │   ├── codebook
+│   │   │   │               │   │   ├── currencies
+│   │   │   │               │   │   │   ├── CurrencyTypeController.java
+│   │   │   │               │   │   │   ├── CurrencyTypeMapper.java
+│   │   │   │               │   │   │   ├── CurrencyTypeService.java
+│   │   │   │               │   │   │   └── api
+│   │   │   │               │   │   │       └── ApiCurrencyType.java
+│   │   │   │               │   │   ├── facility_type
+│   │   │   │               │   │   │   ├── FacilityTypeController.java
+│   │   │   │               │   │   │   ├── FacilityTypeMapper.java
+│   │   │   │               │   │   │   ├── FacilityTypeService.java
+│   │   │   │               │   │   │   └── api
+│   │   │   │               │   │   │       └── ApiFacilityType.java
+│   │   │   │               │   │   ├── measure_unit_type
+│   │   │   │               │   │   │   ├── MeasureUnitTypeController.java
+│   │   │   │               │   │   │   ├── MeasureUnitTypeMapper.java
+│   │   │   │               │   │   │   ├── MeasureUnitTypeService.java
+│   │   │   │               │   │   │   └── api
+│   │   │   │               │   │   │       └── ApiMeasureUnitType.java
+│   │   │   │               │   │   ├── processing_evidence_type
+│   │   │   │               │   │   │   ├── ProcessingEvidenceTypeController.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceTypeMapper.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceTypeService.java
+│   │   │   │               │   │   │   └── api
+│   │   │   │               │   │   │       ├── ApiProcessingEvidenceType.java
+│   │   │   │               │   │   │       └── ApiProcessingEvidenceTypeTranslation.java
+│   │   │   │               │   │   ├── processingevidencefield
+│   │   │   │               │   │   │   ├── ProcessingEvidenceFieldController.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceFieldMapper.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceFieldService.java
+│   │   │   │               │   │   │   └── api
+│   │   │   │               │   │   │       ├── ApiProcessingEvidenceField.java
+│   │   │   │               │   │   │       └── ApiProcessingEvidenceFieldTranslation.java
+│   │   │   │               │   │   └── semiproduct
+│   │   │   │               │   │       ├── SemiProductController.java
+│   │   │   │               │   │       ├── SemiProductMapper.java
+│   │   │   │               │   │       ├── SemiProductService.java
+│   │   │   │               │   │       └── api
+│   │   │   │               │   │           ├── ApiSemiProduct.java
+│   │   │   │               │   │           └── ApiSemiProductTranslation.java
+│   │   │   │               │   ├── common
+│   │   │   │               │   │   ├── BaseService.java
+│   │   │   │               │   │   ├── CommonApiTools.java
+│   │   │   │               │   │   ├── CommonController.java
+│   │   │   │               │   │   ├── CommonCsvController.java
+│   │   │   │               │   │   ├── CommonCsvService.java
+│   │   │   │               │   │   ├── CommonService.java
+│   │   │   │               │   │   ├── DocumentData.java
+│   │   │   │               │   │   ├── GlobalSettingsService.java
+│   │   │   │               │   │   ├── StorageKeyCache.java
+│   │   │   │               │   │   ├── StorageService.java
+│   │   │   │               │   │   ├── TokenService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   ├── ApiActivityProof.java
+│   │   │   │               │   │   │   ├── ApiCertification.java
+│   │   │   │               │   │   │   ├── ApiCountry.java
+│   │   │   │               │   │   │   ├── ApiDocument.java
+│   │   │   │               │   │   │   ├── ApiDocumentStorageKey.java
+│   │   │   │               │   │   │   └── ApiGlobalSettingsValue.java
+│   │   │   │               │   │   └── mappers
+│   │   │   │               │   │       ├── ActivityProofMapper.java
+│   │   │   │               │   │       └── CountryMapper.java
+│   │   │   │               │   ├── company
+│   │   │   │               │   │   ├── CompanyApiTools.java
+│   │   │   │               │   │   ├── CompanyController.java
+│   │   │   │               │   │   ├── CompanyQueries.java
+│   │   │   │               │   │   ├── CompanyService.java
+│   │   │   │               │   │   ├── UserCustomerImportService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   ├── ApiAddress.java
+│   │   │   │               │   │   │   ├── ApiCompany.java
+│   │   │   │               │   │   │   ├── ApiCompanyActionRequest.java
+│   │   │   │               │   │   │   ├── ApiCompanyBase.java
+│   │   │   │               │   │   │   ├── ApiCompanyCustomer.java
+│   │   │   │               │   │   │   ├── ApiCompanyDocument.java
+│   │   │   │               │   │   │   ├── ApiCompanyGet.java
+│   │   │   │               │   │   │   ├── ApiCompanyListResponse.java
+│   │   │   │               │   │   │   ├── ApiCompanyName.java
+│   │   │   │               │   │   │   ├── ApiCompanyOnboardingState.java
+│   │   │   │               │   │   │   ├── ApiCompanyPublic.java
+│   │   │   │               │   │   │   ├── ApiCompanyUpdate.java
+│   │   │   │               │   │   │   ├── ApiCompanyUser.java
+│   │   │   │               │   │   │   ├── ApiGeoAddress.java
+│   │   │   │               │   │   │   ├── ApiListCompaniesRequest.java
+│   │   │   │               │   │   │   ├── ApiListFarmersRequest.java
+│   │   │   │               │   │   │   ├── ApiPlot.java
+│   │   │   │               │   │   │   ├── ApiPlotCoordinate.java
+│   │   │   │               │   │   │   ├── ApiUserCustomer.java
+│   │   │   │               │   │   │   ├── ApiUserCustomerAssociation.java
+│   │   │   │               │   │   │   ├── ApiUserCustomerCooperative.java
+│   │   │   │               │   │   │   ├── ApiUserCustomerImportColumnValidationError.java
+│   │   │   │               │   │   │   ├── ApiUserCustomerImportResponse.java
+│   │   │   │               │   │   │   ├── ApiUserCustomerImportRowValidationError.java
+│   │   │   │               │   │   │   └── ApiUserCustomerLocation.java
+│   │   │   │               │   │   ├── mappers
+│   │   │   │               │   │   │   ├── AddressMapper.java
+│   │   │   │               │   │   │   ├── CompanyCustomerMapper.java
+│   │   │   │               │   │   │   ├── CompanyMapper.java
+│   │   │   │               │   │   │   ├── PlotMapper.java
+│   │   │   │               │   │   │   └── UserCustomerMapper.java
+│   │   │   │               │   │   └── types
+│   │   │   │               │   │       ├── CompanyAction.java
+│   │   │   │               │   │       ├── CompanyTranslatables.java
+│   │   │   │               │   │       └── UserCustomerImportCellErrorType.java
+│   │   │   │               │   ├── currencies
+│   │   │   │               │   │   ├── CurrencyController.java
+│   │   │   │               │   │   ├── CurrencyService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiCurrencyRatesResponse.java
+│   │   │   │               │   │       ├── ApiCurrencySymbolsResponse.java
+│   │   │   │               │   │       └── ApiCurrencyTypeRequest.java
+│   │   │   │               │   ├── dashboard
+│   │   │   │               │   │   ├── DashboardController.java
+│   │   │   │               │   │   ├── DashboardService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiAggregationTimeUnit.java
+│   │   │   │               │   │       ├── ApiDeliveriesQueryRequest.java
+│   │   │   │               │   │       ├── ApiDeliveriesTotal.java
+│   │   │   │               │   │       ├── ApiDeliveriesTotalItem.java
+│   │   │   │               │   │       ├── ApiExportType.java
+│   │   │   │               │   │       ├── ApiProcessingPerformanceRequest.java
+│   │   │   │               │   │       ├── ApiProcessingPerformanceRequestEvidenceField.java
+│   │   │   │               │   │       ├── ApiProcessingPerformanceTotal.java
+│   │   │   │               │   │       └── ApiProcessingPerformanceTotalItem.java
+│   │   │   │               │   ├── documents
+│   │   │   │               │   │   └── DocumentGeneratorEngine.java
+│   │   │   │               │   ├── exceptionhandling
+│   │   │   │               │   │   ├── ExceptionFormatter.java
+│   │   │   │               │   │   ├── SpringExceptionConverter.java
+│   │   │   │               │   │   └── SpringExceptionResponseBuilder.java
+│   │   │   │               │   ├── facility
+│   │   │   │               │   │   ├── FacilityController.java
+│   │   │   │               │   │   ├── FacilityMapper.java
+│   │   │   │               │   │   ├── FacilityService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiFacility.java
+│   │   │   │               │   │       ├── ApiFacilityLocation.java
+│   │   │   │               │   │       └── ApiFacilityTranslation.java
+│   │   │   │               │   ├── flyway
+│   │   │   │               │   │   ├── DelayedFlywayMigrationInitializer.java
+│   │   │   │               │   │   ├── FlywayInitializer.java
+│   │   │   │               │   │   ├── JpaMigration.java
+│   │   │   │               │   │   ├── JpaMigrationExecutor.java
+│   │   │   │               │   │   ├── JpaMigrationResolver.java
+│   │   │   │               │   │   └── JpaMigrationStrategy.java
+│   │   │   │               │   ├── groupstockorder
+│   │   │   │               │   │   ├── GroupStockOrderController.java
+│   │   │   │               │   │   ├── GroupStockOrderQueryRequest.java
+│   │   │   │               │   │   ├── GroupStockOrderService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       └── ApiGroupStockOrder.java
+│   │   │   │               │   ├── mail
+│   │   │   │               │   │   ├── MailEngine.java
+│   │   │   │               │   │   ├── MailSendingException.java
+│   │   │   │               │   │   ├── MailUtils.java
+│   │   │   │               │   │   └── MimeMessageBuilder.java
+│   │   │   │               │   ├── payment
+│   │   │   │               │   │   ├── BulkPaymentMapper.java
+│   │   │   │               │   │   ├── PaymentController.java
+│   │   │   │               │   │   ├── PaymentMapper.java
+│   │   │   │               │   │   ├── PaymentQueryRequest.java
+│   │   │   │               │   │   ├── PaymentService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiBulkPayment.java
+│   │   │   │               │   │       ├── ApiFacilityLocation.java
+│   │   │   │               │   │       ├── ApiPayment.java
+│   │   │   │               │   │       └── ApiPaymentCsv.java
+│   │   │   │               │   ├── processingaction
+│   │   │   │               │   │   ├── ProcessingActionController.java
+│   │   │   │               │   │   ├── ProcessingActionMapper.java
+│   │   │   │               │   │   ├── ProcessingActionService.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       ├── ApiProcessingAction.java
+│   │   │   │               │   │       └── ApiProcessingActionOutputSemiProduct.java
+│   │   │   │               │   ├── processingactiontranslation
+│   │   │   │               │   │   ├── ProcessingActionTranslationMapper.java
+│   │   │   │               │   │   └── api
+│   │   │   │               │   │       └── ApiProcessingActionTranslation.java
+│   │   │   │               │   ├── processingorder
+│   │   │   │               │   │   ├── ProcessingOrderController.java
+│   │   │   │               │   │   ├── ProcessingOrderService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   └── ApiProcessingOrder.java
+│   │   │   │               │   │   └── mappers
+│   │   │   │               │   │       └── ProcessingOrderMapper.java
+│   │   │   │               │   ├── product
+│   │   │   │               │   │   ├── FinalProductController.java
+│   │   │   │               │   │   ├── FinalProductQueryRequest.java
+│   │   │   │               │   │   ├── FinalProductService.java
+│   │   │   │               │   │   ├── ProductApiTools.java
+│   │   │   │               │   │   ├── ProductController.java
+│   │   │   │               │   │   ├── ProductDocumentService.java
+│   │   │   │               │   │   ├── ProductMapper.java
+│   │   │   │               │   │   ├── ProductQueries.java
+│   │   │   │               │   │   ├── ProductService.java
+│   │   │   │               │   │   ├── ProductTypeController.java
+│   │   │   │               │   │   ├── ProductTypeMapper.java
+│   │   │   │               │   │   ├── ProductTypeService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   ├── ApiBankInformation.java
+│   │   │   │               │   │   │   ├── ApiBusinessToCustomerSettings.java
+│   │   │   │               │   │   │   ├── ApiFarmInformation.java
+│   │   │   │               │   │   │   ├── ApiFarmPlantInformation.java
+│   │   │   │               │   │   │   ├── ApiFinalProduct.java
+│   │   │   │               │   │   │   ├── ApiKnowledgeBlog.java
+│   │   │   │               │   │   │   ├── ApiKnowledgeBlogBase.java
+│   │   │   │               │   │   │   ├── ApiListCollectorsRequest.java
+│   │   │   │               │   │   │   ├── ApiListCustomersRequest.java
+│   │   │   │               │   │   │   ├── ApiListKnowledgeBlogRequest.java
+│   │   │   │               │   │   │   ├── ApiListProductLabelBatchesRequest.java
+│   │   │   │               │   │   │   ├── ApiListProductLabelFeedbackRequest.java
+│   │   │   │               │   │   │   ├── ApiListProductsRequest.java
+│   │   │   │               │   │   │   ├── ApiLocation.java
+│   │   │   │               │   │   │   ├── ApiProcess.java
+│   │   │   │               │   │   │   ├── ApiProcessDocument.java
+│   │   │   │               │   │   │   ├── ApiProduct.java
+│   │   │   │               │   │   │   ├── ApiProductBase.java
+│   │   │   │               │   │   │   ├── ApiProductCompany.java
+│   │   │   │               │   │   │   ├── ApiProductContent.java
+│   │   │   │               │   │   │   ├── ApiProductDataSharingAgreement.java
+│   │   │   │               │   │   │   ├── ApiProductJourneyMarker.java
+│   │   │   │               │   │   │   ├── ApiProductLabel.java
+│   │   │   │               │   │   │   ├── ApiProductLabelAnalytics.java
+│   │   │   │               │   │   │   ├── ApiProductLabelBase.java
+│   │   │   │               │   │   │   ├── ApiProductLabelBatch.java
+│   │   │   │               │   │   │   ├── ApiProductLabelBatchCheckAuthenticity.java
+│   │   │   │               │   │   │   ├── ApiProductLabelBatchCheckOrigin.java
+│   │   │   │               │   │   │   ├── ApiProductLabelCompanyDocument.java
+│   │   │   │               │   │   │   ├── ApiProductLabelContent.java
+│   │   │   │               │   │   │   ├── ApiProductLabelFeedback.java
+│   │   │   │               │   │   │   ├── ApiProductLabelField.java
+│   │   │   │               │   │   │   ├── ApiProductLabelFieldValue.java
+│   │   │   │               │   │   │   ├── ApiProductLabelUpdateValues.java
+│   │   │   │               │   │   │   ├── ApiProductLabelValues.java
+│   │   │   │               │   │   │   ├── ApiProductLabelValuesExtended.java
+│   │   │   │               │   │   │   ├── ApiProductListResponse.java
+│   │   │   │               │   │   │   ├── ApiProductOrigin.java
+│   │   │   │               │   │   │   ├── ApiProductSettings.java
+│   │   │   │               │   │   │   ├── ApiProductType.java
+│   │   │   │               │   │   │   ├── ApiProductTypeTranslation.java
+│   │   │   │               │   │   │   ├── ApiResponsibility.java
+│   │   │   │               │   │   │   └── ApiSustainability.java
+│   │   │   │               │   │   ├── mapper
+│   │   │   │               │   │   │   └── LocationMapper.java
+│   │   │   │               │   │   └── types
+│   │   │   │               │   │       └── ProductLabelAction.java
+│   │   │   │               │   ├── productorder
+│   │   │   │               │   │   ├── ProductOrderController.java
+│   │   │   │               │   │   ├── ProductOrderService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   └── ApiProductOrder.java
+│   │   │   │               │   │   └── mappers
+│   │   │   │               │   │       └── ProductOrderMapper.java
+│   │   │   │               │   ├── pub
+│   │   │   │               │   │   └── PublicController.java
+│   │   │   │               │   ├── stockorder
+│   │   │   │               │   │   ├── StockOrderController.java
+│   │   │   │               │   │   ├── StockOrderQueryRequest.java
+│   │   │   │               │   │   ├── StockOrderService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   ├── ApiHistoryTimeline.java
+│   │   │   │               │   │   │   ├── ApiHistoryTimelineItem.java
+│   │   │   │               │   │   │   ├── ApiPurchaseOrder.java
+│   │   │   │               │   │   │   ├── ApiPurchaseOrderFarmer.java
+│   │   │   │               │   │   │   ├── ApiQRTagPublic.java
+│   │   │   │               │   │   │   ├── ApiStockOrder.java
+│   │   │   │               │   │   │   ├── ApiStockOrderEvidenceFieldValue.java
+│   │   │   │               │   │   │   ├── ApiStockOrderEvidenceTypeValue.java
+│   │   │   │               │   │   │   ├── ApiStockOrderHistory.java
+│   │   │   │               │   │   │   ├── ApiStockOrderHistoryTimelineItem.java
+│   │   │   │               │   │   │   └── ApiStockOrderLocation.java
+│   │   │   │               │   │   └── mappers
+│   │   │   │               │   │       ├── ScoreImpactMapper.java
+│   │   │   │               │   │       ├── ScoreTargetMapper.java
+│   │   │   │               │   │       ├── StockOrderEvidenceFieldValueMapper.java
+│   │   │   │               │   │       ├── StockOrderEvidenceTypeValueMapper.java
+│   │   │   │               │   │       ├── StockOrderLocationMapper.java
+│   │   │   │               │   │       └── StockOrderMapper.java
+│   │   │   │               │   ├── transaction
+│   │   │   │               │   │   ├── TransactionController.java
+│   │   │   │               │   │   ├── TransactionService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   └── ApiTransaction.java
+│   │   │   │               │   │   └── mappers
+│   │   │   │               │   │       └── TransactionMapper.java
+│   │   │   │               │   ├── transactions
+│   │   │   │               │   │   └── AbTransactionTemplate.java
+│   │   │   │               │   ├── user
+│   │   │   │               │   │   ├── NotificationService.java
+│   │   │   │               │   │   ├── UserApiTools.java
+│   │   │   │               │   │   ├── UserController.java
+│   │   │   │               │   │   ├── UserQueries.java
+│   │   │   │               │   │   ├── UserService.java
+│   │   │   │               │   │   ├── api
+│   │   │   │               │   │   │   ├── ApiAdminUserUpdate.java
+│   │   │   │               │   │   │   ├── ApiCreateUserRequest.java
+│   │   │   │               │   │   │   ├── ApiEmail.java
+│   │   │   │               │   │   │   ├── ApiListUsersRequest.java
+│   │   │   │               │   │   │   ├── ApiLoginRequest.java
+│   │   │   │               │   │   │   ├── ApiResetPasswordRequest.java
+│   │   │   │               │   │   │   ├── ApiToken.java
+│   │   │   │               │   │   │   ├── ApiUser.java
+│   │   │   │               │   │   │   ├── ApiUserBase.java
+│   │   │   │               │   │   │   ├── ApiUserGet.java
+│   │   │   │               │   │   │   └── ApiUserUpdate.java
+│   │   │   │               │   │   ├── mappers
+│   │   │   │               │   │   │   └── UserMapper.java
+│   │   │   │               │   │   └── types
+│   │   │   │               │   │       └── UserAction.java
+│   │   │   │               │   └── value_chain
+│   │   │   │               │       ├── ValueChainApiTools.java
+│   │   │   │               │       ├── ValueChainController.java
+│   │   │   │               │       ├── ValueChainMapper.java
+│   │   │   │               │       ├── ValueChainQueries.java
+│   │   │   │               │       ├── ValueChainService.java
+│   │   │   │               │       └── api
+│   │   │   │               │           ├── ApiValueChain.java
+│   │   │   │               │           └── ApiValueChainListRequest.java
+│   │   │   │               ├── configuration
+│   │   │   │               │   ├── CustomLanguageConfiguration.java
+│   │   │   │               │   ├── CustomMySQLDialect.java
+│   │   │   │               │   ├── CustomProxyTransactionManagementConfiguration.java
+│   │   │   │               │   ├── DefaultControllerExceptionHandler.java
+│   │   │   │               │   ├── MigrationsConfiguration.java
+│   │   │   │               │   ├── MvcConfiguration.java
+│   │   │   │               │   ├── OpenAPIConfiguration.java
+│   │   │   │               │   ├── PrefixedApiRequestHandler.java
+│   │   │   │               │   ├── RestTemplateConfig.java
+│   │   │   │               │   ├── SchedulerConfiguration.java
+│   │   │   │               │   └── WebConfiguration.java
+│   │   │   │               ├── db
+│   │   │   │               │   ├── base
+│   │   │   │               │   │   ├── BaseEntity.java
+│   │   │   │               │   │   ├── CodebookBaseEntity.java
+│   │   │   │               │   │   ├── CreationTimestampEntity.java
+│   │   │   │               │   │   ├── TimestampEntity.java
+│   │   │   │               │   │   └── TranslatedEntity.java
+│   │   │   │               │   ├── converters
+│   │   │   │               │   │   └── MarkerListConverter.java
+│   │   │   │               │   ├── entities
+│   │   │   │               │   │   ├── analytics
+│   │   │   │               │   │   │   ├── AnalyticsAggregate.java
+│   │   │   │               │   │   │   ├── AnalyticsAggregateItem.java
+│   │   │   │               │   │   │   ├── RequestGeoLocation.java
+│   │   │   │               │   │   │   └── RequestLog.java
+│   │   │   │               │   │   ├── auth
+│   │   │   │               │   │   │   ├── AuthenticationToken.java
+│   │   │   │               │   │   │   └── ConfirmationToken.java
+│   │   │   │               │   │   ├── codebook
+│   │   │   │               │   │   │   ├── CurrencyType.java
+│   │   │   │               │   │   │   ├── FacilityType.java
+│   │   │   │               │   │   │   ├── MeasureUnitType.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceField.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceFieldTranslation.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceType.java
+│   │   │   │               │   │   │   ├── ProcessingEvidenceTypeTranslation.java
+│   │   │   │               │   │   │   ├── ProductType.java
+│   │   │   │               │   │   │   ├── ProductTypeTranslation.java
+│   │   │   │               │   │   │   ├── SemiProduct.java
+│   │   │   │               │   │   │   └── SemiProductTranslation.java
+│   │   │   │               │   │   ├── common
+│   │   │   │               │   │   │   ├── ActivityProof.java
+│   │   │   │               │   │   │   ├── Address.java
+│   │   │   │               │   │   │   ├── BankInformation.java
+│   │   │   │               │   │   │   ├── Country.java
+│   │   │   │               │   │   │   ├── Document.java
+│   │   │   │               │   │   │   ├── FarmInformation.java
+│   │   │   │               │   │   │   ├── FarmPlantInformation.java
+│   │   │   │               │   │   │   ├── GeoAddress.java
+│   │   │   │               │   │   │   ├── GlobalSettings.java
+│   │   │   │               │   │   │   ├── Location.java
+│   │   │   │               │   │   │   ├── Plot.java
+│   │   │   │               │   │   │   ├── PlotCoordinate.java
+│   │   │   │               │   │   │   ├── User.java
+│   │   │   │               │   │   │   ├── UserCustomer.java
+│   │   │   │               │   │   │   ├── UserCustomerAssociation.java
+│   │   │   │               │   │   │   ├── UserCustomerCertification.java
+│   │   │   │               │   │   │   ├── UserCustomerCooperative.java
+│   │   │   │               │   │   │   ├── UserCustomerLocation.java
+│   │   │   │               │   │   │   └── UserCustomerProductType.java
+│   │   │   │               │   │   ├── company
+│   │   │   │               │   │   │   ├── Company.java
+│   │   │   │               │   │   │   ├── CompanyCertification.java
+│   │   │   │               │   │   │   ├── CompanyCustomer.java
+│   │   │   │               │   │   │   ├── CompanyDocument.java
+│   │   │   │               │   │   │   ├── CompanyTranslation.java
+│   │   │   │               │   │   │   └── CompanyUser.java
+│   │   │   │               │   │   ├── currencies
+│   │   │   │               │   │   │   └── CurrencyPair.java
+│   │   │   │               │   │   ├── facility
+│   │   │   │               │   │   │   ├── Facility.java
+│   │   │   │               │   │   │   ├── FacilityFinalProduct.java
+│   │   │   │               │   │   │   ├── FacilityLocation.java
+│   │   │   │               │   │   │   ├── FacilitySemiProduct.java
+│   │   │   │               │   │   │   └── FacilityTranslation.java
+│   │   │   │               │   │   ├── payment
+│   │   │   │               │   │   │   ├── BulkPayment.java
+│   │   │   │               │   │   │   ├── BulkPaymentActivityProof.java
+│   │   │   │               │   │   │   ├── Payment.java
+│   │   │   │               │   │   │   ├── PaymentPurposeType.java
+│   │   │   │               │   │   │   ├── PaymentStatus.java
+│   │   │   │               │   │   │   ├── PaymentType.java
+│   │   │   │               │   │   │   ├── ReceiptDocumentType.java
+│   │   │   │               │   │   │   └── RecipientType.java
+│   │   │   │               │   │   ├── process
+│   │   │   │               │   │   │   └── Process.java
+│   │   │   │               │   │   ├── processingaction
+│   │   │   │               │   │   │   ├── ProcessingAction.java
+│   │   │   │               │   │   │   ├── ProcessingActionFacility.java
+│   │   │   │               │   │   │   ├── ProcessingActionOutputSemiProduct.java
+│   │   │   │               │   │   │   ├── ProcessingActionPEF.java
+│   │   │   │               │   │   │   ├── ProcessingActionPET.java
+│   │   │   │               │   │   │   └── ProcessingActionTranslation.java
+│   │   │   │               │   │   ├── processingorder
+│   │   │   │               │   │   │   └── ProcessingOrder.java
+│   │   │   │               │   │   ├── product
+│   │   │   │               │   │   │   ├── BatchLocation.java
+│   │   │   │               │   │   │   ├── BusinessToCustomerSettings.java
+│   │   │   │               │   │   │   ├── FinalProduct.java
+│   │   │   │               │   │   │   ├── FinalProductLabel.java
+│   │   │   │               │   │   │   ├── KnowledgeBlog.java
+│   │   │   │               │   │   │   ├── Product.java
+│   │   │   │               │   │   │   ├── ProductCompany.java
+│   │   │   │               │   │   │   ├── ProductContent.java
+│   │   │   │               │   │   │   ├── ProductDataSharingAgreement.java
+│   │   │   │               │   │   │   ├── ProductJourney.java
+│   │   │   │               │   │   │   ├── ProductLabel.java
+│   │   │   │               │   │   │   ├── ProductLabelBatch.java
+│   │   │   │               │   │   │   ├── ProductLabelCompanyDocument.java
+│   │   │   │               │   │   │   ├── ProductLabelContent.java
+│   │   │   │               │   │   │   ├── ProductLabelFeedback.java
+│   │   │   │               │   │   │   ├── ProductLabelField.java
+│   │   │   │               │   │   │   ├── ProductLocation.java
+│   │   │   │               │   │   │   ├── ProductSettings.java
+│   │   │   │               │   │   │   ├── Responsibility.java
+│   │   │   │               │   │   │   ├── Sustainability.java
+│   │   │   │               │   │   │   └── enums
+│   │   │   │               │   │   │       └── FairPricesUnit.java
+│   │   │   │               │   │   ├── productorder
+│   │   │   │               │   │   │   └── ProductOrder.java
+│   │   │   │               │   │   ├── stockorder
+│   │   │   │               │   │   │   ├── Certification.java
+│   │   │   │               │   │   │   ├── StockOrder.java
+│   │   │   │               │   │   │   ├── StockOrderActivityProof.java
+│   │   │   │               │   │   │   ├── StockOrderLocation.java
+│   │   │   │               │   │   │   ├── StockOrderPEFieldValue.java
+│   │   │   │               │   │   │   ├── StockOrderPETypeValue.java
+│   │   │   │               │   │   │   ├── Transaction.java
+│   │   │   │               │   │   │   └── enums
+│   │   │   │               │   │   │       ├── OrderType.java
+│   │   │   │               │   │   │       ├── PreferredWayOfPayment.java
+│   │   │   │               │   │   │       ├── ScoreImpactType.java
+│   │   │   │               │   │   │       └── TransactionStatus.java
+│   │   │   │               │   │   └── value_chain
+│   │   │   │               │   │       ├── CompanyValueChain.java
+│   │   │   │               │   │       ├── FacilityValueChain.java
+│   │   │   │               │   │       ├── ProcessingActionValueChain.java
+│   │   │   │               │   │       ├── ValueChain.java
+│   │   │   │               │   │       ├── ValueChainFacilityType.java
+│   │   │   │               │   │       ├── ValueChainMeasureUnitType.java
+│   │   │   │               │   │       ├── ValueChainProcEvidenceType.java
+│   │   │   │               │   │       ├── ValueChainProcessingEvidenceField.java
+│   │   │   │               │   │       ├── ValueChainSemiProduct.java
+│   │   │   │               │   │       └── enums
+│   │   │   │               │   │           └── ValueChainStatus.java
+│   │   │   │               │   ├── enums
+│   │   │   │               │   │   └── EvidenceType.java
+│   │   │   │               │   └── migrations
+│   │   │   │               │       ├── V2020_03_27_15_00__Prefill_Countries.java
+│   │   │   │               │       ├── V2020_10_06_19_30__Update_Label_Content.java
+│   │   │   │               │       ├── V2020_11_26_12_30__Update_Company_User_Role.java
+│   │   │   │               │       ├── V2021_08_11_11_33__Prefill_FacilityTypes.java
+│   │   │   │               │       ├── V2021_08_11_11_41__Prefill_MeasureUnitTypes.java
+│   │   │   │               │       ├── V2021_10_12_10_01__Update_Product_Company.java
+│   │   │   │               │       ├── V2021_10_21_14_33__Update_Facility_Translations.java
+│   │   │   │               │       ├── V2021_10_24_17_22__Update_Semi_Product_Translations.java
+│   │   │   │               │       ├── V2021_11_02_10_07__Update_Processing_Evidence_Field_Translations.java
+│   │   │   │               │       ├── V2021_11_02_13_31__Update_Processing_Evidence_Type_Translations.java
+│   │   │   │               │       ├── V2022_05_03_15_54__Update_Business_To_Customer_Settings.java
+│   │   │   │               │       ├── V2022_05_05_09_15__Update_Business_To_Customer_Settings_Defaults.java
+│   │   │   │               │       ├── V2022_05_17_08_51__Update_Business_To_Customer_Settings_Graphics_Defaults.java
+│   │   │   │               │       ├── V2022_08_30_11_00__Update_Business_To_Customer_Settings_Add_Prod_Title_Color.java
+│   │   │   │               │       ├── V2023_03_09_14_33__Update_Value_Chains_Add_Coffee_Product_Type.java
+│   │   │   │               │       ├── V2023_04_12_14_00__Update_Product_Type_Translations.java
+│   │   │   │               │       ├── V2023_04_17_11_00__Update_Product_Type_FieldName.java
+│   │   │   │               │       ├── V2023_05_16_10_34__Migrate_repackedOutput_to_ProcActionOSM.java
+│   │   │   │               │       ├── V2023_05_24_12_11__Rename__Role__ADMIN__into__SYSTEM_ADMIN.java
+│   │   │   │               │       ├── V2023_05_24_17_09__Rename__CompanyUserRole__ADMIN__into__COMPANY_ADMIN.java
+│   │   │   │               │       └── V2023_05_24_17_26__Rename__CompanyUserRole__USER__into__COMPANY_USER.java
+│   │   │   │               ├── security
+│   │   │   │               │   ├── configuration
+│   │   │   │               │   │   ├── RestAuthenticationEntryPoint.java
+│   │   │   │               │   │   ├── SpringSecurityConfig.java
+│   │   │   │               │   │   └── TokenAuthenticationFilter.java
+│   │   │   │               │   ├── service
+│   │   │   │               │   │   ├── CustomUserDetails.java
+│   │   │   │               │   │   └── CustomUserDetailsServiceImpl.java
+│   │   │   │               │   └── utils
+│   │   │   │               │       └── PermissionsUtil.java
+│   │   │   │               ├── tools
+│   │   │   │               │   ├── ApiTools.java
+│   │   │   │               │   ├── EncryptionTools.java
+│   │   │   │               │   ├── FieldTools.java
+│   │   │   │               │   ├── ImageTools.java
+│   │   │   │               │   ├── ListTools.java
+│   │   │   │               │   ├── PaginationTools.java
+│   │   │   │               │   ├── PasswordTools.java
+│   │   │   │               │   ├── Queries.java
+│   │   │   │               │   ├── QueryTools.java
+│   │   │   │               │   ├── ResourceTools.java
+│   │   │   │               │   ├── SecurityTools.java
+│   │   │   │               │   ├── ThrowableFunction.java
+│   │   │   │               │   ├── TorpedoProjector.java
+│   │   │   │               │   ├── TranslateTools.java
+│   │   │   │               │   ├── converters
+│   │   │   │               │   │   ├── InstantConverter.java
+│   │   │   │               │   │   └── SimpleDateConverter.java
+│   │   │   │               │   ├── documents
+│   │   │   │               │   │   ├── Bookmark.java
+│   │   │   │               │   │   ├── BookmarkHtmlRelation.java
+│   │   │   │               │   │   ├── BookmarkHtmlValue.java
+│   │   │   │               │   │   ├── BookmarkMapGenerator.java
+│   │   │   │               │   │   ├── BookmarkValue.java
+│   │   │   │               │   │   ├── BookmarkValueProvider.java
+│   │   │   │               │   │   ├── Bookmarks.java
+│   │   │   │               │   │   ├── DefaultBookmarkValueProvider.java
+│   │   │   │               │   │   ├── DocumentForm.java
+│   │   │   │               │   │   ├── DocxDocumentCreator.java
+│   │   │   │               │   │   ├── PdfFontProvider.java
+│   │   │   │               │   │   ├── PdfTools.java
+│   │   │   │               │   │   └── ProvidesBookmarkValue.java
+│   │   │   │               │   └── queries
+│   │   │   │               │       ├── AliasCondition.java
+│   │   │   │               │       ├── BindingSelection.java
+│   │   │   │               │       ├── PropertySelector.java
+│   │   │   │               │       ├── Selection.java
+│   │   │   │               │       ├── SimpleQueryBuilder.java
+│   │   │   │               │       ├── SimpleSelection.java
+│   │   │   │               │       ├── TransformedSelection.java
+│   │   │   │               │       └── WhereBuilder.java
+│   │   │   │               └── types
+│   │   │   │                   ├── BeycoCertificateType.java
+│   │   │   │                   ├── BeycoCoffeeUnit.java
+│   │   │   │                   ├── BeycoCurrency.java
+│   │   │   │                   ├── BeycoGradeType.java
+│   │   │   │                   ├── BeycoIncoterms.java
+│   │   │   │                   ├── BeycoPriceUnit.java
+│   │   │   │                   ├── BeycoPrivacy.java
+│   │   │   │                   ├── BeycoProcessType.java
+│   │   │   │                   ├── BeycoQualitySegmentType.java
+│   │   │   │                   ├── BeycoSpeciesType.java
+│   │   │   │                   ├── BeycoVarietyType.java
+│   │   │   │                   ├── CompanyDocumentCategory.java
+│   │   │   │                   ├── CompanyDocumentType.java
+│   │   │   │                   ├── CompanyStatus.java
+│   │   │   │                   ├── CompanyUserRole.java
+│   │   │   │                   ├── ConfirmationTokenType.java
+│   │   │   │                   ├── DocumentType.java
+│   │   │   │                   ├── Gender.java
+│   │   │   │                   ├── KnowledgeBlogType.java
+│   │   │   │                   ├── Language.java
+│   │   │   │                   ├── MediaObject.java
+│   │   │   │                   ├── PaginatedRequestType.java
+│   │   │   │                   ├── ProcessingActionType.java
+│   │   │   │                   ├── ProcessingEvidenceFieldType.java
+│   │   │   │                   ├── ProductCompanyType.java
+│   │   │   │                   ├── ProductLabelFeedbackType.java
+│   │   │   │                   ├── ProductLabelStatus.java
+│   │   │   │                   ├── ProductStatus.java
+│   │   │   │                   ├── PublicTimelineIconType.java
+│   │   │   │                   ├── RequestLogType.java
+│   │   │   │                   ├── SortDirection.java
+│   │   │   │                   ├── Status.java
+│   │   │   │                   ├── TokenGrantType.java
+│   │   │   │                   ├── UserCustomerType.java
+│   │   │   │                   ├── UserRole.java
+│   │   │   │                   └── UserStatus.java
+│   │   │   └── resources
+│   │   │       ├── application.properties.template
+│   │   │       ├── db
+│   │   │       │   └── migrations
+│   │   │       │       ├── V2023_06_14_10_04__Drop__column__ingredients__in__Product.sql
+│   │   │       │       ├── V2023_06_14_10_14__Drop__column__ingredients__in__ProductLabelContent.sql
+│   │   │       │       ├── V2023_06_14_10_37__Delete__ingredients__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_14_11_54__Drop__column__nutritionalValue__in__Product__and__ProductLabelContent.sql
+│   │   │       │       ├── V2023_06_14_11_59__Delete__nutritionalValue__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_14_12_07__Drop__column__howToUse__in__Product__and__ProductLabelContent.sql
+│   │   │       │       ├── V2023_06_14_12_09__Delete__howToUse__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_14_12_39__Drop__tables__Product_keyMarketsShare__and__ProductLabelContent_keyMarketsShare.sql
+│   │   │       │       ├── V2023_06_14_12_41__Delete__keyMarketsShare__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_14_13_13__Drop__columns__specialityDoc_and_specialityDesc__in__Product__and__ProductLabelContent.sql
+│   │   │       │       ├── V2023_06_14_13_36__Delete__specialityDesc__and__specialityDoc__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_14_15_21__Drop__tables__ProcessStandard__and__ProcessDocument.sql
+│   │   │       │       ├── V2023_06_14_15_23__Drop__columns__storage__and__codesOfConduct__in__Process.sql
+│   │   │       │       ├── V2023_06_14_15_25__Delete__process__fields__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_15_07_40__Drop__columns__in__Responsability.sql
+│   │   │       │       ├── V2023_06_15_07_48__Drop__table__ResponsibilityFarmerPicture.sql
+│   │   │       │       ├── V2023_06_15_07_51__Delete__responsibility__fields__in__ProductLabel_fields.sql
+│   │   │       │       ├── V2023_06_15_09_50__Drop__column__knowledgeBlog__in__Product__and__ProductLabelContent.sql
+│   │   │       │       ├── V2023_06_15_10_02__Drop__columns__in__ProductSettings.sql
+│   │   │       │       └── V2023_06_15_10_04__Delete__settings__fields__in__ProductLabel_fields.sql
+│   │   │       ├── i18n
+│   │   │       │   ├── messages_de.properties
+│   │   │       │   ├── messages_en.properties
+│   │   │       │   ├── messages_es.properties
+│   │   │       │   └── messages_rw.properties
+│   │   │       ├── images
+│   │   │       │   └── logo-inatrace-tm.png
+│   │   │       └── templates
+│   │   │           └── inline
+│   │   │               └── basic-ar.html
+│   │   └── test
+│   │       └── java
+│   │           └── com
+│   │               └── abelium
+│   │                   └── inatrace
+│   │                       └── INATraceBackendApplicationTests.java
+│   └── target
+│       ├── classes
+│       │   ├── application.properties.template
+│       │   ├── com
+│       │   │   └── abelium
+│       │   │       └── inatrace
+│       │   │           ├── INATraceBackendApplication.class
+│       │   │           ├── api
+│       │   │           │   ├── ApiBaseEntity.class
+│       │   │           │   ├── ApiCodebookBaseEntity.class
+│       │   │           │   ├── ApiDefaultResponse.class
+│       │   │           │   ├── ApiPaginatedList.class
+│       │   │           │   ├── ApiPaginatedQueryStringRequest.class
+│       │   │           │   ├── ApiPaginatedRequest.class
+│       │   │           │   ├── ApiPaginatedResponse.class
+│       │   │           │   ├── ApiResponse.class
+│       │   │           │   ├── ApiStatus.class
+│       │   │           │   ├── ApiTimestampEntity.class
+│       │   │           │   ├── ApiUserRole.class
+│       │   │           │   ├── errors
+│       │   │           │   │   ├── ApiError.class
+│       │   │           │   │   ├── ApiException.class
+│       │   │           │   │   ├── ApiImageException.class
+│       │   │           │   │   ├── HtmlPageException.class
+│       │   │           │   │   └── validation
+│       │   │           │   │       ├── ApiValidationError.class
+│       │   │           │   │       ├── ApiValidationErrorDetails.class
+│       │   │           │   │       └── ApiValidationException.class
+│       │   │           │   ├── exceptions
+│       │   │           │   │   ├── ApiUpstreamApplicationException.class
+│       │   │           │   │   ├── ApiUpstreamNetworkException.class
+│       │   │           │   │   └── ApiUpstreamServiceException.class
+│       │   │           │   ├── formatters
+│       │   │           │   │   ├── InstantFormatter.class
+│       │   │           │   │   └── LocalDateFormatter.class
+│       │   │           │   └── types
+│       │   │           │       └── Lengths.class
+│       │   │           ├── components
+│       │   │           │   ├── agstack
+│       │   │           │   │   ├── AgStackClientService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiRegisterFieldBoundaryErrorResponse.class
+│       │   │           │   │       ├── ApiRegisterFieldBoundaryRequest.class
+│       │   │           │   │       └── ApiRegisterFieldBoundaryResponse.class
+│       │   │           │   ├── analytics
+│       │   │           │   │   ├── Aggregator.class
+│       │   │           │   │   ├── AnalyticsEngine.class
+│       │   │           │   │   ├── AnalyticsQueries$AggregateUpdate.class
+│       │   │           │   │   ├── AnalyticsQueries.class
+│       │   │           │   │   ├── CountAggregator.class
+│       │   │           │   │   ├── CountryAggregator.class
+│       │   │           │   │   ├── IpGeoLocationEngine.class
+│       │   │           │   │   ├── LatLonAggregator.class
+│       │   │           │   │   ├── RequestLogService.class
+│       │   │           │   │   ├── SuccessAggregator.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiHogRequest$ApiHogRequestProperties.class
+│       │   │           │   │       ├── ApiHogRequest.class
+│       │   │           │   │       └── ApiLogRequest.class
+│       │   │           │   ├── beycoorder
+│       │   │           │   │   ├── BeycoOrderController.class
+│       │   │           │   │   ├── BeycoOrderService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiBeycoCoffee.class
+│       │   │           │   │       ├── ApiBeycoCoffeeCertificate.class
+│       │   │           │   │       ├── ApiBeycoCoffeeGrade.class
+│       │   │           │   │       ├── ApiBeycoCoffeeQuality.class
+│       │   │           │   │       ├── ApiBeycoCoffeeVariety.class
+│       │   │           │   │       ├── ApiBeycoOrderCoffees.class
+│       │   │           │   │       ├── ApiBeycoOrderFields.class
+│       │   │           │   │       ├── ApiBeycoPortOfExport.class
+│       │   │           │   │       ├── ApiBeycoTokenRequest.class
+│       │   │           │   │       └── ApiBeycoTokenResponse.class
+│       │   │           │   ├── codebook
+│       │   │           │   │   ├── currencies
+│       │   │           │   │   │   ├── CurrencyTypeController.class
+│       │   │           │   │   │   ├── CurrencyTypeMapper.class
+│       │   │           │   │   │   ├── CurrencyTypeService.class
+│       │   │           │   │   │   └── api
+│       │   │           │   │   │       └── ApiCurrencyType.class
+│       │   │           │   │   ├── facility_type
+│       │   │           │   │   │   ├── FacilityTypeController.class
+│       │   │           │   │   │   ├── FacilityTypeMapper.class
+│       │   │           │   │   │   ├── FacilityTypeService.class
+│       │   │           │   │   │   └── api
+│       │   │           │   │   │       └── ApiFacilityType.class
+│       │   │           │   │   ├── measure_unit_type
+│       │   │           │   │   │   ├── MeasureUnitTypeController.class
+│       │   │           │   │   │   ├── MeasureUnitTypeMapper.class
+│       │   │           │   │   │   ├── MeasureUnitTypeService.class
+│       │   │           │   │   │   └── api
+│       │   │           │   │   │       └── ApiMeasureUnitType.class
+│       │   │           │   │   ├── processing_evidence_type
+│       │   │           │   │   │   ├── ProcessingEvidenceTypeController.class
+│       │   │           │   │   │   ├── ProcessingEvidenceTypeMapper.class
+│       │   │           │   │   │   ├── ProcessingEvidenceTypeService.class
+│       │   │           │   │   │   └── api
+│       │   │           │   │   │       ├── ApiProcessingEvidenceType.class
+│       │   │           │   │   │       └── ApiProcessingEvidenceTypeTranslation.class
+│       │   │           │   │   ├── processingevidencefield
+│       │   │           │   │   │   ├── ProcessingEvidenceFieldController.class
+│       │   │           │   │   │   ├── ProcessingEvidenceFieldMapper.class
+│       │   │           │   │   │   ├── ProcessingEvidenceFieldService.class
+│       │   │           │   │   │   └── api
+│       │   │           │   │   │       ├── ApiProcessingEvidenceField.class
+│       │   │           │   │   │       └── ApiProcessingEvidenceFieldTranslation.class
+│       │   │           │   │   └── semiproduct
+│       │   │           │   │       ├── SemiProductController.class
+│       │   │           │   │       ├── SemiProductMapper.class
+│       │   │           │   │       ├── SemiProductService.class
+│       │   │           │   │       └── api
+│       │   │           │   │           ├── ApiSemiProduct.class
+│       │   │           │   │           └── ApiSemiProductTranslation.class
+│       │   │           │   ├── common
+│       │   │           │   │   ├── BaseService.class
+│       │   │           │   │   ├── CommonApiTools.class
+│       │   │           │   │   ├── CommonController.class
+│       │   │           │   │   ├── CommonCsvController.class
+│       │   │           │   │   ├── CommonCsvService.class
+│       │   │           │   │   ├── CommonService.class
+│       │   │           │   │   ├── DocumentData.class
+│       │   │           │   │   ├── GlobalSettingsService.class
+│       │   │           │   │   ├── StorageKeyCache$CacheValue.class
+│       │   │           │   │   ├── StorageKeyCache.class
+│       │   │           │   │   ├── StorageService.class
+│       │   │           │   │   ├── TokenService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   ├── ApiActivityProof.class
+│       │   │           │   │   │   ├── ApiCertification.class
+│       │   │           │   │   │   ├── ApiCountry.class
+│       │   │           │   │   │   ├── ApiDocument.class
+│       │   │           │   │   │   ├── ApiDocumentStorageKey.class
+│       │   │           │   │   │   └── ApiGlobalSettingsValue.class
+│       │   │           │   │   └── mappers
+│       │   │           │   │       ├── ActivityProofMapper.class
+│       │   │           │   │       └── CountryMapper.class
+│       │   │           │   ├── company
+│       │   │           │   │   ├── CompanyApiTools.class
+│       │   │           │   │   ├── CompanyController.class
+│       │   │           │   │   ├── CompanyQueries.class
+│       │   │           │   │   ├── CompanyService$1.class
+│       │   │           │   │   ├── CompanyService.class
+│       │   │           │   │   ├── UserCustomerImportService$1.class
+│       │   │           │   │   ├── UserCustomerImportService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   ├── ApiAddress.class
+│       │   │           │   │   │   ├── ApiCompany.class
+│       │   │           │   │   │   ├── ApiCompanyActionRequest.class
+│       │   │           │   │   │   ├── ApiCompanyBase.class
+│       │   │           │   │   │   ├── ApiCompanyCustomer.class
+│       │   │           │   │   │   ├── ApiCompanyDocument.class
+│       │   │           │   │   │   ├── ApiCompanyGet.class
+│       │   │           │   │   │   ├── ApiCompanyListResponse.class
+│       │   │           │   │   │   ├── ApiCompanyName.class
+│       │   │           │   │   │   ├── ApiCompanyOnboardingState.class
+│       │   │           │   │   │   ├── ApiCompanyPublic.class
+│       │   │           │   │   │   ├── ApiCompanyUpdate.class
+│       │   │           │   │   │   ├── ApiCompanyUser.class
+│       │   │           │   │   │   ├── ApiGeoAddress.class
+│       │   │           │   │   │   ├── ApiListCompaniesRequest.class
+│       │   │           │   │   │   ├── ApiListFarmersRequest.class
+│       │   │           │   │   │   ├── ApiPlot.class
+│       │   │           │   │   │   ├── ApiPlotCoordinate.class
+│       │   │           │   │   │   ├── ApiUserCustomer.class
+│       │   │           │   │   │   ├── ApiUserCustomerAssociation.class
+│       │   │           │   │   │   ├── ApiUserCustomerCooperative.class
+│       │   │           │   │   │   ├── ApiUserCustomerImportColumnValidationError.class
+│       │   │           │   │   │   ├── ApiUserCustomerImportResponse.class
+│       │   │           │   │   │   ├── ApiUserCustomerImportRowValidationError.class
+│       │   │           │   │   │   └── ApiUserCustomerLocation.class
+│       │   │           │   │   ├── mappers
+│       │   │           │   │   │   ├── AddressMapper.class
+│       │   │           │   │   │   ├── CompanyCustomerMapper.class
+│       │   │           │   │   │   ├── CompanyMapper.class
+│       │   │           │   │   │   ├── PlotMapper.class
+│       │   │           │   │   │   └── UserCustomerMapper.class
+│       │   │           │   │   └── types
+│       │   │           │   │       ├── CompanyAction.class
+│       │   │           │   │       ├── CompanyTranslatables.class
+│       │   │           │   │       └── UserCustomerImportCellErrorType.class
+│       │   │           │   ├── currencies
+│       │   │           │   │   ├── CurrencyController.class
+│       │   │           │   │   ├── CurrencyService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiCurrencyRatesResponse.class
+│       │   │           │   │       ├── ApiCurrencySymbolsResponse.class
+│       │   │           │   │       └── ApiCurrencyTypeRequest.class
+│       │   │           │   ├── dashboard
+│       │   │           │   │   ├── DashboardController$1.class
+│       │   │           │   │   ├── DashboardController.class
+│       │   │           │   │   ├── DashboardService$1.class
+│       │   │           │   │   ├── DashboardService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiAggregationTimeUnit.class
+│       │   │           │   │       ├── ApiDeliveriesQueryRequest.class
+│       │   │           │   │       ├── ApiDeliveriesTotal.class
+│       │   │           │   │       ├── ApiDeliveriesTotalItem.class
+│       │   │           │   │       ├── ApiExportType.class
+│       │   │           │   │       ├── ApiProcessingPerformanceRequest.class
+│       │   │           │   │       ├── ApiProcessingPerformanceRequestEvidenceField.class
+│       │   │           │   │       ├── ApiProcessingPerformanceTotal.class
+│       │   │           │   │       └── ApiProcessingPerformanceTotalItem.class
+│       │   │           │   ├── documents
+│       │   │           │   │   └── DocumentGeneratorEngine.class
+│       │   │           │   ├── exceptionhandling
+│       │   │           │   │   ├── ExceptionFormatter.class
+│       │   │           │   │   ├── SpringExceptionConverter.class
+│       │   │           │   │   └── SpringExceptionResponseBuilder.class
+│       │   │           │   ├── facility
+│       │   │           │   │   ├── FacilityController.class
+│       │   │           │   │   ├── FacilityMapper.class
+│       │   │           │   │   ├── FacilityService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiFacility.class
+│       │   │           │   │       ├── ApiFacilityLocation.class
+│       │   │           │   │       └── ApiFacilityTranslation.class
+│       │   │           │   ├── flyway
+│       │   │           │   │   ├── DelayedFlywayMigrationInitializer.class
+│       │   │           │   │   ├── FlywayInitializer.class
+│       │   │           │   │   ├── JpaMigration.class
+│       │   │           │   │   ├── JpaMigrationExecutor.class
+│       │   │           │   │   ├── JpaMigrationResolver.class
+│       │   │           │   │   └── JpaMigrationStrategy.class
+│       │   │           │   ├── groupstockorder
+│       │   │           │   │   ├── GroupStockOrderController.class
+│       │   │           │   │   ├── GroupStockOrderQueryRequest.class
+│       │   │           │   │   ├── GroupStockOrderService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       └── ApiGroupStockOrder.class
+│       │   │           │   ├── mail
+│       │   │           │   │   ├── MailEngine.class
+│       │   │           │   │   ├── MailSendingException.class
+│       │   │           │   │   ├── MailUtils.class
+│       │   │           │   │   └── MimeMessageBuilder.class
+│       │   │           │   ├── payment
+│       │   │           │   │   ├── BulkPaymentMapper.class
+│       │   │           │   │   ├── PaymentController.class
+│       │   │           │   │   ├── PaymentMapper.class
+│       │   │           │   │   ├── PaymentQueryRequest.class
+│       │   │           │   │   ├── PaymentService$1.class
+│       │   │           │   │   ├── PaymentService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiBulkPayment.class
+│       │   │           │   │       ├── ApiFacilityLocation.class
+│       │   │           │   │       ├── ApiPayment.class
+│       │   │           │   │       └── ApiPaymentCsv.class
+│       │   │           │   ├── processingaction
+│       │   │           │   │   ├── ProcessingActionController.class
+│       │   │           │   │   ├── ProcessingActionMapper.class
+│       │   │           │   │   ├── ProcessingActionService$1.class
+│       │   │           │   │   ├── ProcessingActionService.class
+│       │   │           │   │   └── api
+│       │   │           │   │       ├── ApiProcessingAction.class
+│       │   │           │   │       └── ApiProcessingActionOutputSemiProduct.class
+│       │   │           │   ├── processingactiontranslation
+│       │   │           │   │   ├── ProcessingActionTranslationMapper.class
+│       │   │           │   │   └── api
+│       │   │           │   │       └── ApiProcessingActionTranslation.class
+│       │   │           │   ├── processingorder
+│       │   │           │   │   ├── ProcessingOrderController.class
+│       │   │           │   │   ├── ProcessingOrderService$1.class
+│       │   │           │   │   ├── ProcessingOrderService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   └── ApiProcessingOrder.class
+│       │   │           │   │   └── mappers
+│       │   │           │   │       └── ProcessingOrderMapper.class
+│       │   │           │   ├── product
+│       │   │           │   │   ├── FinalProductController.class
+│       │   │           │   │   ├── FinalProductQueryRequest.class
+│       │   │           │   │   ├── FinalProductService.class
+│       │   │           │   │   ├── ProductApiTools$1.class
+│       │   │           │   │   ├── ProductApiTools.class
+│       │   │           │   │   ├── ProductController.class
+│       │   │           │   │   ├── ProductDocumentService$LabelInstructionsForm.class
+│       │   │           │   │   ├── ProductDocumentService.class
+│       │   │           │   │   ├── ProductMapper.class
+│       │   │           │   │   ├── ProductQueries.class
+│       │   │           │   │   ├── ProductService$1.class
+│       │   │           │   │   ├── ProductService.class
+│       │   │           │   │   ├── ProductTypeController.class
+│       │   │           │   │   ├── ProductTypeMapper.class
+│       │   │           │   │   ├── ProductTypeService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   ├── ApiBankInformation.class
+│       │   │           │   │   │   ├── ApiBusinessToCustomerSettings.class
+│       │   │           │   │   │   ├── ApiFarmInformation.class
+│       │   │           │   │   │   ├── ApiFarmPlantInformation.class
+│       │   │           │   │   │   ├── ApiFinalProduct.class
+│       │   │           │   │   │   ├── ApiKnowledgeBlog.class
+│       │   │           │   │   │   ├── ApiKnowledgeBlogBase.class
+│       │   │           │   │   │   ├── ApiListCollectorsRequest.class
+│       │   │           │   │   │   ├── ApiListCustomersRequest.class
+│       │   │           │   │   │   ├── ApiListKnowledgeBlogRequest.class
+│       │   │           │   │   │   ├── ApiListProductLabelBatchesRequest.class
+│       │   │           │   │   │   ├── ApiListProductLabelFeedbackRequest.class
+│       │   │           │   │   │   ├── ApiListProductsRequest.class
+│       │   │           │   │   │   ├── ApiLocation.class
+│       │   │           │   │   │   ├── ApiProcess.class
+│       │   │           │   │   │   ├── ApiProcessDocument.class
+│       │   │           │   │   │   ├── ApiProduct.class
+│       │   │           │   │   │   ├── ApiProductBase.class
+│       │   │           │   │   │   ├── ApiProductCompany.class
+│       │   │           │   │   │   ├── ApiProductContent.class
+│       │   │           │   │   │   ├── ApiProductDataSharingAgreement.class
+│       │   │           │   │   │   ├── ApiProductJourneyMarker.class
+│       │   │           │   │   │   ├── ApiProductLabel.class
+│       │   │           │   │   │   ├── ApiProductLabelAnalytics.class
+│       │   │           │   │   │   ├── ApiProductLabelBase.class
+│       │   │           │   │   │   ├── ApiProductLabelBatch.class
+│       │   │           │   │   │   ├── ApiProductLabelBatchCheckAuthenticity.class
+│       │   │           │   │   │   ├── ApiProductLabelBatchCheckOrigin.class
+│       │   │           │   │   │   ├── ApiProductLabelCompanyDocument.class
+│       │   │           │   │   │   ├── ApiProductLabelContent.class
+│       │   │           │   │   │   ├── ApiProductLabelFeedback.class
+│       │   │           │   │   │   ├── ApiProductLabelField.class
+│       │   │           │   │   │   ├── ApiProductLabelFieldValue.class
+│       │   │           │   │   │   ├── ApiProductLabelUpdateValues.class
+│       │   │           │   │   │   ├── ApiProductLabelValues.class
+│       │   │           │   │   │   ├── ApiProductLabelValuesExtended.class
+│       │   │           │   │   │   ├── ApiProductListResponse.class
+│       │   │           │   │   │   ├── ApiProductOrigin.class
+│       │   │           │   │   │   ├── ApiProductSettings.class
+│       │   │           │   │   │   ├── ApiProductType.class
+│       │   │           │   │   │   ├── ApiProductTypeTranslation.class
+│       │   │           │   │   │   ├── ApiResponsibility.class
+│       │   │           │   │   │   └── ApiSustainability.class
+│       │   │           │   │   ├── mapper
+│       │   │           │   │   │   └── LocationMapper.class
+│       │   │           │   │   └── types
+│       │   │           │   │       └── ProductLabelAction.class
+│       │   │           │   ├── productorder
+│       │   │           │   │   ├── ProductOrderController.class
+│       │   │           │   │   ├── ProductOrderService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   └── ApiProductOrder.class
+│       │   │           │   │   └── mappers
+│       │   │           │   │       └── ProductOrderMapper.class
+│       │   │           │   ├── pub
+│       │   │           │   │   └── PublicController.class
+│       │   │           │   ├── stockorder
+│       │   │           │   │   ├── StockOrderController.class
+│       │   │           │   │   ├── StockOrderQueryRequest.class
+│       │   │           │   │   ├── StockOrderService$1.class
+│       │   │           │   │   ├── StockOrderService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   ├── ApiHistoryTimeline.class
+│       │   │           │   │   │   ├── ApiHistoryTimelineItem.class
+│       │   │           │   │   │   ├── ApiPurchaseOrder.class
+│       │   │           │   │   │   ├── ApiPurchaseOrderFarmer.class
+│       │   │           │   │   │   ├── ApiQRTagPublic.class
+│       │   │           │   │   │   ├── ApiStockOrder.class
+│       │   │           │   │   │   ├── ApiStockOrderEvidenceFieldValue.class
+│       │   │           │   │   │   ├── ApiStockOrderEvidenceTypeValue.class
+│       │   │           │   │   │   ├── ApiStockOrderHistory.class
+│       │   │           │   │   │   ├── ApiStockOrderHistoryTimelineItem.class
+│       │   │           │   │   │   └── ApiStockOrderLocation.class
+│       │   │           │   │   └── mappers
+│       │   │           │   │       ├── StockOrderEvidenceFieldValueMapper.class
+│       │   │           │   │       ├── StockOrderEvidenceTypeValueMapper.class
+│       │   │           │   │       ├── StockOrderLocationMapper.class
+│       │   │           │   │       └── StockOrderMapper.class
+│       │   │           │   ├── transaction
+│       │   │           │   │   ├── TransactionController.class
+│       │   │           │   │   ├── TransactionService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   └── ApiTransaction.class
+│       │   │           │   │   └── mappers
+│       │   │           │   │       └── TransactionMapper.class
+│       │   │           │   ├── transactions
+│       │   │           │   │   ├── AbTransactionTemplate$ApiTransactionCallback.class
+│       │   │           │   │   ├── AbTransactionTemplate$ApiTransactionRunner.class
+│       │   │           │   │   ├── AbTransactionTemplate$SimpleApiTransactionCallback.class
+│       │   │           │   │   ├── AbTransactionTemplate$SimpleApiTransactionRunner.class
+│       │   │           │   │   ├── AbTransactionTemplate$SimpleTransactionCallback.class
+│       │   │           │   │   ├── AbTransactionTemplate$SimpleTransactionRunner.class
+│       │   │           │   │   ├── AbTransactionTemplate$TransactionRunner.class
+│       │   │           │   │   ├── AbTransactionTemplate$WrappedApiException.class
+│       │   │           │   │   └── AbTransactionTemplate.class
+│       │   │           │   ├── user
+│       │   │           │   │   ├── NotificationService.class
+│       │   │           │   │   ├── UserApiTools.class
+│       │   │           │   │   ├── UserController.class
+│       │   │           │   │   ├── UserQueries.class
+│       │   │           │   │   ├── UserService$1.class
+│       │   │           │   │   ├── UserService.class
+│       │   │           │   │   ├── api
+│       │   │           │   │   │   ├── ApiAdminUserUpdate.class
+│       │   │           │   │   │   ├── ApiCreateUserRequest.class
+│       │   │           │   │   │   ├── ApiEmail.class
+│       │   │           │   │   │   ├── ApiListUsersRequest.class
+│       │   │           │   │   │   ├── ApiLoginRequest.class
+│       │   │           │   │   │   ├── ApiResetPasswordRequest.class
+│       │   │           │   │   │   ├── ApiToken.class
+│       │   │           │   │   │   ├── ApiUser.class
+│       │   │           │   │   │   ├── ApiUserBase.class
+│       │   │           │   │   │   ├── ApiUserGet.class
+│       │   │           │   │   │   └── ApiUserUpdate.class
+│       │   │           │   │   ├── mappers
+│       │   │           │   │   │   └── UserMapper.class
+│       │   │           │   │   └── types
+│       │   │           │   │       └── UserAction.class
+│       │   │           │   └── value_chain
+│       │   │           │       ├── ValueChainApiTools.class
+│       │   │           │       ├── ValueChainController.class
+│       │   │           │       ├── ValueChainMapper.class
+│       │   │           │       ├── ValueChainQueries.class
+│       │   │           │       ├── ValueChainService.class
+│       │   │           │       └── api
+│       │   │           │           ├── ApiValueChain.class
+│       │   │           │           └── ApiValueChainListRequest.class
+│       │   │           ├── configuration
+│       │   │           │   ├── CustomLanguageConfiguration.class
+│       │   │           │   ├── CustomMySQLDialect.class
+│       │   │           │   ├── CustomProxyTransactionManagementConfiguration$CustomTransactionAttribute$1.class
+│       │   │           │   ├── CustomProxyTransactionManagementConfiguration$CustomTransactionAttribute.class
+│       │   │           │   ├── CustomProxyTransactionManagementConfiguration.class
+│       │   │           │   ├── DefaultControllerExceptionHandler.class
+│       │   │           │   ├── MigrationsConfiguration.class
+│       │   │           │   ├── MvcConfiguration.class
+│       │   │           │   ├── OpenAPIConfiguration.class
+│       │   │           │   ├── PrefixedApiRequestHandler.class
+│       │   │           │   ├── RestTemplateConfig.class
+│       │   │           │   ├── SchedulerConfiguration.class
+│       │   │           │   ├── WebConfiguration$1.class
+│       │   │           │   └── WebConfiguration.class
+│       │   │           ├── db
+│       │   │           │   ├── base
+│       │   │           │   │   ├── BaseEntity.class
+│       │   │           │   │   ├── CodebookBaseEntity.class
+│       │   │           │   │   ├── CreationTimestampEntity.class
+│       │   │           │   │   ├── TimestampEntity.class
+│       │   │           │   │   └── TranslatedEntity.class
+│       │   │           │   ├── converters
+│       │   │           │   │   └── MarkerListConverter.class
+│       │   │           │   ├── entities
+│       │   │           │   │   ├── analytics
+│       │   │           │   │   │   ├── AnalyticsAggregate.class
+│       │   │           │   │   │   ├── AnalyticsAggregateItem.class
+│       │   │           │   │   │   ├── RequestGeoLocation.class
+│       │   │           │   │   │   └── RequestLog.class
+│       │   │           │   │   ├── auth
+│       │   │           │   │   │   ├── AuthenticationToken.class
+│       │   │           │   │   │   └── ConfirmationToken.class
+│       │   │           │   │   ├── codebook
+│       │   │           │   │   │   ├── CurrencyType.class
+│       │   │           │   │   │   ├── FacilityType.class
+│       │   │           │   │   │   ├── MeasureUnitType.class
+│       │   │           │   │   │   ├── ProcessingEvidenceField.class
+│       │   │           │   │   │   ├── ProcessingEvidenceFieldTranslation.class
+│       │   │           │   │   │   ├── ProcessingEvidenceType.class
+│       │   │           │   │   │   ├── ProcessingEvidenceTypeTranslation.class
+│       │   │           │   │   │   ├── ProductType.class
+│       │   │           │   │   │   ├── ProductTypeTranslation.class
+│       │   │           │   │   │   ├── SemiProduct.class
+│       │   │           │   │   │   └── SemiProductTranslation.class
+│       │   │           │   │   ├── common
+│       │   │           │   │   │   ├── ActivityProof.class
+│       │   │           │   │   │   ├── Address.class
+│       │   │           │   │   │   ├── BankInformation.class
+│       │   │           │   │   │   ├── Country.class
+│       │   │           │   │   │   ├── Document.class
+│       │   │           │   │   │   ├── FarmInformation.class
+│       │   │           │   │   │   ├── FarmPlantInformation.class
+│       │   │           │   │   │   ├── GeoAddress.class
+│       │   │           │   │   │   ├── GlobalSettings.class
+│       │   │           │   │   │   ├── Location.class
+│       │   │           │   │   │   ├── Plot.class
+│       │   │           │   │   │   ├── PlotCoordinate.class
+│       │   │           │   │   │   ├── User.class
+│       │   │           │   │   │   ├── UserCustomer.class
+│       │   │           │   │   │   ├── UserCustomerAssociation.class
+│       │   │           │   │   │   ├── UserCustomerCertification.class
+│       │   │           │   │   │   ├── UserCustomerCooperative.class
+│       │   │           │   │   │   ├── UserCustomerLocation.class
+│       │   │           │   │   │   └── UserCustomerProductType.class
+│       │   │           │   │   ├── company
+│       │   │           │   │   │   ├── Company.class
+│       │   │           │   │   │   ├── CompanyCertification.class
+│       │   │           │   │   │   ├── CompanyCustomer.class
+│       │   │           │   │   │   ├── CompanyDocument.class
+│       │   │           │   │   │   ├── CompanyTranslation.class
+│       │   │           │   │   │   └── CompanyUser.class
+│       │   │           │   │   ├── currencies
+│       │   │           │   │   │   └── CurrencyPair.class
+│       │   │           │   │   ├── facility
+│       │   │           │   │   │   ├── Facility.class
+│       │   │           │   │   │   ├── FacilityFinalProduct.class
+│       │   │           │   │   │   ├── FacilityLocation.class
+│       │   │           │   │   │   ├── FacilitySemiProduct.class
+│       │   │           │   │   │   └── FacilityTranslation.class
+│       │   │           │   │   ├── payment
+│       │   │           │   │   │   ├── BulkPayment.class
+│       │   │           │   │   │   ├── BulkPaymentActivityProof.class
+│       │   │           │   │   │   ├── Payment.class
+│       │   │           │   │   │   ├── PaymentPurposeType.class
+│       │   │           │   │   │   ├── PaymentStatus.class
+│       │   │           │   │   │   ├── PaymentType.class
+│       │   │           │   │   │   ├── ReceiptDocumentType.class
+│       │   │           │   │   │   └── RecipientType.class
+│       │   │           │   │   ├── process
+│       │   │           │   │   │   └── Process.class
+│       │   │           │   │   ├── processingaction
+│       │   │           │   │   │   ├── ProcessingAction.class
+│       │   │           │   │   │   ├── ProcessingActionFacility.class
+│       │   │           │   │   │   ├── ProcessingActionOutputSemiProduct.class
+│       │   │           │   │   │   ├── ProcessingActionPEF.class
+│       │   │           │   │   │   ├── ProcessingActionPET.class
+│       │   │           │   │   │   └── ProcessingActionTranslation.class
+│       │   │           │   │   ├── processingorder
+│       │   │           │   │   │   └── ProcessingOrder.class
+│       │   │           │   │   ├── product
+│       │   │           │   │   │   ├── BatchLocation.class
+│       │   │           │   │   │   ├── BusinessToCustomerSettings.class
+│       │   │           │   │   │   ├── FinalProduct.class
+│       │   │           │   │   │   ├── FinalProductLabel.class
+│       │   │           │   │   │   ├── KnowledgeBlog.class
+│       │   │           │   │   │   ├── Product.class
+│       │   │           │   │   │   ├── ProductCompany.class
+│       │   │           │   │   │   ├── ProductContent.class
+│       │   │           │   │   │   ├── ProductDataSharingAgreement.class
+│       │   │           │   │   │   ├── ProductJourney$JourneyMarker.class
+│       │   │           │   │   │   ├── ProductJourney.class
+│       │   │           │   │   │   ├── ProductLabel.class
+│       │   │           │   │   │   ├── ProductLabelBatch.class
+│       │   │           │   │   │   ├── ProductLabelCompanyDocument.class
+│       │   │           │   │   │   ├── ProductLabelContent.class
+│       │   │           │   │   │   ├── ProductLabelFeedback.class
+│       │   │           │   │   │   ├── ProductLabelField.class
+│       │   │           │   │   │   ├── ProductLocation.class
+│       │   │           │   │   │   ├── ProductSettings.class
+│       │   │           │   │   │   ├── Responsibility.class
+│       │   │           │   │   │   ├── Sustainability.class
+│       │   │           │   │   │   └── enums
+│       │   │           │   │   │       └── FairPricesUnit.class
+│       │   │           │   │   ├── productorder
+│       │   │           │   │   │   └── ProductOrder.class
+│       │   │           │   │   ├── stockorder
+│       │   │           │   │   │   ├── Certification.class
+│       │   │           │   │   │   ├── StockOrder.class
+│       │   │           │   │   │   ├── StockOrderActivityProof.class
+│       │   │           │   │   │   ├── StockOrderLocation.class
+│       │   │           │   │   │   ├── StockOrderPEFieldValue.class
+│       │   │           │   │   │   ├── StockOrderPETypeValue.class
+│       │   │           │   │   │   ├── Transaction.class
+│       │   │           │   │   │   └── enums
+│       │   │           │   │   │       ├── OrderType.class
+│       │   │           │   │   │       ├── PreferredWayOfPayment.class
+│       │   │           │   │   │       ├── ScoreImpactType.class
+│       │   │           │   │   │       └── TransactionStatus.class
+│       │   │           │   │   └── value_chain
+│       │   │           │   │       ├── CompanyValueChain.class
+│       │   │           │   │       ├── FacilityValueChain.class
+│       │   │           │   │       ├── ProcessingActionValueChain.class
+│       │   │           │   │       ├── ValueChain.class
+│       │   │           │   │       ├── ValueChainFacilityType.class
+│       │   │           │   │       ├── ValueChainMeasureUnitType.class
+│       │   │           │   │       ├── ValueChainProcEvidenceType.class
+│       │   │           │   │       ├── ValueChainProcessingEvidenceField.class
+│       │   │           │   │       ├── ValueChainSemiProduct.class
+│       │   │           │   │       └── enums
+│       │   │           │   │           └── ValueChainStatus.class
+│       │   │           │   ├── enums
+│       │   │           │   │   └── EvidenceType.class
+│       │   │           │   └── migrations
+│       │   │           │       ├── V2020_03_27_15_00__Prefill_Countries.class
+│       │   │           │       ├── V2020_10_06_19_30__Update_Label_Content.class
+│       │   │           │       ├── V2020_11_26_12_30__Update_Company_User_Role.class
+│       │   │           │       ├── V2021_08_11_11_33__Prefill_FacilityTypes.class
+│       │   │           │       ├── V2021_08_11_11_41__Prefill_MeasureUnitTypes.class
+│       │   │           │       ├── V2021_10_12_10_01__Update_Product_Company$1.class
+│       │   │           │       ├── V2021_10_12_10_01__Update_Product_Company.class
+│       │   │           │       ├── V2021_10_21_14_33__Update_Facility_Translations.class
+│       │   │           │       ├── V2021_10_24_17_22__Update_Semi_Product_Translations.class
+│       │   │           │       ├── V2021_11_02_10_07__Update_Processing_Evidence_Field_Translations.class
+│       │   │           │       ├── V2021_11_02_13_31__Update_Processing_Evidence_Type_Translations.class
+│       │   │           │       ├── V2022_05_03_15_54__Update_Business_To_Customer_Settings.class
+│       │   │           │       ├── V2022_05_05_09_15__Update_Business_To_Customer_Settings_Defaults.class
+│       │   │           │       ├── V2022_05_17_08_51__Update_Business_To_Customer_Settings_Graphics_Defaults.class
+│       │   │           │       ├── V2022_08_30_11_00__Update_Business_To_Customer_Settings_Add_Prod_Title_Color.class
+│       │   │           │       ├── V2023_03_09_14_33__Update_Value_Chains_Add_Coffee_Product_Type.class
+│       │   │           │       ├── V2023_04_12_14_00__Update_Product_Type_Translations.class
+│       │   │           │       ├── V2023_04_17_11_00__Update_Product_Type_FieldName.class
+│       │   │           │       ├── V2023_05_16_10_34__Migrate_repackedOutput_to_ProcActionOSM.class
+│       │   │           │       ├── V2023_05_24_12_11__Rename__Role__ADMIN__into__SYSTEM_ADMIN.class
+│       │   │           │       ├── V2023_05_24_17_09__Rename__CompanyUserRole__ADMIN__into__COMPANY_ADMIN.class
+│       │   │           │       └── V2023_05_24_17_26__Rename__CompanyUserRole__USER__into__COMPANY_USER.class
+│       │   │           ├── security
+│       │   │           │   ├── configuration
+│       │   │           │   │   ├── RestAuthenticationEntryPoint.class
+│       │   │           │   │   ├── SpringSecurityConfig.class
+│       │   │           │   │   └── TokenAuthenticationFilter.class
+│       │   │           │   ├── service
+│       │   │           │   │   ├── CustomUserDetails.class
+│       │   │           │   │   └── CustomUserDetailsServiceImpl.class
+│       │   │           │   └── utils
+│       │   │           │       └── PermissionsUtil.class
+│       │   │           ├── tools
+│       │   │           │   ├── ApiTools.class
+│       │   │           │   ├── EncryptionTools.class
+│       │   │           │   ├── FieldTools.class
+│       │   │           │   ├── ImageTools$ImageSizeData.class
+│       │   │           │   ├── ImageTools.class
+│       │   │           │   ├── ListTools.class
+│       │   │           │   ├── PaginationTools.class
+│       │   │           │   ├── PasswordTools.class
+│       │   │           │   ├── Queries.class
+│       │   │           │   ├── QueryTools.class
+│       │   │           │   ├── ResourceTools.class
+│       │   │           │   ├── SecurityTools.class
+│       │   │           │   ├── ThrowableFunction.class
+│       │   │           │   ├── TorpedoProjector$Projection.class
+│       │   │           │   ├── TorpedoProjector.class
+│       │   │           │   ├── TranslateTools.class
+│       │   │           │   ├── converters
+│       │   │           │   │   ├── InstantConverter$Serializer.class
+│       │   │           │   │   ├── InstantConverter.class
+│       │   │           │   │   ├── SimpleDateConverter$Deserialize.class
+│       │   │           │   │   ├── SimpleDateConverter$Serialize.class
+│       │   │           │   │   └── SimpleDateConverter.class
+│       │   │           │   ├── documents
+│       │   │           │   │   ├── Bookmark.class
+│       │   │           │   │   ├── BookmarkHtmlRelation.class
+│       │   │           │   │   ├── BookmarkHtmlValue.class
+│       │   │           │   │   ├── BookmarkMapGenerator.class
+│       │   │           │   │   ├── BookmarkValue$Paragraph$HyperlinkPart.class
+│       │   │           │   │   ├── BookmarkValue$Paragraph$Part.class
+│       │   │           │   │   ├── BookmarkValue$Paragraph.class
+│       │   │           │   │   ├── BookmarkValue.class
+│       │   │           │   │   ├── BookmarkValueProvider.class
+│       │   │           │   │   ├── Bookmarks.class
+│       │   │           │   │   ├── DefaultBookmarkValueProvider.class
+│       │   │           │   │   ├── DocumentForm.class
+│       │   │           │   │   ├── DocxDocumentCreator.class
+│       │   │           │   │   ├── PdfFontProvider.class
+│       │   │           │   │   ├── PdfTools.class
+│       │   │           │   │   └── ProvidesBookmarkValue.class
+│       │   │           │   └── queries
+│       │   │           │       ├── AliasCondition.class
+│       │   │           │       ├── BindingSelection$Binding.class
+│       │   │           │       ├── BindingSelection$BindingSetter.class
+│       │   │           │       ├── BindingSelection.class
+│       │   │           │       ├── PropertySelector.class
+│       │   │           │       ├── Selection.class
+│       │   │           │       ├── SimpleQueryBuilder$Ordering.class
+│       │   │           │       ├── SimpleQueryBuilder$ThreeCombiner.class
+│       │   │           │       ├── SimpleQueryBuilder$TwoCombiner.class
+│       │   │           │       ├── SimpleQueryBuilder.class
+│       │   │           │       ├── SimpleSelection.class
+│       │   │           │       ├── TransformedSelection.class
+│       │   │           │       └── WhereBuilder.class
+│       │   │           └── types
+│       │   │               ├── BeycoCertificateType.class
+│       │   │               ├── BeycoCoffeeUnit.class
+│       │   │               ├── BeycoCurrency.class
+│       │   │               ├── BeycoGradeType.class
+│       │   │               ├── BeycoIncoterms.class
+│       │   │               ├── BeycoPriceUnit.class
+│       │   │               ├── BeycoPrivacy.class
+│       │   │               ├── BeycoProcessType.class
+│       │   │               ├── BeycoQualitySegmentType.class
+│       │   │               ├── BeycoSpeciesType.class
+│       │   │               ├── BeycoVarietyType.class
+│       │   │               ├── CompanyDocumentCategory.class
+│       │   │               ├── CompanyDocumentType.class
+│       │   │               ├── CompanyStatus.class
+│       │   │               ├── CompanyUserRole.class
+│       │   │               ├── ConfirmationTokenType.class
+│       │   │               ├── DocumentType.class
+│       │   │               ├── Gender.class
+│       │   │               ├── KnowledgeBlogType.class
+│       │   │               ├── Language.class
+│       │   │               ├── MediaObject.class
+│       │   │               ├── PaginatedRequestType.class
+│       │   │               ├── ProcessingActionType.class
+│       │   │               ├── ProcessingEvidenceFieldType.class
+│       │   │               ├── ProductCompanyType.class
+│       │   │               ├── ProductLabelFeedbackType.class
+│       │   │               ├── ProductLabelStatus.class
+│       │   │               ├── ProductStatus.class
+│       │   │               ├── PublicTimelineIconType.class
+│       │   │               ├── RequestLogType.class
+│       │   │               ├── SortDirection.class
+│       │   │               ├── Status.class
+│       │   │               ├── TokenGrantType.class
+│       │   │               ├── UserCustomerType.class
+│       │   │               ├── UserRole.class
+│       │   │               └── UserStatus.class
+│       │   ├── db
+│       │   │   └── migrations
+│       │   │       ├── V2023_06_14_10_04__Drop__column__ingredients__in__Product.sql
+│       │   │       ├── V2023_06_14_10_14__Drop__column__ingredients__in__ProductLabelContent.sql
+│       │   │       ├── V2023_06_14_10_37__Delete__ingredients__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_14_11_54__Drop__column__nutritionalValue__in__Product__and__ProductLabelContent.sql
+│       │   │       ├── V2023_06_14_11_59__Delete__nutritionalValue__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_14_12_07__Drop__column__howToUse__in__Product__and__ProductLabelContent.sql
+│       │   │       ├── V2023_06_14_12_09__Delete__howToUse__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_14_12_39__Drop__tables__Product_keyMarketsShare__and__ProductLabelContent_keyMarketsShare.sql
+│       │   │       ├── V2023_06_14_12_41__Delete__keyMarketsShare__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_14_13_13__Drop__columns__specialityDoc_and_specialityDesc__in__Product__and__ProductLabelContent.sql
+│       │   │       ├── V2023_06_14_13_36__Delete__specialityDesc__and__specialityDoc__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_14_15_21__Drop__tables__ProcessStandard__and__ProcessDocument.sql
+│       │   │       ├── V2023_06_14_15_23__Drop__columns__storage__and__codesOfConduct__in__Process.sql
+│       │   │       ├── V2023_06_14_15_25__Delete__process__fields__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_15_07_40__Drop__columns__in__Responsability.sql
+│       │   │       ├── V2023_06_15_07_48__Drop__table__ResponsibilityFarmerPicture.sql
+│       │   │       ├── V2023_06_15_07_51__Delete__responsibility__fields__in__ProductLabel_fields.sql
+│       │   │       ├── V2023_06_15_09_50__Drop__column__knowledgeBlog__in__Product__and__ProductLabelContent.sql
+│       │   │       ├── V2023_06_15_10_02__Drop__columns__in__ProductSettings.sql
+│       │   │       └── V2023_06_15_10_04__Delete__settings__fields__in__ProductLabel_fields.sql
+│       │   ├── i18n
+│       │   │   ├── messages_de.properties
+│       │   │   ├── messages_en.properties
+│       │   │   ├── messages_es.properties
+│       │   │   └── messages_rw.properties
+│       │   ├── images
+│       │   │   └── logo-inatrace-tm.png
+│       │   └── templates
+│       │       └── inline
+│       │           └── basic-ar.html
+│       ├── coffee-backend-2.38.0-SNAPSHOT.jar
+│       ├── coffee-backend-2.38.0-SNAPSHOT.jar.original
+│       ├── generated-sources
+│       │   └── annotations
+│       ├── generated-test-sources
+│       │   └── test-annotations
+│       ├── maven-archiver
+│       │   └── pom.properties
+│       ├── maven-status
+│       │   └── maven-compiler-plugin
+│       │       ├── compile
+│       │       │   └── default-compile
+│       │       │       ├── createdFiles.lst
+│       │       │       └── inputFiles.lst
+│       │       └── testCompile
+│       │           └── default-testCompile
+│       │               ├── createdFiles.lst
+│       │               └── inputFiles.lst
+│       └── test-classes
+│           └── com
+│               └── abelium
+│                   └── inatrace
+│                       └── INATraceBackendApplicationTests.class
+├── coffee-network
+│   ├── CONTRIBUTING.md
+│   ├── LICENSE
+│   ├── README.md
+│   ├── api
+│   │   ├── app
+│   │   │   ├── helper.js
+│   │   │   ├── invoke.js
+│   │   │   └── query.js
+│   │   ├── app.js
+│   │   ├── config
+│   │   │   ├── connection-org1.json
+│   │   │   ├── connection-org1.yaml
+│   │   │   ├── connection-org2.json
+│   │   │   ├── connection-org2.yaml
+│   │   │   └── constants.json
+│   │   ├── http_req
+│   │   │   └── login.http
+│   │   ├── package-lock.json
+│   │   └── package.json
+│   ├── artifacts
+│   │   ├── base.yaml
+│   │   ├── chaincode
+│   │   │   ├── fabcar
+│   │   │   │   └── go
+│   │   │   │       ├── fabcar.go
+│   │   │   │       └── go.mod
+│   │   │   ├── storage
+│   │   │   │   └── go
+│   │   │   │       ├── go.mod
+│   │   │   │       ├── storage
+│   │   │   │       └── storage.go
+│   │   │   └── utils
+│   │   │       ├── README.md
+│   │   │       ├── delIndex.sh
+│   │   │       ├── delState.sh
+│   │   │       ├── facility-1.json
+│   │   │       ├── facility-2.json
+│   │   │       ├── facility-delete.sh
+│   │   │       ├── facility-get.sh
+│   │   │       ├── facility-insert.sh
+│   │   │       ├── facility-update-1.sh
+│   │   │       ├── facility-update-2.sh
+│   │   │       ├── facility-update.sh
+│   │   │       ├── facility.json
+│   │   │       ├── getIndex.sh
+│   │   │       ├── getState.sh
+│   │   │       ├── invoke-old.sh
+│   │   │       ├── invoke.sh
+│   │   │       ├── invokeTest.sh
+│   │   │       ├── organization-delete.sh
+│   │   │       ├── organization-get.sh
+│   │   │       ├── organization-insert.sh
+│   │   │       ├── organization-update.sh
+│   │   │       ├── organization.json
+│   │   │       ├── semi-product-1-delete.sh
+│   │   │       ├── semi-product-1-get.sh
+│   │   │       ├── semi-product-1-insert.sh
+│   │   │       ├── semi-product-1.json
+│   │   │       ├── semi-product-2-delete.sh
+│   │   │       ├── semi-product-2-get.sh
+│   │   │       ├── semi-product-2-insert.sh
+│   │   │       ├── semi-product-2.json
+│   │   │       ├── semi-product-3-delete.sh
+│   │   │       ├── semi-product-3-get.sh
+│   │   │       ├── semi-product-3-insert.sh
+│   │   │       ├── semi-product-3.json
+│   │   │       ├── semi-product-get-1.sh
+│   │   │       ├── semi-product-get-2.sh
+│   │   │       ├── semi-product-get-3.sh
+│   │   │       └── test.json
+│   │   ├── channel
+│   │   │   ├── config
+│   │   │   │   ├── configtx.yaml
+│   │   │   │   ├── core.yaml
+│   │   │   │   └── orderer.yaml
+│   │   │   ├── configtx.yaml
+│   │   │   ├── create-artifacts.sh
+│   │   │   └── crypto-config.yaml
+│   │   └── src
+│   │       └── github.com
+│   │           ├── fabcar
+│   │           │   └── go
+│   │           │       ├── fabcar.go
+│   │           │       └── go.mod
+│   │           └── fabcar_contract_api
+│   │               └── go
+│   │                   ├── fabcar.go
+│   │                   └── go.mod
+│   ├── chaincode-docker-devmode
+│   │   ├── README-2.md
+│   │   ├── README.rst
+│   │   ├── docker-compose-simple.yaml
+│   │   ├── msp
+│   │   │   ├── admincerts
+│   │   │   │   └── admincert.pem
+│   │   │   ├── cacerts
+│   │   │   │   └── cacert.pem
+│   │   │   ├── keystore
+│   │   │   │   └── key.pem
+│   │   │   ├── signcerts
+│   │   │   │   └── peer.pem
+│   │   │   ├── tlscacerts
+│   │   │   │   └── tlsroot.pem
+│   │   │   └── tlsintermediatecerts
+│   │   │       └── tlsintermediate.pem
+│   │   ├── myc.tx
+│   │   ├── orderer.block
+│   │   └── script.sh
+│   ├── channel-artifacts
+│   ├── coffee-be
+│   │   ├── README.md
+│   │   ├── authentication.ts
+│   │   ├── blockchain
+│   │   │   ├── README.md
+│   │   │   ├── chaincodes
+│   │   │   │   └── storage
+│   │   │   │       └── v1
+│   │   │   │           ├── go.mod
+│   │   │   │           └── storage.go
+│   │   │   ├── config
+│   │   │   │   └── templates
+│   │   │   │       ├── configtx.yaml
+│   │   │   │       ├── core.yaml
+│   │   │   │       ├── cporg1.json
+│   │   │   │       ├── crypto-config.yaml
+│   │   │   │       ├── orderer.yaml
+│   │   │   │       ├── setup-chaincode.sh
+│   │   │   │       └── setup.sh
+│   │   │   ├── config.json
+│   │   │   ├── network.sh
+│   │   │   ├── profiles
+│   │   │   │   └── connection.json
+│   │   │   └── scripts
+│   │   │       ├── bootstrap.sh
+│   │   │       ├── configure.js
+│   │   │       ├── format.sh
+│   │   │       ├── inject.js
+│   │   │       └── utils.sh
+│   │   ├── build
+│   │   │   └── routes.ts
+│   │   ├── databaseUp.sh
+│   │   ├── logstash.conf
+│   │   ├── package-lock.json
+│   │   ├── package.json
+│   │   ├── src
+│   │   │   ├── app.ts
+│   │   │   ├── contracts
+│   │   │   │   ├── aggregates
+│   │   │   │   │   └── aggregates.ts
+│   │   │   │   ├── chaincode.ts
+│   │   │   │   ├── indexes
+│   │   │   │   │   ├── bank-transfer-id.json
+│   │   │   │   │   ├── codebook-label.json
+│   │   │   │   │   ├── codebook.json
+│   │   │   │   │   ├── doc-type.json
+│   │   │   │   │   ├── id-link.json
+│   │   │   │   │   ├── input-transactions.json
+│   │   │   │   │   ├── last-change.json
+│   │   │   │   │   ├── organization-id-name.json
+│   │   │   │   │   ├── organization-id.json
+│   │   │   │   │   ├── output-transactions.json
+│   │   │   │   │   ├── paying-organization-id-receipt-number.json
+│   │   │   │   │   ├── producer-user-id-formal-creation-time.json
+│   │   │   │   │   ├── product-and-organization-id-name.json
+│   │   │   │   │   ├── product-and-organization-id.json
+│   │   │   │   │   ├── product-id.json
+│   │   │   │   │   ├── quote-orders.json
+│   │   │   │   │   ├── recipient-customer-id-formal-creation-time.json
+│   │   │   │   │   ├── semi-product-id.json
+│   │   │   │   │   ├── stock-order-facility-semi-product.json
+│   │   │   │   │   ├── stock-order-facility.json
+│   │   │   │   │   └── stock-order-id.json
+│   │   │   │   ├── systemconf.ts
+│   │   │   │   └── views
+│   │   │   │       └── custom_views.ts
+│   │   │   ├── controllers
+│   │   │   │   ├── chainProcessingOrderController.ts
+│   │   │   │   ├── codebookController.ts
+│   │   │   │   ├── companyCustomerController.ts
+│   │   │   │   ├── documentController.ts
+│   │   │   │   ├── documentRequirementController.ts
+│   │   │   │   ├── documentRequirementListController.ts
+│   │   │   │   ├── facilityController.ts
+│   │   │   │   ├── migrationsController.ts
+│   │   │   │   ├── orderController.ts
+│   │   │   │   ├── organizationController.ts
+│   │   │   │   ├── paymentsController.ts
+│   │   │   │   ├── processingActionController.ts
+│   │   │   │   ├── productController.ts
+│   │   │   │   ├── publicController.ts
+│   │   │   │   ├── semiProductController.ts
+│   │   │   │   ├── stockOrderController.ts
+│   │   │   │   ├── systemController.ts
+│   │   │   │   ├── transactionController.ts
+│   │   │   │   ├── userController.ts
+│   │   │   │   └── userCustomerController.ts
+│   │   │   ├── ioc.ts
+│   │   │   ├── models
+│   │   │   │   ├── af-coffee-app
+│   │   │   │   │   ├── apiAddress.ts
+│   │   │   │   │   ├── apiBaseEntity.ts
+│   │   │   │   │   ├── apiCertification.ts
+│   │   │   │   │   ├── apiCertificationUpdate.ts
+│   │   │   │   │   ├── apiCountry.ts
+│   │   │   │   │   ├── apiDefaultResponse.ts
+│   │   │   │   │   ├── apiDocument.ts
+│   │   │   │   │   ├── apiDocumentStorageKey.ts
+│   │   │   │   │   ├── apiEmail.ts
+│   │   │   │   │   ├── apiLogRequest.ts
+│   │   │   │   │   ├── apiPaginatedListApiCountry.ts
+│   │   │   │   │   ├── apiPaginatedResponseApiCountry.ts
+│   │   │   │   │   ├── apiResponseApiBaseEntity.ts
+│   │   │   │   │   ├── apiResponseApiDocument.ts
+│   │   │   │   │   ├── apiResponseBoolean.ts
+│   │   │   │   │   ├── apiUserBase.ts
+│   │   │   │   │   ├── apiValidationErrorDetails.ts
+│   │   │   │   │   ├── company
+│   │   │   │   │   │   ├── apiCompany.ts
+│   │   │   │   │   │   ├── apiCompanyActionRequest.ts
+│   │   │   │   │   │   ├── apiCompanyDocument.ts
+│   │   │   │   │   │   ├── apiCompanyDocumentUpdate.ts
+│   │   │   │   │   │   ├── apiCompanyGet.ts
+│   │   │   │   │   │   ├── apiCompanyListResponse.ts
+│   │   │   │   │   │   ├── apiCompanyUpdate.ts
+│   │   │   │   │   │   ├── apiCreateCompanyRequest.ts
+│   │   │   │   │   │   ├── apiPaginatedListApiCompanyListResponse.ts
+│   │   │   │   │   │   ├── apiPaginatedResponseApiCompanyListResponse.ts
+│   │   │   │   │   │   ├── apiResponseApiCompany.ts
+│   │   │   │   │   │   └── apiResponseApiCompanyGet.ts
+│   │   │   │   │   ├── modelAndView.ts
+│   │   │   │   │   ├── product
+│   │   │   │   │   │   ├── apiPaginatedListApiProductLabelBatch.ts
+│   │   │   │   │   │   ├── apiPaginatedListApiProductListResponse.ts
+│   │   │   │   │   │   ├── apiPaginatedResponseApiProductLabelBatch.ts
+│   │   │   │   │   │   ├── apiPaginatedResponseApiProductListResponse.ts
+│   │   │   │   │   │   ├── apiProduct.ts
+│   │   │   │   │   │   ├── apiProductListResponse.ts
+│   │   │   │   │   │   ├── apiProductLocation.ts
+│   │   │   │   │   │   ├── apiProductOrigin.ts
+│   │   │   │   │   │   ├── apiProductUpdate.ts
+│   │   │   │   │   │   ├── apiResponseApiProduct.ts
+│   │   │   │   │   │   ├── label
+│   │   │   │   │   │   │   ├── apiProductLabel.ts
+│   │   │   │   │   │   │   ├── apiProductLabelAnalytics.ts
+│   │   │   │   │   │   │   ├── apiProductLabelBase.ts
+│   │   │   │   │   │   │   ├── apiProductLabelBatch.ts
+│   │   │   │   │   │   │   ├── apiProductLabelCreate.ts
+│   │   │   │   │   │   │   ├── apiProductLabelField.ts
+│   │   │   │   │   │   │   ├── apiProductLabelFieldValue.ts
+│   │   │   │   │   │   │   ├── apiProductLabelGet.ts
+│   │   │   │   │   │   │   ├── apiProductLabelUpdateFields.ts
+│   │   │   │   │   │   │   ├── apiProductLabelUpdateValues.ts
+│   │   │   │   │   │   │   ├── apiProductLabelValues.ts
+│   │   │   │   │   │   │   ├── apiResponseApiProductLabel.ts
+│   │   │   │   │   │   │   ├── apiResponseApiProductLabelAnalytics.ts
+│   │   │   │   │   │   │   ├── apiResponseApiProductLabelBatch.ts
+│   │   │   │   │   │   │   ├── apiResponseApiProductLabelGet.ts
+│   │   │   │   │   │   │   ├── apiResponseApiProductLabelValues.ts
+│   │   │   │   │   │   │   ├── apiResponseListApiProductLabelBase.ts
+│   │   │   │   │   │   │   └── apiResponseListApiProductLabelBatch.ts
+│   │   │   │   │   │   ├── location
+│   │   │   │   │   │   │   ├── apiLocation.ts
+│   │   │   │   │   │   │   └── apiResponseListApiLocation.ts
+│   │   │   │   │   │   ├── process
+│   │   │   │   │   │   │   ├── apiProcess.ts
+│   │   │   │   │   │   │   ├── apiProcessDocument.ts
+│   │   │   │   │   │   │   ├── apiProcessStandard.ts
+│   │   │   │   │   │   │   ├── apiProcessStandardUpdate.ts
+│   │   │   │   │   │   │   └── apiProcessUpdate.ts
+│   │   │   │   │   │   ├── responsibility
+│   │   │   │   │   │   │   ├── apiResponsibility.ts
+│   │   │   │   │   │   │   ├── apiResponsibilityFarmerPicture.ts
+│   │   │   │   │   │   │   └── apiResponsibilityUpdate.ts
+│   │   │   │   │   │   └── sustainability
+│   │   │   │   │   │       └── apiSustainability.ts
+│   │   │   │   │   ├── user
+│   │   │   │   │   │   ├── apiAdminUserUpdate.ts
+│   │   │   │   │   │   ├── apiCreateUserRequest.ts
+│   │   │   │   │   │   ├── apiLoginRequest.ts
+│   │   │   │   │   │   ├── apiPaginatedListApiUserBase.ts
+│   │   │   │   │   │   ├── apiPaginatedListApiUserBasicResponse.ts
+│   │   │   │   │   │   ├── apiPaginatedResponseApiUserBase.ts
+│   │   │   │   │   │   ├── apiPaginatedResponseApiUserBasicResponse.ts
+│   │   │   │   │   │   ├── apiResetPasswordRequest.ts
+│   │   │   │   │   │   ├── apiResponseApiUser.ts
+│   │   │   │   │   │   ├── apiResponseApiUserGet.ts
+│   │   │   │   │   │   ├── apiToken.ts
+│   │   │   │   │   │   ├── apiUser.ts
+│   │   │   │   │   │   ├── apiUserBasicResponse.ts
+│   │   │   │   │   │   ├── apiUserGet.ts
+│   │   │   │   │   │   └── apiUserUpdate.ts
+│   │   │   │   │   └── view.ts
+│   │   │   │   └── chain
+│   │   │   │       ├── ApiResponse.ts
+│   │   │   │       ├── ChainActionType.ts
+│   │   │   │       ├── ChainActivityProof.ts
+│   │   │   │       ├── ChainBulkPayment.ts
+│   │   │   │       ├── ChainCertification.ts
+│   │   │   │       ├── ChainCompanyCustomer.ts
+│   │   │   │       ├── ChainCountry.ts
+│   │   │   │       ├── ChainDocumentRequirement.ts
+│   │   │   │       ├── ChainDocumentRequirementList.ts
+│   │   │   │       ├── ChainFacility.ts
+│   │   │   │       ├── ChainFacilityType.ts
+│   │   │   │       ├── ChainFileInfo.ts
+│   │   │   │       ├── ChainFileReference.ts
+│   │   │   │       ├── ChainGradeAbbreviation.ts
+│   │   │   │       ├── ChainHistory.ts
+│   │   │   │       ├── ChainLocaton.ts
+│   │   │   │       ├── ChainMeasureUnitType.ts
+│   │   │   │       ├── ChainOrderAction.ts
+│   │   │   │       ├── ChainOrderEvidenceType.ts
+│   │   │   │       ├── ChainOrganization.ts
+│   │   │   │       ├── ChainPayment.ts
+│   │   │   │       ├── ChainProcessingAction.ts
+│   │   │   │       ├── ChainProcessingEvidenceType.ts
+│   │   │   │       ├── ChainProcessingOrder.ts
+│   │   │   │       ├── ChainProduct.ts
+│   │   │   │       ├── ChainProductOrder.ts
+│   │   │   │       ├── ChainReferencePurposeType.ts
+│   │   │   │       ├── ChainSemiProduct.ts
+│   │   │   │       ├── ChainStockOrder.ts
+│   │   │   │       ├── ChainTransaction.ts
+│   │   │   │       ├── ChainUser.ts
+│   │   │   │       ├── ChainUserCompanyCustomerCounter.ts
+│   │   │   │       ├── ChainUserCustomer.ts
+│   │   │   │       ├── DBDocument.ts
+│   │   │   │       └── PaginatedList.ts
+│   │   │   ├── server.ts
+│   │   │   └── services
+│   │   │       ├── blockchainService.ts
+│   │   │       ├── databaseService.ts
+│   │   │       ├── document.service.ts
+│   │   │       ├── elasticsearchService.ts
+│   │   │       ├── historyCacheService.ts
+│   │   │       └── orgtest.json
+│   │   ├── static
+│   │   │   ├── swagger.json
+│   │   │   └── upload_test.html
+│   │   ├── tools
+│   │   │   └── copyAssets.ts
+│   │   ├── tsconfig.json
+│   │   ├── tslint.json
+│   │   └── tsoa.json
+│   ├── createChannel.sh
+│   ├── deployChaincode.sh
+│   └── package-lock.json
+├── docker-compose.yml
+├── fe
+│   ├── CONTRIBUTING.md
+│   ├── Dockerfile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── angular.json
+│   ├── copy-translation-from-csv.js
+│   ├── copy-translation-to-csv.js
+│   ├── docker-build.sh
+│   ├── docs
+│   │   └── images
+│   │       ├── b2c_settings.png
+│   │       ├── icon-products.svg
+│   │       ├── inatrace_company.png
+│   │       ├── inatrace_company_deliveries.png
+│   │       ├── inatrace_company_farmers.png
+│   │       ├── inatrace_company_payments.png
+│   │       ├── inatrace_company_processing_action.png
+│   │       ├── inatrace_company_processing_action_quantities.png
+│   │       ├── inatrace_dashboard_deliveries.png
+│   │       ├── inatrace_farmer_profile_1.png
+│   │       ├── inatrace_farmer_profile_2.png
+│   │       ├── inatrace_home.png
+│   │       ├── inatrace_home_default.png
+│   │       ├── inatrace_home_empty.png
+│   │       ├── inatrace_processing_performance.png
+│   │       ├── inatrace_product_final_product.png
+│   │       ├── inatrace_product_qr.png
+│   │       ├── inatrace_product_stakeholders.png
+│   │       ├── inatrace_products.png
+│   │       ├── inatrace_register.png
+│   │       ├── inatrace_settings.png
+│   │       ├── inatrace_settings_companies.png
+│   │       ├── inatrace_settings_currencies.png
+│   │       ├── inatrace_settings_types.png
+│   │       ├── inatrace_settings_users.png
+│   │       ├── inatrace_settings_value_chains.png
+│   │       ├── inatrace_settings_value_chains_details.png
+│   │       ├── inatrace_user_profile.png
+│   │       └── inatrace_welcome.png
+│   ├── e2e
+│   │   ├── protractor.conf.js
+│   │   ├── src
+│   │   │   ├── app.e2e-spec.ts
+│   │   │   └── app.po.ts
+│   │   └── tsconfig.json
+│   ├── generate-api.js
+│   ├── generate-chain-api.js
+│   ├── generate-translations.js
+│   ├── karma.conf.js
+│   ├── nginx.conf
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── proxy.INATrace-local.conf.json
+│   ├── scss
+│   │   ├── _animated.scss
+│   │   ├── _bordered-pulled.scss
+│   │   ├── _core.scss
+│   │   ├── _fixed-width.scss
+│   │   ├── _icons.scss
+│   │   ├── _larger.scss
+│   │   ├── _list.scss
+│   │   ├── _mixins.scss
+│   │   ├── _rotated-flipped.scss
+│   │   ├── _screen-reader.scss
+│   │   ├── _shims.scss
+│   │   ├── _stacked.scss
+│   │   ├── _unit.scss
+│   │   ├── _variables.scss
+│   │   ├── brands.scss
+│   │   ├── fontawesome.scss
+│   │   ├── pathway-gothic-one-regular.scss
+│   │   ├── regular.scss
+│   │   ├── solid.scss
+│   │   └── v4-shims.scss
+│   ├── src
+│   │   ├── _variables.scss
+│   │   ├── api
+│   │   │   ├── api
+│   │   │   │   ├── basicErrorController.service.ts
+│   │   │   │   ├── beycoOrderController.service.ts
+│   │   │   │   ├── commonController.service.ts
+│   │   │   │   ├── commonCsvController.service.ts
+│   │   │   │   ├── companyController.service.ts
+│   │   │   │   ├── currencyController.service.ts
+│   │   │   │   ├── currencyTypeController.service.ts
+│   │   │   │   ├── dashboardController.service.ts
+│   │   │   │   ├── facilityController.service.ts
+│   │   │   │   ├── facilityTypeController.service.ts
+│   │   │   │   ├── finalProductController.service.ts
+│   │   │   │   ├── groupStockOrderController.service.ts
+│   │   │   │   ├── measureUnitTypeController.service.ts
+│   │   │   │   ├── operationHandler.service.ts
+│   │   │   │   ├── paymentController.service.ts
+│   │   │   │   ├── processingActionController.service.ts
+│   │   │   │   ├── processingEvidenceFieldController.service.ts
+│   │   │   │   ├── processingEvidenceTypeController.service.ts
+│   │   │   │   ├── processingOrderController.service.ts
+│   │   │   │   ├── productController.service.ts
+│   │   │   │   ├── productOrderController.service.ts
+│   │   │   │   ├── productTypeController.service.ts
+│   │   │   │   ├── publicController.service.ts
+│   │   │   │   ├── semiProductController.service.ts
+│   │   │   │   ├── stockOrderController.service.ts
+│   │   │   │   ├── testController.service.ts
+│   │   │   │   ├── transactionController.service.ts
+│   │   │   │   ├── userController.service.ts
+│   │   │   │   ├── userCustomerController.service.ts
+│   │   │   │   ├── valueChainController.service.ts
+│   │   │   │   └── webMvcLinksHandler.service.ts
+│   │   │   ├── api.module.ts
+│   │   │   ├── apidocs-original.json
+│   │   │   ├── apidocs.json
+│   │   │   ├── configuration.ts
+│   │   │   ├── encoder.ts
+│   │   │   ├── model
+│   │   │   │   ├── apiActivityProof.ts
+│   │   │   │   ├── apiAddress.ts
+│   │   │   │   ├── apiAdminUserUpdate.ts
+│   │   │   │   ├── apiBankInformation.ts
+│   │   │   │   ├── apiBaseEntity.ts
+│   │   │   │   ├── apiBeycoCoffee.ts
+│   │   │   │   ├── apiBeycoCoffeeCertificate.ts
+│   │   │   │   ├── apiBeycoCoffeeGrade.ts
+│   │   │   │   ├── apiBeycoCoffeeQuality.ts
+│   │   │   │   ├── apiBeycoCoffeeVariety.ts
+│   │   │   │   ├── apiBeycoOrderCoffees.ts
+│   │   │   │   ├── apiBeycoOrderFields.ts
+│   │   │   │   ├── apiBeycoPortOfExport.ts
+│   │   │   │   ├── apiBeycoTokenResponse.ts
+│   │   │   │   ├── apiBulkPayment.ts
+│   │   │   │   ├── apiBusinessToCustomerSettings.ts
+│   │   │   │   ├── apiCertification.ts
+│   │   │   │   ├── apiCompany.ts
+│   │   │   │   ├── apiCompanyActionRequest.ts
+│   │   │   │   ├── apiCompanyBase.ts
+│   │   │   │   ├── apiCompanyCustomer.ts
+│   │   │   │   ├── apiCompanyDocument.ts
+│   │   │   │   ├── apiCompanyGet.ts
+│   │   │   │   ├── apiCompanyListResponse.ts
+│   │   │   │   ├── apiCompanyName.ts
+│   │   │   │   ├── apiCompanyOnboardingState.ts
+│   │   │   │   ├── apiCompanyPublic.ts
+│   │   │   │   ├── apiCompanyUpdate.ts
+│   │   │   │   ├── apiCompanyUser.ts
+│   │   │   │   ├── apiCountry.ts
+│   │   │   │   ├── apiCreateCompanyRequest.ts
+│   │   │   │   ├── apiCreateUserRequest.ts
+│   │   │   │   ├── apiCurrencyType.ts
+│   │   │   │   ├── apiCurrencyTypeRequest.ts
+│   │   │   │   ├── apiDefaultResponse.ts
+│   │   │   │   ├── apiDeliveriesTotal.ts
+│   │   │   │   ├── apiDeliveriesTotalItem.ts
+│   │   │   │   ├── apiDocument.ts
+│   │   │   │   ├── apiDocumentRequirement.ts
+│   │   │   │   ├── apiDocumentStorageKey.ts
+│   │   │   │   ├── apiEmail.ts
+│   │   │   │   ├── apiFacility.ts
+│   │   │   │   ├── apiFacilityLocation.ts
+│   │   │   │   ├── apiFacilitySemiProduct.ts
+│   │   │   │   ├── apiFacilityTranslation.ts
+│   │   │   │   ├── apiFacilityType.ts
+│   │   │   │   ├── apiFarmInformation.ts
+│   │   │   │   ├── apiFarmPlantInformation.ts
+│   │   │   │   ├── apiFileInfo.ts
+│   │   │   │   ├── apiFinalProduct.ts
+│   │   │   │   ├── apiGeoAddress.ts
+│   │   │   │   ├── apiGlobalSettingsValue.ts
+│   │   │   │   ├── apiGroupStockOrder.ts
+│   │   │   │   ├── apiHistoryTimeline.ts
+│   │   │   │   ├── apiHistoryTimelineItem.ts
+│   │   │   │   ├── apiKnowledgeBlog.ts
+│   │   │   │   ├── apiKnowledgeBlogBase.ts
+│   │   │   │   ├── apiKnowledgeBlogPart.ts
+│   │   │   │   ├── apiLocation.ts
+│   │   │   │   ├── apiLogRequest.ts
+│   │   │   │   ├── apiLoginRequest.ts
+│   │   │   │   ├── apiMeasureUnitType.ts
+│   │   │   │   ├── apiPaginatedListApiActionType.ts
+│   │   │   │   ├── apiPaginatedListApiBulkPayment.ts
+│   │   │   │   ├── apiPaginatedListApiCompanyCustomer.ts
+│   │   │   │   ├── apiPaginatedListApiCompanyListResponse.ts
+│   │   │   │   ├── apiPaginatedListApiCountry.ts
+│   │   │   │   ├── apiPaginatedListApiCurrencyType.ts
+│   │   │   │   ├── apiPaginatedListApiFacility.ts
+│   │   │   │   ├── apiPaginatedListApiFacilityType.ts
+│   │   │   │   ├── apiPaginatedListApiFinalProduct.ts
+│   │   │   │   ├── apiPaginatedListApiGroupStockOrder.ts
+│   │   │   │   ├── apiPaginatedListApiKnowledgeBlogBase.ts
+│   │   │   │   ├── apiPaginatedListApiMeasureUnitType.ts
+│   │   │   │   ├── apiPaginatedListApiPayment.ts
+│   │   │   │   ├── apiPaginatedListApiProcessingAction.ts
+│   │   │   │   ├── apiPaginatedListApiProcessingEvidenceField.ts
+│   │   │   │   ├── apiPaginatedListApiProcessingEvidenceType.ts
+│   │   │   │   ├── apiPaginatedListApiProcessingOrder.ts
+│   │   │   │   ├── apiPaginatedListApiProductCollector.ts
+│   │   │   │   ├── apiPaginatedListApiProductCustomer.ts
+│   │   │   │   ├── apiPaginatedListApiProductLabelBatch.ts
+│   │   │   │   ├── apiPaginatedListApiProductLabelFeedback.ts
+│   │   │   │   ├── apiPaginatedListApiProductListResponse.ts
+│   │   │   │   ├── apiPaginatedListApiProductType.ts
+│   │   │   │   ├── apiPaginatedListApiSemiProduct.ts
+│   │   │   │   ├── apiPaginatedListApiStockOrder.ts
+│   │   │   │   ├── apiPaginatedListApiTransaction.ts
+│   │   │   │   ├── apiPaginatedListApiUserBase.ts
+│   │   │   │   ├── apiPaginatedListApiUserBasicResponse.ts
+│   │   │   │   ├── apiPaginatedListApiUserCustomer.ts
+│   │   │   │   ├── apiPaginatedListApiValueChain.ts
+│   │   │   │   ├── apiPaginatedResponseApiActionType.ts
+│   │   │   │   ├── apiPaginatedResponseApiBulkPayment.ts
+│   │   │   │   ├── apiPaginatedResponseApiCompanyCustomer.ts
+│   │   │   │   ├── apiPaginatedResponseApiCompanyListResponse.ts
+│   │   │   │   ├── apiPaginatedResponseApiCountry.ts
+│   │   │   │   ├── apiPaginatedResponseApiCurrencyType.ts
+│   │   │   │   ├── apiPaginatedResponseApiFacility.ts
+│   │   │   │   ├── apiPaginatedResponseApiFacilityType.ts
+│   │   │   │   ├── apiPaginatedResponseApiFinalProduct.ts
+│   │   │   │   ├── apiPaginatedResponseApiGroupStockOrder.ts
+│   │   │   │   ├── apiPaginatedResponseApiKnowledgeBlogBase.ts
+│   │   │   │   ├── apiPaginatedResponseApiMeasureUnitType.ts
+│   │   │   │   ├── apiPaginatedResponseApiPayment.ts
+│   │   │   │   ├── apiPaginatedResponseApiProcessingAction.ts
+│   │   │   │   ├── apiPaginatedResponseApiProcessingEvidenceField.ts
+│   │   │   │   ├── apiPaginatedResponseApiProcessingEvidenceType.ts
+│   │   │   │   ├── apiPaginatedResponseApiProcessingOrder.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductCollector.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductCustomer.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductLabelBatch.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductLabelFeedback.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductListResponse.ts
+│   │   │   │   ├── apiPaginatedResponseApiProductType.ts
+│   │   │   │   ├── apiPaginatedResponseApiSemiProduct.ts
+│   │   │   │   ├── apiPaginatedResponseApiStockOrder.ts
+│   │   │   │   ├── apiPaginatedResponseApiTransaction.ts
+│   │   │   │   ├── apiPaginatedResponseApiUserBase.ts
+│   │   │   │   ├── apiPaginatedResponseApiUserCustomer.ts
+│   │   │   │   ├── apiPaginatedResponseApiValueChain.ts
+│   │   │   │   ├── apiPayment.ts
+│   │   │   │   ├── apiPlot.ts
+│   │   │   │   ├── apiPlotCoordinate.ts
+│   │   │   │   ├── apiProcess.ts
+│   │   │   │   ├── apiProcessDocument.ts
+│   │   │   │   ├── apiProcessStandard.ts
+│   │   │   │   ├── apiProcessStandardUpdate.ts
+│   │   │   │   ├── apiProcessingAction.ts
+│   │   │   │   ├── apiProcessingActionOutputSemiProduct.ts
+│   │   │   │   ├── apiProcessingActionTranslation.ts
+│   │   │   │   ├── apiProcessingEvidenceField.ts
+│   │   │   │   ├── apiProcessingEvidenceFieldTranslation.ts
+│   │   │   │   ├── apiProcessingEvidenceType.ts
+│   │   │   │   ├── apiProcessingEvidenceTypeTranslation.ts
+│   │   │   │   ├── apiProcessingOrder.ts
+│   │   │   │   ├── apiProcessingPerformanceRequest.ts
+│   │   │   │   ├── apiProcessingPerformanceRequestEvidenceField.ts
+│   │   │   │   ├── apiProcessingPerformanceTotal.ts
+│   │   │   │   ├── apiProcessingPerformanceTotalItem.ts
+│   │   │   │   ├── apiProduct.ts
+│   │   │   │   ├── apiProductBase.ts
+│   │   │   │   ├── apiProductCollector.ts
+│   │   │   │   ├── apiProductCompany.ts
+│   │   │   │   ├── apiProductCustomer.ts
+│   │   │   │   ├── apiProductDataSharingAgreement.ts
+│   │   │   │   ├── apiProductJourneyMarker.ts
+│   │   │   │   ├── apiProductLabel.ts
+│   │   │   │   ├── apiProductLabelAnalytics.ts
+│   │   │   │   ├── apiProductLabelBase.ts
+│   │   │   │   ├── apiProductLabelBatch.ts
+│   │   │   │   ├── apiProductLabelBatchCheckAuthenticity.ts
+│   │   │   │   ├── apiProductLabelBatchCheckOrigin.ts
+│   │   │   │   ├── apiProductLabelCompanyDocument.ts
+│   │   │   │   ├── apiProductLabelContent.ts
+│   │   │   │   ├── apiProductLabelCreate.ts
+│   │   │   │   ├── apiProductLabelFeedback.ts
+│   │   │   │   ├── apiProductLabelField.ts
+│   │   │   │   ├── apiProductLabelFieldValue.ts
+│   │   │   │   ├── apiProductLabelGet.ts
+│   │   │   │   ├── apiProductLabelUpdateFields.ts
+│   │   │   │   ├── apiProductLabelUpdateValues.ts
+│   │   │   │   ├── apiProductLabelValues.ts
+│   │   │   │   ├── apiProductLabelValuesExtended.ts
+│   │   │   │   ├── apiProductListResponse.ts
+│   │   │   │   ├── apiProductLocation.ts
+│   │   │   │   ├── apiProductOrder.ts
+│   │   │   │   ├── apiProductOrigin.ts
+│   │   │   │   ├── apiProductSettings.ts
+│   │   │   │   ├── apiProductType.ts
+│   │   │   │   ├── apiProductTypeTranslation.ts
+│   │   │   │   ├── apiPurchaseOrder.ts
+│   │   │   │   ├── apiPurchaseOrderFarmer.ts
+│   │   │   │   ├── apiQRTagPublic.ts
+│   │   │   │   ├── apiResetPasswordRequest.ts
+│   │   │   │   ├── apiResponseApiActionType.ts
+│   │   │   │   ├── apiResponseApiBaseEntity.ts
+│   │   │   │   ├── apiResponseApiBeycoOrderFields.ts
+│   │   │   │   ├── apiResponseApiBeycoTokenResponse.ts
+│   │   │   │   ├── apiResponseApiBulkPayment.ts
+│   │   │   │   ├── apiResponseApiCompany.ts
+│   │   │   │   ├── apiResponseApiCompanyCustomer.ts
+│   │   │   │   ├── apiResponseApiCompanyGet.ts
+│   │   │   │   ├── apiResponseApiCompanyName.ts
+│   │   │   │   ├── apiResponseApiCompanyOnboardingState.ts
+│   │   │   │   ├── apiResponseApiCompanyPublic.ts
+│   │   │   │   ├── apiResponseApiDeliveriesTotal.ts
+│   │   │   │   ├── apiResponseApiDocument.ts
+│   │   │   │   ├── apiResponseApiFacility.ts
+│   │   │   │   ├── apiResponseApiFacilityType.ts
+│   │   │   │   ├── apiResponseApiFinalProduct.ts
+│   │   │   │   ├── apiResponseApiGlobalSettingsValue.ts
+│   │   │   │   ├── apiResponseApiKnowledgeBlog.ts
+│   │   │   │   ├── apiResponseApiMeasureUnitType.ts
+│   │   │   │   ├── apiResponseApiPayment.ts
+│   │   │   │   ├── apiResponseApiPlot.ts
+│   │   │   │   ├── apiResponseApiProcessingAction.ts
+│   │   │   │   ├── apiResponseApiProcessingEvidenceField.ts
+│   │   │   │   ├── apiResponseApiProcessingEvidenceType.ts
+│   │   │   │   ├── apiResponseApiProcessingOrder.ts
+│   │   │   │   ├── apiResponseApiProcessingPerformanceTotal.ts
+│   │   │   │   ├── apiResponseApiProduct.ts
+│   │   │   │   ├── apiResponseApiProductLabel.ts
+│   │   │   │   ├── apiResponseApiProductLabelAnalytics.ts
+│   │   │   │   ├── apiResponseApiProductLabelBatch.ts
+│   │   │   │   ├── apiResponseApiProductLabelContent.ts
+│   │   │   │   ├── apiResponseApiProductLabelGet.ts
+│   │   │   │   ├── apiResponseApiProductLabelValues.ts
+│   │   │   │   ├── apiResponseApiProductLabelValuesExtended.ts
+│   │   │   │   ├── apiResponseApiProductOrder.ts
+│   │   │   │   ├── apiResponseApiProductType.ts
+│   │   │   │   ├── apiResponseApiPurchaseOrder.ts
+│   │   │   │   ├── apiResponseApiQRTagPublic.ts
+│   │   │   │   ├── apiResponseApiSemiProduct.ts
+│   │   │   │   ├── apiResponseApiStockOrder.ts
+│   │   │   │   ├── apiResponseApiStockOrderHistory.ts
+│   │   │   │   ├── apiResponseApiStockOrderPublic.ts
+│   │   │   │   ├── apiResponseApiUser.ts
+│   │   │   │   ├── apiResponseApiUserCustomer.ts
+│   │   │   │   ├── apiResponseApiUserGet.ts
+│   │   │   │   ├── apiResponseApiUserProductTypesGet.ts
+│   │   │   │   ├── apiResponseApiValueChain.ts
+│   │   │   │   ├── apiResponseBoolean.ts
+│   │   │   │   ├── apiResponseListApiCompanyDocument.ts
+│   │   │   │   ├── apiResponseListApiCompanyUser.ts
+│   │   │   │   ├── apiResponseListApiLocation.ts
+│   │   │   │   ├── apiResponseListApiPlot.ts
+│   │   │   │   ├── apiResponseListApiProductLabelBase.ts
+│   │   │   │   ├── apiResponseListApiProductLabelBatch.ts
+│   │   │   │   ├── apiResponseListApiProductLabelCompanyDocument.ts
+│   │   │   │   ├── apiResponseObject.ts
+│   │   │   │   ├── apiResponsibility.ts
+│   │   │   │   ├── apiResponsibilityUpdate.ts
+│   │   │   │   ├── apiScoreImpact.ts
+│   │   │   │   ├── apiScoreTarget.ts
+│   │   │   │   ├── apiSemiProduct.ts
+│   │   │   │   ├── apiSemiProductTranslation.ts
+│   │   │   │   ├── apiStockOrder.ts
+│   │   │   │   ├── apiStockOrderEvidenceFieldValue.ts
+│   │   │   │   ├── apiStockOrderEvidenceTypeValue.ts
+│   │   │   │   ├── apiStockOrderHistory.ts
+│   │   │   │   ├── apiStockOrderHistoryTimelineItem.ts
+│   │   │   │   ├── apiStockOrderLocation.ts
+│   │   │   │   ├── apiStockOrderPublic.ts
+│   │   │   │   ├── apiSustainability.ts
+│   │   │   │   ├── apiToken.ts
+│   │   │   │   ├── apiTransaction.ts
+│   │   │   │   ├── apiUser.ts
+│   │   │   │   ├── apiUserBase.ts
+│   │   │   │   ├── apiUserCustomer.ts
+│   │   │   │   ├── apiUserCustomerAssociation.ts
+│   │   │   │   ├── apiUserCustomerCooperative.ts
+│   │   │   │   ├── apiUserCustomerImportColumnValidationError.ts
+│   │   │   │   ├── apiUserCustomerImportResponse.ts
+│   │   │   │   ├── apiUserCustomerImportRowValidationError.ts
+│   │   │   │   ├── apiUserCustomerLocation.ts
+│   │   │   │   ├── apiUserGet.ts
+│   │   │   │   ├── apiUserProductTypesGet.ts
+│   │   │   │   ├── apiUserRole.ts
+│   │   │   │   ├── apiUserUpdate.ts
+│   │   │   │   ├── apiValidationErrorDetails.ts
+│   │   │   │   ├── apiValueChain.ts
+│   │   │   │   ├── inlineObject.ts
+│   │   │   │   ├── inlineObject1.ts
+│   │   │   │   ├── inlineObject2.ts
+│   │   │   │   ├── measureUnitType.ts
+│   │   │   │   ├── modelAndView.ts
+│   │   │   │   └── view.ts
+│   │   │   └── variables.ts
+│   │   ├── app
+│   │   │   ├── about-app-info.service.spec.ts
+│   │   │   ├── about-app-info.service.ts
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.scss
+│   │   │   ├── app.component.spec.ts
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── b2c
+│   │   │   │   ├── b2c-components
+│   │   │   │   │   └── b2c-carousel
+│   │   │   │   │       ├── b2c-carousel.component.html
+│   │   │   │   │       ├── b2c-carousel.component.scss
+│   │   │   │   │       └── b2c-carousel.component.ts
+│   │   │   │   ├── b2c-page
+│   │   │   │   │   ├── b2c-fair-prices
+│   │   │   │   │   │   ├── b2c-fair-prices.component.html
+│   │   │   │   │   │   ├── b2c-fair-prices.component.scss
+│   │   │   │   │   │   └── b2c-fair-prices.component.ts
+│   │   │   │   │   ├── b2c-feedback
+│   │   │   │   │   │   ├── b2c-feedback.component.html
+│   │   │   │   │   │   ├── b2c-feedback.component.scss
+│   │   │   │   │   │   └── b2c-feedback.component.ts
+│   │   │   │   │   ├── b2c-intro
+│   │   │   │   │   │   ├── b2c-intro.component.html
+│   │   │   │   │   │   ├── b2c-intro.component.scss
+│   │   │   │   │   │   └── b2c-intro.component.ts
+│   │   │   │   │   ├── b2c-journey
+│   │   │   │   │   │   ├── b2c-journey.component.html
+│   │   │   │   │   │   ├── b2c-journey.component.scss
+│   │   │   │   │   │   ├── b2c-journey.component.ts
+│   │   │   │   │   │   └── model.ts
+│   │   │   │   │   ├── b2c-page.component.html
+│   │   │   │   │   ├── b2c-page.component.scss
+│   │   │   │   │   ├── b2c-page.component.ts
+│   │   │   │   │   ├── b2c-privacy
+│   │   │   │   │   │   ├── b2c-privacy.component.html
+│   │   │   │   │   │   ├── b2c-privacy.component.scss
+│   │   │   │   │   │   └── b2c-privacy.component.ts
+│   │   │   │   │   ├── b2c-producers
+│   │   │   │   │   │   ├── b2c-producers.component.html
+│   │   │   │   │   │   ├── b2c-producers.component.scss
+│   │   │   │   │   │   └── b2c-producers.component.ts
+│   │   │   │   │   ├── b2c-quality
+│   │   │   │   │   │   ├── b2c-quality.component.html
+│   │   │   │   │   │   ├── b2c-quality.component.scss
+│   │   │   │   │   │   └── b2c-quality.component.ts
+│   │   │   │   │   └── b2c-terms
+│   │   │   │   │       ├── b2c-terms.component.html
+│   │   │   │   │       ├── b2c-terms.component.scss
+│   │   │   │   │       └── b2c-terms.component.ts
+│   │   │   │   ├── b2c-routing.module.ts
+│   │   │   │   ├── b2c-tabs
+│   │   │   │   │   ├── b2c-tabs.component.html
+│   │   │   │   │   ├── b2c-tabs.component.scss
+│   │   │   │   │   └── b2c-tabs.component.ts
+│   │   │   │   └── b2c.module.ts
+│   │   │   ├── company
+│   │   │   │   ├── company-collectors
+│   │   │   │   │   ├── company-collectors-details
+│   │   │   │   │   │   ├── company-collectors-details.component.html
+│   │   │   │   │   │   ├── company-collectors-details.component.scss
+│   │   │   │   │   │   ├── company-collectors-details.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── company-collectors-list
+│   │   │   │   │   │   ├── company-collectors-list.component.html
+│   │   │   │   │   │   ├── company-collectors-list.component.scss
+│   │   │   │   │   │   └── company-collectors-list.component.ts
+│   │   │   │   │   ├── company-collectors-routing.module.ts
+│   │   │   │   │   └── company-collectors.module.ts
+│   │   │   │   ├── company-common
+│   │   │   │   │   ├── company-common.module.ts
+│   │   │   │   │   ├── company-left-panel
+│   │   │   │   │   │   ├── company-left-panel.component.html
+│   │   │   │   │   │   ├── company-left-panel.component.scss
+│   │   │   │   │   │   └── company-left-panel.component.ts
+│   │   │   │   │   ├── company-select-modal
+│   │   │   │   │   │   ├── company-select-modal.component.html
+│   │   │   │   │   │   ├── company-select-modal.component.scss
+│   │   │   │   │   │   └── company-select-modal.component.ts
+│   │   │   │   │   ├── pipes
+│   │   │   │   │   │   └── format-farmer-import-validation-error.pipe.ts
+│   │   │   │   │   ├── plots-form
+│   │   │   │   │   │   ├── plots-form.component.html
+│   │   │   │   │   │   ├── plots-form.component.scss
+│   │   │   │   │   │   ├── plots-form.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── plots-item
+│   │   │   │   │   │   ├── plots-item.component.html
+│   │   │   │   │   │   ├── plots-item.component.scss
+│   │   │   │   │   │   └── plots-item.component.ts
+│   │   │   │   │   └── producers-item
+│   │   │   │   │       ├── producers-item.component.html
+│   │   │   │   │       ├── producers-item.component.scss
+│   │   │   │   │       └── producers-item.component.ts
+│   │   │   │   ├── company-customers
+│   │   │   │   │   ├── company-customers-details
+│   │   │   │   │   │   ├── company-customers-details.component.html
+│   │   │   │   │   │   ├── company-customers-details.component.scss
+│   │   │   │   │   │   ├── company-customers-details.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── company-customers-list
+│   │   │   │   │   │   ├── company-customers-list.component.html
+│   │   │   │   │   │   ├── company-customers-list.component.scss
+│   │   │   │   │   │   └── company-customers-list.component.ts
+│   │   │   │   │   ├── company-customers-routing.module.ts
+│   │   │   │   │   └── company-customers.module.ts
+│   │   │   │   ├── company-dashboard
+│   │   │   │   │   ├── company-dashboard.component.html
+│   │   │   │   │   ├── company-dashboard.component.scss
+│   │   │   │   │   └── company-dashboard.component.ts
+│   │   │   │   ├── company-detail
+│   │   │   │   │   ├── company-detail-facilities
+│   │   │   │   │   │   ├── company-detail-facilities.component.html
+│   │   │   │   │   │   ├── company-detail-facilities.component.scss
+│   │   │   │   │   │   └── company-detail-facilities.component.ts
+│   │   │   │   │   ├── company-detail-facility-add
+│   │   │   │   │   │   ├── company-detail-facility-add.component.html
+│   │   │   │   │   │   ├── company-detail-facility-add.component.scss
+│   │   │   │   │   │   ├── company-detail-facility-add.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── company-detail-facility-add-wizard
+│   │   │   │   │   │   ├── company-detail-facility-add-wizard.component.html
+│   │   │   │   │   │   ├── company-detail-facility-add-wizard.component.scss
+│   │   │   │   │   │   └── company-detail-facility-add-wizard.component.ts
+│   │   │   │   │   ├── company-detail-tab-manager
+│   │   │   │   │   │   ├── company-detail-tab-manager.component.html
+│   │   │   │   │   │   ├── company-detail-tab-manager.component.scss
+│   │   │   │   │   │   └── company-detail-tab-manager.component.ts
+│   │   │   │   │   ├── company-detail-users
+│   │   │   │   │   │   ├── company-detail-users.component.html
+│   │   │   │   │   │   ├── company-detail-users.component.scss
+│   │   │   │   │   │   └── company-detail-users.component.ts
+│   │   │   │   │   ├── company-detail.component.html
+│   │   │   │   │   ├── company-detail.component.scss
+│   │   │   │   │   ├── company-detail.component.ts
+│   │   │   │   │   ├── company-processing-actions
+│   │   │   │   │   │   ├── company-detail-processing-actions-add-wizard
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-add-wizard.component.html
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-add-wizard.component.scss
+│   │   │   │   │   │   │   └── company-detail-processing-actions-add-wizard.component.ts
+│   │   │   │   │   │   ├── company-detail-processing-actions-detail
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-detail.component.html
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-detail.component.scss
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-detail.component.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   ├── company-detail-processing-actions-list
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-list.component.html
+│   │   │   │   │   │   │   ├── company-detail-processing-actions-list.component.scss
+│   │   │   │   │   │   │   └── company-detail-processing-actions-list.component.ts
+│   │   │   │   │   │   ├── company-processing-actions.component.html
+│   │   │   │   │   │   ├── company-processing-actions.component.scss
+│   │   │   │   │   │   └── company-processing-actions.component.ts
+│   │   │   │   │   └── validation.ts
+│   │   │   │   ├── company-farmers
+│   │   │   │   │   ├── company-farmers-details
+│   │   │   │   │   │   ├── company-farmers-details.component.html
+│   │   │   │   │   │   ├── company-farmers-details.component.scss
+│   │   │   │   │   │   └── company-farmers-details.component.ts
+│   │   │   │   │   ├── company-farmers-import
+│   │   │   │   │   │   ├── company-farmers-import.component.html
+│   │   │   │   │   │   ├── company-farmers-import.component.scss
+│   │   │   │   │   │   └── company-farmers-import.component.ts
+│   │   │   │   │   ├── company-farmers-list
+│   │   │   │   │   │   ├── company-farmers-list.component.html
+│   │   │   │   │   │   ├── company-farmers-list.component.scss
+│   │   │   │   │   │   └── company-farmers-list.component.ts
+│   │   │   │   │   ├── company-farmers-routing.module.ts
+│   │   │   │   │   ├── company-farmers.module.ts
+│   │   │   │   │   └── open-plot-details-externally-modal
+│   │   │   │   │       ├── open-plot-details-externally-modal.component.html
+│   │   │   │   │       ├── open-plot-details-externally-modal.component.scss
+│   │   │   │   │       └── open-plot-details-externally-modal.component.ts
+│   │   │   │   ├── company-list
+│   │   │   │   │   ├── company-list.component.html
+│   │   │   │   │   ├── company-list.component.scss
+│   │   │   │   │   └── company-list.component.ts
+│   │   │   │   ├── company-orders
+│   │   │   │   │   ├── approve-reject-transaction-modal
+│   │   │   │   │   │   ├── approve-reject-transaction-modal.component.html
+│   │   │   │   │   │   ├── approve-reject-transaction-modal.component.scss
+│   │   │   │   │   │   └── approve-reject-transaction-modal.component.ts
+│   │   │   │   │   ├── company-orders-list
+│   │   │   │   │   │   ├── company-orders-list.component.html
+│   │   │   │   │   │   ├── company-orders-list.component.scss
+│   │   │   │   │   │   └── company-orders-list.component.ts
+│   │   │   │   │   ├── company-orders-routing.module.ts
+│   │   │   │   │   ├── company-orders.module.ts
+│   │   │   │   │   ├── orders-tab
+│   │   │   │   │   │   └── orders-tab.component.ts
+│   │   │   │   │   ├── placed-orders
+│   │   │   │   │   │   ├── add-customer-order
+│   │   │   │   │   │   │   ├── add-customer-order.component.html
+│   │   │   │   │   │   │   ├── add-customer-order.component.scss
+│   │   │   │   │   │   │   ├── add-customer-order.component.ts
+│   │   │   │   │   │   │   ├── customer-order-item
+│   │   │   │   │   │   │   │   ├── customer-order-item.component.html
+│   │   │   │   │   │   │   │   ├── customer-order-item.component.scss
+│   │   │   │   │   │   │   │   ├── customer-order-item.component.ts
+│   │   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   ├── place-quote-order-modal
+│   │   │   │   │   │   │   ├── model.ts
+│   │   │   │   │   │   │   ├── place-quote-order-modal.component.html
+│   │   │   │   │   │   │   ├── place-quote-order-modal.component.scss
+│   │   │   │   │   │   │   └── place-quote-order-modal.component.ts
+│   │   │   │   │   │   ├── placed-orders.component.html
+│   │   │   │   │   │   ├── placed-orders.component.scss
+│   │   │   │   │   │   └── placed-orders.component.ts
+│   │   │   │   │   └── received-orders
+│   │   │   │   │       ├── received-orders.component.html
+│   │   │   │   │       ├── received-orders.component.scss
+│   │   │   │   │       └── received-orders.component.ts
+│   │   │   │   ├── company-stock
+│   │   │   │   │   ├── beyco-offer
+│   │   │   │   │   │   ├── beyco-offer-list
+│   │   │   │   │   │   │   ├── beyco-offer-list.component.html
+│   │   │   │   │   │   │   ├── beyco-offer-list.component.scss
+│   │   │   │   │   │   │   └── beyco-offer-list.component.ts
+│   │   │   │   │   │   ├── beyco-offer-routing.module.ts
+│   │   │   │   │   │   ├── beyco-offer.module.ts
+│   │   │   │   │   │   └── whole-number.directive.ts
+│   │   │   │   │   ├── company-stock-routing.module.ts
+│   │   │   │   │   ├── company-stock.module.ts
+│   │   │   │   │   ├── stock-all-stock
+│   │   │   │   │   │   ├── stock-all-stock-routing.module.ts
+│   │   │   │   │   │   ├── stock-all-stock-tab
+│   │   │   │   │   │   │   ├── stock-all-stock-tab.component.html
+│   │   │   │   │   │   │   ├── stock-all-stock-tab.component.scss
+│   │   │   │   │   │   │   └── stock-all-stock-tab.component.ts
+│   │   │   │   │   │   └── stock-all-stock.module.ts
+│   │   │   │   │   ├── stock-core
+│   │   │   │   │   │   ├── additional-proof-item
+│   │   │   │   │   │   │   ├── additional-proof-item.component.html
+│   │   │   │   │   │   │   ├── additional-proof-item.component.scss
+│   │   │   │   │   │   │   ├── additional-proof-item.component.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   ├── batch-history
+│   │   │   │   │   │   │   ├── batch-history.component.html
+│   │   │   │   │   │   │   ├── batch-history.component.scss
+│   │   │   │   │   │   │   ├── batch-history.component.ts
+│   │   │   │   │   │   │   └── field-or-doc-info
+│   │   │   │   │   │   │       ├── field-or-doc-info.component.html
+│   │   │   │   │   │   │       ├── field-or-doc-info.component.scss
+│   │   │   │   │   │   │       └── field-or-doc-info.component.ts
+│   │   │   │   │   │   ├── group-stock-unit-list
+│   │   │   │   │   │   │   ├── group-stock-unit-list.component.html
+│   │   │   │   │   │   │   ├── group-stock-unit-list.component.scss
+│   │   │   │   │   │   │   └── group-stock-unit-list.component.ts
+│   │   │   │   │   │   ├── stock-bulk-delivery-details
+│   │   │   │   │   │   │   ├── stock-bulk-delivery-details.component.html
+│   │   │   │   │   │   │   ├── stock-bulk-delivery-details.component.scss
+│   │   │   │   │   │   │   ├── stock-bulk-delivery-details.component.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   ├── stock-core-tab
+│   │   │   │   │   │   │   └── stock-core-tab.component.ts
+│   │   │   │   │   │   ├── stock-core.module.ts
+│   │   │   │   │   │   ├── stock-delivery-details
+│   │   │   │   │   │   │   ├── stock-delivery-details.component.html
+│   │   │   │   │   │   │   ├── stock-delivery-details.component.scss
+│   │   │   │   │   │   │   ├── stock-delivery-details.component.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   └── stock-unit-list
+│   │   │   │   │   │       ├── models.ts
+│   │   │   │   │   │       ├── stock-unit-list.component.html
+│   │   │   │   │   │       ├── stock-unit-list.component.scss
+│   │   │   │   │   │       └── stock-unit-list.component.ts
+│   │   │   │   │   ├── stock-deliveries
+│   │   │   │   │   │   ├── stock-deliveries-routing.module.ts
+│   │   │   │   │   │   ├── stock-deliveries-tab
+│   │   │   │   │   │   │   ├── stock-deliveries-tab.component.html
+│   │   │   │   │   │   │   ├── stock-deliveries-tab.component.scss
+│   │   │   │   │   │   │   └── stock-deliveries-tab.component.ts
+│   │   │   │   │   │   └── stock-deliveries.module.ts
+│   │   │   │   │   ├── stock-payments
+│   │   │   │   │   │   ├── stock-payments-bulk-detail
+│   │   │   │   │   │   │   ├── stock-payments-bulk-detail.component.html
+│   │   │   │   │   │   │   ├── stock-payments-bulk-detail.component.scss
+│   │   │   │   │   │   │   ├── stock-payments-bulk-detail.component.ts
+│   │   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   │   ├── stock-payments-bulk-list
+│   │   │   │   │   │   │   ├── stock-payments-bulk-list.component.html
+│   │   │   │   │   │   │   ├── stock-payments-bulk-list.component.scss
+│   │   │   │   │   │   │   └── stock-payments-bulk-list.component.ts
+│   │   │   │   │   │   ├── stock-payments-detail
+│   │   │   │   │   │   │   ├── stock-payments-detail.component.html
+│   │   │   │   │   │   │   ├── stock-payments-detail.component.scss
+│   │   │   │   │   │   │   └── stock-payments-detail.component.ts
+│   │   │   │   │   │   ├── stock-payments-form
+│   │   │   │   │   │   │   ├── stock-payments-form.component.html
+│   │   │   │   │   │   │   ├── stock-payments-form.component.scss
+│   │   │   │   │   │   │   └── stock-payments-form.component.ts
+│   │   │   │   │   │   ├── stock-payments-item
+│   │   │   │   │   │   │   ├── stock-payments-item.component.html
+│   │   │   │   │   │   │   ├── stock-payments-item.component.scss
+│   │   │   │   │   │   │   └── stock-payments-item.component.ts
+│   │   │   │   │   │   ├── stock-payments-list
+│   │   │   │   │   │   │   ├── stock-payments-list.component.html
+│   │   │   │   │   │   │   ├── stock-payments-list.component.scss
+│   │   │   │   │   │   │   └── stock-payments-list.component.ts
+│   │   │   │   │   │   ├── stock-payments-routing.module.ts
+│   │   │   │   │   │   ├── stock-payments-selector-for-new-payment-modal
+│   │   │   │   │   │   │   ├── stock-payments-selector-for-new-payment-modal.component.html
+│   │   │   │   │   │   │   ├── stock-payments-selector-for-new-payment-modal.component.scss
+│   │   │   │   │   │   │   └── stock-payments-selector-for-new-payment-modal.component.ts
+│   │   │   │   │   │   ├── stock-payments-tab
+│   │   │   │   │   │   │   ├── stock-payments-tab.component.html
+│   │   │   │   │   │   │   ├── stock-payments-tab.component.scss
+│   │   │   │   │   │   │   └── stock-payments-tab.component.ts
+│   │   │   │   │   │   ├── stock-payments.module.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   └── stock-processing
+│   │   │   │   │       ├── stock-processing-facility-list
+│   │   │   │   │       │   ├── facility-card
+│   │   │   │   │       │   │   ├── facility-card.component.html
+│   │   │   │   │       │   │   ├── facility-card.component.scss
+│   │   │   │   │       │   │   └── facility-card.component.ts
+│   │   │   │   │       │   ├── stock-processing-facility-list.component.html
+│   │   │   │   │       │   ├── stock-processing-facility-list.component.scss
+│   │   │   │   │       │   └── stock-processing-facility-list.component.ts
+│   │   │   │   │       ├── stock-processing-order-details
+│   │   │   │   │       │   ├── processing-order-input
+│   │   │   │   │       │   │   ├── clip-input-transaction-modal
+│   │   │   │   │       │   │   │   ├── clip-input-transaction-modal.component.html
+│   │   │   │   │       │   │   │   ├── clip-input-transaction-modal.component.scss
+│   │   │   │   │       │   │   │   ├── clip-input-transaction-modal.component.ts
+│   │   │   │   │       │   │   │   └── model.ts
+│   │   │   │   │       │   │   ├── processing-order-input.component.html
+│   │   │   │   │       │   │   ├── processing-order-input.component.scss
+│   │   │   │   │       │   │   └── processing-order-input.component.ts
+│   │   │   │   │       │   ├── processing-order-output
+│   │   │   │   │       │   │   ├── processing-order-output.component.html
+│   │   │   │   │       │   │   ├── processing-order-output.component.scss
+│   │   │   │   │       │   │   └── processing-order-output.component.ts
+│   │   │   │   │       │   ├── static-semi-products.service.ts
+│   │   │   │   │       │   ├── stock-processing-order-details-common.scss
+│   │   │   │   │       │   ├── stock-processing-order-details.component.html
+│   │   │   │   │       │   ├── stock-processing-order-details.component.scss
+│   │   │   │   │       │   ├── stock-processing-order-details.component.ts
+│   │   │   │   │       │   ├── stock-processing-order-details.helper.ts
+│   │   │   │   │       │   ├── stock-processing-order-details.model.ts
+│   │   │   │   │       │   ├── stock-processing-order-fields
+│   │   │   │   │       │   │   ├── stock-processing-order-fields.component.html
+│   │   │   │   │       │   │   ├── stock-processing-order-fields.component.scss
+│   │   │   │   │       │   │   └── stock-processing-order-fields.component.ts
+│   │   │   │   │       │   └── validation.ts
+│   │   │   │   │       ├── stock-processing-routing.module.ts
+│   │   │   │   │       ├── stock-processing-tab
+│   │   │   │   │       │   ├── stock-processing-tab.component.html
+│   │   │   │   │       │   ├── stock-processing-tab.component.scss
+│   │   │   │   │       │   └── stock-processing-tab.component.ts
+│   │   │   │   │       └── stock-processing.module.ts
+│   │   │   │   └── company-user-role
+│   │   │   │       ├── company-user-role.component.html
+│   │   │   │       ├── company-user-role.component.scss
+│   │   │   │       └── company-user-role.component.ts
+│   │   │   ├── components
+│   │   │   │   ├── bottom-buttons
+│   │   │   │   │   ├── bottom-buttons.component.html
+│   │   │   │   │   ├── bottom-buttons.component.scss
+│   │   │   │   │   └── bottom-buttons.component.ts
+│   │   │   │   ├── card
+│   │   │   │   │   ├── card.component.html
+│   │   │   │   │   ├── card.component.scss
+│   │   │   │   │   └── card.component.ts
+│   │   │   │   ├── components.module.ts
+│   │   │   │   ├── dropdown
+│   │   │   │   │   ├── dropdown.component.html
+│   │   │   │   │   ├── dropdown.component.scss
+│   │   │   │   │   ├── dropdown.component.spec.ts
+│   │   │   │   │   └── dropdown.component.ts
+│   │   │   │   ├── form-details-left-panel
+│   │   │   │   │   ├── form-details-left-panel.component.html
+│   │   │   │   │   ├── form-details-left-panel.component.scss
+│   │   │   │   │   └── form-details-left-panel.component.ts
+│   │   │   │   ├── form-position-box
+│   │   │   │   │   ├── form-position-box.component.html
+│   │   │   │   │   ├── form-position-box.component.scss
+│   │   │   │   │   └── form-position-box.component.ts
+│   │   │   │   ├── generate-qr-code-modal
+│   │   │   │   │   ├── generate-qr-code-modal.component.html
+│   │   │   │   │   ├── generate-qr-code-modal.component.scss
+│   │   │   │   │   └── generate-qr-code-modal.component.ts
+│   │   │   │   ├── last-seen-tag
+│   │   │   │   │   ├── last-seen-tag.component.html
+│   │   │   │   │   ├── last-seen-tag.component.scss
+│   │   │   │   │   └── last-seen-tag.component.ts
+│   │   │   │   ├── pipes
+│   │   │   │   │   ├── format-availability.pipe.ts
+│   │   │   │   │   ├── format-company-certs.pipe.ts
+│   │   │   │   │   ├── format-payment-purpose-type.ts
+│   │   │   │   │   ├── format-payment-status.pipe.ts
+│   │   │   │   │   ├── format-processing-action-type.pipe.ts
+│   │   │   │   │   ├── format-processing-evidence-field-type.pipe.ts
+│   │   │   │   │   ├── format-processing-evidence-type-type.pipe.ts
+│   │   │   │   │   ├── format-stock-order-type.pipe.ts
+│   │   │   │   │   ├── format-transaction-status.pipe.ts
+│   │   │   │   │   ├── format-transaction-type.pipe.ts
+│   │   │   │   │   ├── format-way-of-payment.pipe.ts
+│   │   │   │   │   └── translate-codebook.ts
+│   │   │   │   ├── product-card
+│   │   │   │   │   ├── product-card.component.html
+│   │   │   │   │   ├── product-card.component.scss
+│   │   │   │   │   └── product-card.component.ts
+│   │   │   │   ├── qr-code-redirect
+│   │   │   │   │   ├── qr-code-redirect.component.html
+│   │   │   │   │   ├── qr-code-redirect.component.scss
+│   │   │   │   │   ├── qr-code-redirect.component.spec.ts
+│   │   │   │   │   └── qr-code-redirect.component.ts
+│   │   │   │   └── redirect-clear-cache
+│   │   │   │       ├── redirect-clear-cache.component.html
+│   │   │   │       ├── redirect-clear-cache.component.scss
+│   │   │   │       └── redirect-clear-cache.component.ts
+│   │   │   ├── contents
+│   │   │   │   ├── content-section
+│   │   │   │   │   ├── content-section.component.html
+│   │   │   │   │   ├── content-section.component.scss
+│   │   │   │   │   └── content-section.component.ts
+│   │   │   │   ├── contents-link-parent.directive.ts
+│   │   │   │   ├── contents-link.directive.ts
+│   │   │   │   ├── contents-section.directive.ts
+│   │   │   │   ├── contents-table.directive.ts
+│   │   │   │   ├── contents.directive.ts
+│   │   │   │   ├── contents.module.ts
+│   │   │   │   ├── faq-modal
+│   │   │   │   │   ├── faq-modal.component.html
+│   │   │   │   │   ├── faq-modal.component.scss
+│   │   │   │   │   └── faq-modal.component.ts
+│   │   │   │   ├── html-utils.ts
+│   │   │   │   ├── instructions-modal
+│   │   │   │   │   ├── instructions-modal.component.html
+│   │   │   │   │   ├── instructions-modal.component.scss
+│   │   │   │   │   └── instructions-modal.component.ts
+│   │   │   │   ├── parent-content-link
+│   │   │   │   │   ├── parent-content-link.component.html
+│   │   │   │   │   ├── parent-content-link.component.scss
+│   │   │   │   │   └── parent-content-link.component.ts
+│   │   │   │   └── parent-content-section
+│   │   │   │       ├── parent-content-section.component.html
+│   │   │   │       ├── parent-content-section.component.scss
+│   │   │   │       └── parent-content-section.component.ts
+│   │   │   ├── cookies
+│   │   │   │   ├── clear-cookie-consent
+│   │   │   │   │   ├── clear-cookie-consent.component.html
+│   │   │   │   │   ├── clear-cookie-consent.component.scss
+│   │   │   │   │   └── clear-cookie-consent.component.ts
+│   │   │   │   ├── cookie-banner
+│   │   │   │   │   ├── cookie-banner.component.html
+│   │   │   │   │   ├── cookie-banner.component.scss
+│   │   │   │   │   └── cookie-banner.component.ts
+│   │   │   │   ├── cookie-management-modal
+│   │   │   │   │   ├── cookie-management-modal.component.html
+│   │   │   │   │   ├── cookie-management-modal.component.scss
+│   │   │   │   │   └── cookie-management-modal.component.ts
+│   │   │   │   ├── cookies-page
+│   │   │   │   │   ├── cookies-page.component.html
+│   │   │   │   │   ├── cookies-page.component.scss
+│   │   │   │   │   ├── cookies-page.component.spec.ts
+│   │   │   │   │   └── cookies-page.component.ts
+│   │   │   │   ├── privacy-page
+│   │   │   │   │   ├── privacy-page.component.html
+│   │   │   │   │   ├── privacy-page.component.scss
+│   │   │   │   │   ├── privacy-page.component.spec.ts
+│   │   │   │   │   └── privacy-page.component.ts
+│   │   │   │   └── terms-and-conditions-page
+│   │   │   │       ├── terms-and-conditions-page.component.html
+│   │   │   │       ├── terms-and-conditions-page.component.scss
+│   │   │   │       ├── terms-and-conditions-page.component.spec.ts
+│   │   │   │       └── terms-and-conditions-page.component.ts
+│   │   │   ├── core
+│   │   │   │   ├── auth.service.ts
+│   │   │   │   ├── core.module.ts
+│   │   │   │   ├── error-modal
+│   │   │   │   │   ├── error-modal.component.html
+│   │   │   │   │   ├── error-modal.component.scss
+│   │   │   │   │   ├── error-modal.component.spec.ts
+│   │   │   │   │   └── error-modal.component.ts
+│   │   │   │   ├── global-error-handler.ts
+│   │   │   │   ├── global-event-manager.service.ts
+│   │   │   │   ├── guards
+│   │   │   │   │   ├── activated-user-guard.service.ts
+│   │   │   │   │   ├── admin-or-company-admin-guard.service.ts
+│   │   │   │   │   ├── company-admin-guard.service.ts
+│   │   │   │   │   └── system-or-regional-admin-guard.service.ts
+│   │   │   │   ├── language.interceptor.ts
+│   │   │   │   ├── message-modal
+│   │   │   │   │   ├── message-modal-labels.service.ts
+│   │   │   │   │   ├── message-modal.component.html
+│   │   │   │   │   ├── message-modal.component.scss
+│   │   │   │   │   ├── message-modal.component.ts
+│   │   │   │   │   └── message-modal.service.ts
+│   │   │   │   ├── ngb-modal-improved
+│   │   │   │   │   ├── ngb-modal-improved.module.ts
+│   │   │   │   │   └── ngb-modal-improved.service.ts
+│   │   │   │   ├── page-not-found.component.ts
+│   │   │   │   ├── selected-user-company.service.ts
+│   │   │   │   └── token.interceptor.ts
+│   │   │   ├── currency-list
+│   │   │   │   ├── currency-list.component.html
+│   │   │   │   ├── currency-list.component.scss
+│   │   │   │   └── currency-list.component.ts
+│   │   │   ├── knowledge-blog-front
+│   │   │   │   ├── knowledge-blog-front.component.html
+│   │   │   │   ├── knowledge-blog-front.component.scss
+│   │   │   │   ├── knowledge-blog-front.component.spec.ts
+│   │   │   │   └── knowledge-blog-front.component.ts
+│   │   │   ├── landing-page
+│   │   │   │   ├── landing-page.component.html
+│   │   │   │   ├── landing-page.component.scss
+│   │   │   │   ├── landing-page.component.spec.ts
+│   │   │   │   └── landing-page.component.ts
+│   │   │   ├── language-code-helper.ts
+│   │   │   ├── layout
+│   │   │   │   ├── authorised
+│   │   │   │   │   ├── authorised-layout
+│   │   │   │   │   │   ├── authorised-layout.component.html
+│   │   │   │   │   │   ├── authorised-layout.component.scss
+│   │   │   │   │   │   ├── authorised-layout.component.spec.ts
+│   │   │   │   │   │   └── authorised-layout.component.ts
+│   │   │   │   │   ├── authorised-side-nav
+│   │   │   │   │   │   ├── authorised-side-nav.component.html
+│   │   │   │   │   │   ├── authorised-side-nav.component.scss
+│   │   │   │   │   │   ├── authorised-side-nav.component.spec.ts
+│   │   │   │   │   │   └── authorised-side-nav.component.ts
+│   │   │   │   │   ├── authorised-side-nav-toggler
+│   │   │   │   │   │   ├── authorised-side-nav-toggler.component.html
+│   │   │   │   │   │   ├── authorised-side-nav-toggler.component.scss
+│   │   │   │   │   │   ├── authorised-side-nav-toggler.component.spec.ts
+│   │   │   │   │   │   └── authorised-side-nav-toggler.component.ts
+│   │   │   │   │   ├── authorised-top-nav
+│   │   │   │   │   │   ├── authorised-top-nav.component.html
+│   │   │   │   │   │   ├── authorised-top-nav.component.scss
+│   │   │   │   │   │   └── authorised-top-nav.component.ts
+│   │   │   │   │   └── services
+│   │   │   │   │       ├── authorised-side-nav.service.spec.ts
+│   │   │   │   │       └── authorised-side-nav.service.ts
+│   │   │   │   ├── guest
+│   │   │   │   │   ├── guest-layout
+│   │   │   │   │   │   ├── guest-layout.component.html
+│   │   │   │   │   │   ├── guest-layout.component.scss
+│   │   │   │   │   │   ├── guest-layout.component.spec.ts
+│   │   │   │   │   │   └── guest-layout.component.ts
+│   │   │   │   │   ├── guest-side-nav
+│   │   │   │   │   │   ├── guest-side-nav.component.html
+│   │   │   │   │   │   ├── guest-side-nav.component.scss
+│   │   │   │   │   │   ├── guest-side-nav.component.spec.ts
+│   │   │   │   │   │   └── guest-side-nav.component.ts
+│   │   │   │   │   └── guest-top-nav
+│   │   │   │   │       ├── guest-top-nav.component.html
+│   │   │   │   │       ├── guest-top-nav.component.scss
+│   │   │   │   │       ├── guest-top-nav.component.spec.ts
+│   │   │   │   │       └── guest-top-nav.component.ts
+│   │   │   │   ├── landing-page
+│   │   │   │   │   ├── landing-page-footer
+│   │   │   │   │   │   ├── landing-page-footer.component.html
+│   │   │   │   │   │   ├── landing-page-footer.component.scss
+│   │   │   │   │   │   ├── landing-page-footer.component.spec.ts
+│   │   │   │   │   │   └── landing-page-footer.component.ts
+│   │   │   │   │   ├── landing-page-layout
+│   │   │   │   │   │   ├── landing-page-layout.component.html
+│   │   │   │   │   │   ├── landing-page-layout.component.scss
+│   │   │   │   │   │   ├── landing-page-layout.component.spec.ts
+│   │   │   │   │   │   └── landing-page-layout.component.ts
+│   │   │   │   │   └── landing-page-top-nav
+│   │   │   │   │       ├── landing-page-top-nav.component.html
+│   │   │   │   │       ├── landing-page-top-nav.component.scss
+│   │   │   │   │       ├── landing-page-top-nav.component.spec.ts
+│   │   │   │   │       └── landing-page-top-nav.component.ts
+│   │   │   │   ├── layout.module.ts
+│   │   │   │   ├── page-content
+│   │   │   │   │   ├── page-content.component.html
+│   │   │   │   │   ├── page-content.component.scss
+│   │   │   │   │   ├── page-content.component.spec.ts
+│   │   │   │   │   └── page-content.component.ts
+│   │   │   │   ├── product-label-front
+│   │   │   │   │   ├── product-label-front-layout
+│   │   │   │   │   │   ├── product-label-front-layout.component.html
+│   │   │   │   │   │   ├── product-label-front-layout.component.scss
+│   │   │   │   │   │   ├── product-label-front-layout.component.spec.ts
+│   │   │   │   │   │   └── product-label-front-layout.component.ts
+│   │   │   │   │   └── product-label-front-top-nav
+│   │   │   │   │       ├── product-label-front-top-nav.component.html
+│   │   │   │   │       ├── product-label-front-top-nav.component.scss
+│   │   │   │   │       ├── product-label-front-top-nav.component.spec.ts
+│   │   │   │   │       └── product-label-front-top-nav.component.ts
+│   │   │   │   └── user-box
+│   │   │   │       ├── user-box.component.html
+│   │   │   │       ├── user-box.component.scss
+│   │   │   │       └── user-box.component.ts
+│   │   │   ├── m-product
+│   │   │   │   ├── batch-detail-page
+│   │   │   │   │   ├── batch-detail-page.component.html
+│   │   │   │   │   ├── batch-detail-page.component.scss
+│   │   │   │   │   ├── batch-detail-page.component.spec.ts
+│   │   │   │   │   ├── batch-detail-page.component.ts
+│   │   │   │   │   └── prefill-locations-from-product-modal
+│   │   │   │   │       ├── prefill-locations-from-product-modal.component.html
+│   │   │   │   │       ├── prefill-locations-from-product-modal.component.scss
+│   │   │   │   │       ├── prefill-locations-from-product-modal.component.spec.ts
+│   │   │   │   │       └── prefill-locations-from-product-modal.component.ts
+│   │   │   │   ├── batches-list
+│   │   │   │   │   ├── batch-edit-modal
+│   │   │   │   │   │   ├── batch-edit-modal.component.html
+│   │   │   │   │   │   ├── batch-edit-modal.component.scss
+│   │   │   │   │   │   ├── batch-edit-modal.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── batches-list.component.html
+│   │   │   │   │   ├── batches-list.component.scss
+│   │   │   │   │   └── batches-list.component.ts
+│   │   │   │   ├── knowledge-blog
+│   │   │   │   │   ├── knowledge-block-routing.module.ts
+│   │   │   │   │   ├── knowledge-block.module.ts
+│   │   │   │   │   ├── knowledge-blog-documents-item
+│   │   │   │   │   │   ├── knowledge-blog-documents-item.component.html
+│   │   │   │   │   │   ├── knowledge-blog-documents-item.component.scss
+│   │   │   │   │   │   ├── knowledge-blog-documents-item.component.spec.ts
+│   │   │   │   │   │   └── knowledge-blog-documents-item.component.ts
+│   │   │   │   │   ├── knowledge-blog-part
+│   │   │   │   │   │   ├── knowledge-blog-part.component.html
+│   │   │   │   │   │   ├── knowledge-blog-part.component.scss
+│   │   │   │   │   │   └── knowledge-blog-part.component.ts
+│   │   │   │   │   ├── knowledge-blog-select-section-modal
+│   │   │   │   │   │   ├── knowledge-blog-select-section-modal.component.html
+│   │   │   │   │   │   ├── knowledge-blog-select-section-modal.component.scss
+│   │   │   │   │   │   ├── knowledge-blog-select-section-modal.component.spec.ts
+│   │   │   │   │   │   └── knowledge-blog-select-section-modal.component.ts
+│   │   │   │   │   └── product-label-knowledge-blog
+│   │   │   │   │       ├── product-label-knowledge-blog.component.html
+│   │   │   │   │       ├── product-label-knowledge-blog.component.scss
+│   │   │   │   │       └── product-label-knowledge-blog.component.ts
+│   │   │   │   ├── m-product-routing.module.ts
+│   │   │   │   ├── m-product.module.ts
+│   │   │   │   ├── product-common
+│   │   │   │   │   ├── product-common.module.ts
+│   │   │   │   │   └── product-label-left-panel-content
+│   │   │   │   │       ├── product-label-left-panel-content.component.html
+│   │   │   │   │       ├── product-label-left-panel-content.component.scss
+│   │   │   │   │       └── product-label-left-panel-content.component.ts
+│   │   │   │   ├── product-final-product
+│   │   │   │   │   ├── final-product
+│   │   │   │   │   │   ├── final-product.component.html
+│   │   │   │   │   │   ├── final-product.component.scss
+│   │   │   │   │   │   └── final-product.component.ts
+│   │   │   │   │   ├── final-product-detail-modal
+│   │   │   │   │   │   ├── final-product-detail-modal.component.html
+│   │   │   │   │   │   ├── final-product-detail-modal.component.scss
+│   │   │   │   │   │   ├── final-product-detail-modal.component.ts
+│   │   │   │   │   │   └── validations.ts
+│   │   │   │   │   ├── final-product-list
+│   │   │   │   │   │   ├── final-product-list.component.html
+│   │   │   │   │   │   ├── final-product-list.component.scss
+│   │   │   │   │   │   └── final-product-list.component.ts
+│   │   │   │   │   ├── product-final-product-routing.module.ts
+│   │   │   │   │   └── product-final-product.module.ts
+│   │   │   │   ├── product-label
+│   │   │   │   │   ├── label-redirect-to-product-page
+│   │   │   │   │   │   ├── label-redirect-to-product-page.component.html
+│   │   │   │   │   │   ├── label-redirect-to-product-page.component.scss
+│   │   │   │   │   │   ├── label-redirect-to-product-page.component.spec.ts
+│   │   │   │   │   │   └── label-redirect-to-product-page.component.ts
+│   │   │   │   │   ├── label-selector
+│   │   │   │   │   │   ├── label-selector-card
+│   │   │   │   │   │   │   ├── label-selector-card.component.html
+│   │   │   │   │   │   │   ├── label-selector-card.component.scss
+│   │   │   │   │   │   │   └── label-selector-card.component.ts
+│   │   │   │   │   │   ├── label-selector.component.html
+│   │   │   │   │   │   ├── label-selector.component.scss
+│   │   │   │   │   │   └── label-selector.component.ts
+│   │   │   │   │   ├── language-for-label-modal
+│   │   │   │   │   │   ├── language-for-label-modal.component.html
+│   │   │   │   │   │   ├── language-for-label-modal.component.scss
+│   │   │   │   │   │   ├── language-for-label-modal.component.ts
+│   │   │   │   │   │   ├── model.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── number-row
+│   │   │   │   │   │   ├── number-row.component.html
+│   │   │   │   │   │   ├── number-row.component.scss
+│   │   │   │   │   │   └── number-row.component.ts
+│   │   │   │   │   ├── pathline-map
+│   │   │   │   │   │   ├── pathline-map.component.html
+│   │   │   │   │   │   ├── pathline-map.component.scss
+│   │   │   │   │   │   └── pathline-map.component.ts
+│   │   │   │   │   ├── prefill-product-selection-modal
+│   │   │   │   │   │   ├── prefill-product-selection-modal.component.html
+│   │   │   │   │   │   ├── prefill-product-selection-modal.component.scss
+│   │   │   │   │   │   ├── prefill-product-selection-modal.component.spec.ts
+│   │   │   │   │   │   └── prefill-product-selection-modal.component.ts
+│   │   │   │   │   ├── product-label.component.html
+│   │   │   │   │   ├── product-label.component.scss
+│   │   │   │   │   ├── product-label.component.ts
+│   │   │   │   │   ├── production-record-item
+│   │   │   │   │   │   ├── production-record-item.component.html
+│   │   │   │   │   │   ├── production-record-item.component.scss
+│   │   │   │   │   │   └── production-record-item.component.ts
+│   │   │   │   │   └── validation.ts
+│   │   │   │   ├── product-label-feedback-page
+│   │   │   │   │   ├── feedback-modal
+│   │   │   │   │   │   ├── feedback-modal.component.html
+│   │   │   │   │   │   ├── feedback-modal.component.scss
+│   │   │   │   │   │   ├── feedback-modal.component.spec.ts
+│   │   │   │   │   │   ├── feedback-modal.component.ts
+│   │   │   │   │   │   └── validation.ts
+│   │   │   │   │   ├── product-label-feedback-page.component.html
+│   │   │   │   │   ├── product-label-feedback-page.component.scss
+│   │   │   │   │   ├── product-label-feedback-page.component.spec.ts
+│   │   │   │   │   └── product-label-feedback-page.component.ts
+│   │   │   │   ├── product-label-statistics-page
+│   │   │   │   │   ├── product-label-statistics-page.component.html
+│   │   │   │   │   ├── product-label-statistics-page.component.scss
+│   │   │   │   │   ├── product-label-statistics-page.component.spec.ts
+│   │   │   │   │   ├── product-label-statistics-page.component.ts
+│   │   │   │   │   └── statistics-card
+│   │   │   │   │       ├── statistics-card.component.html
+│   │   │   │   │       ├── statistics-card.component.scss
+│   │   │   │   │       ├── statistics-card.component.spec.ts
+│   │   │   │   │       └── statistics-card.component.ts
+│   │   │   │   ├── product-list
+│   │   │   │   │   ├── new-product-modal
+│   │   │   │   │   │   ├── new-product-modal.component.html
+│   │   │   │   │   │   ├── new-product-modal.component.scss
+│   │   │   │   │   │   └── new-product-modal.component.ts
+│   │   │   │   │   ├── product-list.component.html
+│   │   │   │   │   ├── product-list.component.scss
+│   │   │   │   │   └── product-list.component.ts
+│   │   │   │   └── product-stakeholders
+│   │   │   │       ├── company-card
+│   │   │   │       │   ├── company-card.component.html
+│   │   │   │       │   ├── company-card.component.scss
+│   │   │   │       │   ├── company-card.component.spec.ts
+│   │   │   │       │   └── company-card.component.ts
+│   │   │   │       ├── product-label-stakeholders
+│   │   │   │       │   ├── product-label-stakeholders.component.ts
+│   │   │   │       │   └── stakeholders-value-chain
+│   │   │   │       │       ├── data-sharing-agreement-item
+│   │   │   │       │       │   ├── data-sharing-agreement-item.component.html
+│   │   │   │       │       │   ├── data-sharing-agreement-item.component.scss
+│   │   │   │       │       │   └── data-sharing-agreement-item.component.ts
+│   │   │   │       │       ├── stakeholders-value-chain.component.html
+│   │   │   │       │       ├── stakeholders-value-chain.component.scss
+│   │   │   │       │       ├── stakeholders-value-chain.component.ts
+│   │   │   │       │       └── validation.ts
+│   │   │   │       ├── product-stakeholders-routing.module.ts
+│   │   │   │       └── product-stakeholders.module.ts
+│   │   │   ├── settings
+│   │   │   │   ├── settings-additional
+│   │   │   │   │   ├── settings-additional.component.html
+│   │   │   │   │   └── settings-additional.component.ts
+│   │   │   │   ├── settings-types
+│   │   │   │   │   ├── settings-types.component.html
+│   │   │   │   │   └── settings-types.component.ts
+│   │   │   │   ├── settings.component.scss
+│   │   │   │   ├── settings.component.ts
+│   │   │   │   ├── type-detail-modal
+│   │   │   │   │   ├── type-detail-modal.component.html
+│   │   │   │   │   ├── type-detail-modal.component.scss
+│   │   │   │   │   ├── type-detail-modal.component.ts
+│   │   │   │   │   └── validation.ts
+│   │   │   │   └── type-list
+│   │   │   │       ├── type-list.component.html
+│   │   │   │       ├── type-list.component.scss
+│   │   │   │       └── type-list.component.ts
+│   │   │   ├── shared
+│   │   │   │   ├── accordion
+│   │   │   │   │   ├── accordion-panel.component.html
+│   │   │   │   │   ├── accordion-panel.component.scss
+│   │   │   │   │   ├── accordion-panel.component.ts
+│   │   │   │   │   ├── accordion.component.html
+│   │   │   │   │   ├── accordion.component.scss
+│   │   │   │   │   └── accordion.component.ts
+│   │   │   │   ├── attachment-uploader
+│   │   │   │   │   ├── attachment-uploader.component.html
+│   │   │   │   │   ├── attachment-uploader.component.scss
+│   │   │   │   │   ├── attachment-uploader.component.ts
+│   │   │   │   │   └── components
+│   │   │   │   │       ├── attachment-uploader-content
+│   │   │   │   │       │   ├── attachment-uploader-content.component.html
+│   │   │   │   │       │   ├── attachment-uploader-content.component.scss
+│   │   │   │   │       │   └── attachment-uploader-content.component.ts
+│   │   │   │   │       └── attachment-uploader-errors
+│   │   │   │   │           ├── attachment-uploader-errors.component.html
+│   │   │   │   │           ├── attachment-uploader-errors.component.scss
+│   │   │   │   │           └── attachment-uploader-errors.component.ts
+│   │   │   │   ├── certification-and-standard-item
+│   │   │   │   │   ├── certification-and-standard-item.component.html
+│   │   │   │   │   ├── certification-and-standard-item.component.scss
+│   │   │   │   │   └── certification-and-standard-item.component.ts
+│   │   │   │   ├── checkbox-group-multi-choice
+│   │   │   │   │   ├── checkbox-group-multi-choice.component.html
+│   │   │   │   │   ├── checkbox-group-multi-choice.component.scss
+│   │   │   │   │   └── checkbox-group-multi-choice.component.ts
+│   │   │   │   ├── checkbox-input
+│   │   │   │   │   ├── checkbox-input.component.html
+│   │   │   │   │   ├── checkbox-input.component.scss
+│   │   │   │   │   ├── checkbox-input.component.ts
+│   │   │   │   │   └── helpers
+│   │   │   │   │       ├── checkbox-input-errors
+│   │   │   │   │       │   ├── checkbox-input-errors.component.html
+│   │   │   │   │       │   ├── checkbox-input-errors.component.scss
+│   │   │   │   │       │   └── checkbox-input-errors.component.ts
+│   │   │   │   │       └── checkbox-input-rich-label
+│   │   │   │   │           ├── checkbox-input-rich-label.component.html
+│   │   │   │   │           ├── checkbox-input-rich-label.component.scss
+│   │   │   │   │           └── checkbox-input-rich-label.component.ts
+│   │   │   │   ├── closable
+│   │   │   │   │   ├── closable.component.html
+│   │   │   │   │   ├── closable.component.scss
+│   │   │   │   │   └── closable.component.ts
+│   │   │   │   ├── closable-textinput
+│   │   │   │   │   ├── closable-textinput.component.html
+│   │   │   │   │   ├── closable-textinput.component.scss
+│   │   │   │   │   └── closable-textinput.component.ts
+│   │   │   │   ├── color-input
+│   │   │   │   │   ├── color-input.component.html
+│   │   │   │   │   ├── color-input.component.scss
+│   │   │   │   │   └── color-input.component.ts
+│   │   │   │   ├── company-document-item
+│   │   │   │   │   ├── company-document-item.component.html
+│   │   │   │   │   ├── company-document-item.component.scss
+│   │   │   │   │   └── company-document-item.component.ts
+│   │   │   │   ├── contact-form
+│   │   │   │   │   ├── contact-form.component.html
+│   │   │   │   │   ├── contact-form.component.scss
+│   │   │   │   │   └── contact-form.component.ts
+│   │   │   │   ├── create-update-delete-buttons
+│   │   │   │   │   ├── create-update-delete-buttons.component.html
+│   │   │   │   │   ├── create-update-delete-buttons.component.scss
+│   │   │   │   │   └── create-update-delete-buttons.component.ts
+│   │   │   │   ├── datepicker
+│   │   │   │   │   ├── dateformat.ts
+│   │   │   │   │   ├── datepicker.component.html
+│   │   │   │   │   ├── datepicker.component.scss
+│   │   │   │   │   └── datepicker.component.ts
+│   │   │   │   ├── directives
+│   │   │   │   │   ├── autofocus.directive.ts
+│   │   │   │   │   ├── autosize.directive.ts
+│   │   │   │   │   ├── cookie-management.service.ts
+│   │   │   │   │   ├── heavy-label-primary.directive.ts
+│   │   │   │   │   ├── heavy-label.directive.ts
+│   │   │   │   │   ├── image-preload.directive.ts
+│   │   │   │   │   ├── link.directive.ts
+│   │   │   │   │   ├── link2.directive.ts
+│   │   │   │   │   ├── scroll-container.directive.ts
+│   │   │   │   │   └── scroll-position.directive.ts
+│   │   │   │   ├── document-preview
+│   │   │   │   │   ├── document-preview.component.html
+│   │   │   │   │   ├── document-preview.component.scss
+│   │   │   │   │   └── document-preview.component.ts
+│   │   │   │   ├── generic-editable-item
+│   │   │   │   │   └── generic-editable-item.component.ts
+│   │   │   │   ├── geoaddress-form
+│   │   │   │   │   ├── geoaddress-form.component.html
+│   │   │   │   │   ├── geoaddress-form.component.scss
+│   │   │   │   │   └── geoaddress-form.component.ts
+│   │   │   │   ├── image-viewer
+│   │   │   │   │   ├── image-viewer.component.html
+│   │   │   │   │   ├── image-viewer.component.scss
+│   │   │   │   │   └── image-viewer.component.ts
+│   │   │   │   ├── list-editor
+│   │   │   │   │   ├── list-editor-manager.ts
+│   │   │   │   │   ├── list-editor.component.html
+│   │   │   │   │   ├── list-editor.component.scss
+│   │   │   │   │   └── list-editor.component.ts
+│   │   │   │   ├── list-editor-errors
+│   │   │   │   │   ├── list-editor-errors.component.html
+│   │   │   │   │   ├── list-editor-errors.component.scss
+│   │   │   │   │   └── list-editor-errors.component.ts
+│   │   │   │   ├── list-editor-items
+│   │   │   │   │   ├── list-editor-items.component.html
+│   │   │   │   │   ├── list-editor-items.component.scss
+│   │   │   │   │   └── list-editor-items.component.ts
+│   │   │   │   ├── location-form
+│   │   │   │   │   ├── location-form.component.html
+│   │   │   │   │   ├── location-form.component.scss
+│   │   │   │   │   └── location-form.component.ts
+│   │   │   │   ├── location-form-new
+│   │   │   │   │   ├── location-form-new.component.html
+│   │   │   │   │   ├── location-form-new.component.scss
+│   │   │   │   │   └── location-form-new.component.ts
+│   │   │   │   ├── map
+│   │   │   │   │   ├── map.component.css
+│   │   │   │   │   ├── map.component.html
+│   │   │   │   │   └── map.component.ts
+│   │   │   │   ├── mini-buttons
+│   │   │   │   │   ├── mini-buttons.component.html
+│   │   │   │   │   ├── mini-buttons.component.scss
+│   │   │   │   │   └── mini-buttons.component.ts
+│   │   │   │   ├── pipes
+│   │   │   │   │   ├── company-document-category-filter.pipe.ts
+│   │   │   │   │   ├── default.pipe.ts
+│   │   │   │   │   ├── format-date.pipe.ts
+│   │   │   │   │   ├── format-long-text.pipe.ts
+│   │   │   │   │   └── list-filter.pipe.ts
+│   │   │   │   ├── result-sorter
+│   │   │   │   │   ├── result-sorter-types.ts
+│   │   │   │   │   ├── result-sorter.component.html
+│   │   │   │   │   ├── result-sorter.component.scss
+│   │   │   │   │   └── result-sorter.component.ts
+│   │   │   │   ├── search-textinput
+│   │   │   │   │   ├── search-textinput.component.html
+│   │   │   │   │   ├── search-textinput.component.scss
+│   │   │   │   │   └── search-textinput.component.ts
+│   │   │   │   ├── shared.module.ts
+│   │   │   │   ├── single-choice
+│   │   │   │   │   ├── single-choice.component.html
+│   │   │   │   │   ├── single-choice.component.scss
+│   │   │   │   │   ├── single-choice.component.spec.ts
+│   │   │   │   │   └── single-choice.component.ts
+│   │   │   │   ├── smart-tag
+│   │   │   │   │   ├── smart-tag.component.html
+│   │   │   │   │   ├── smart-tag.component.scss
+│   │   │   │   │   └── smart-tag.component.ts
+│   │   │   │   ├── smart-tag-closed
+│   │   │   │   │   ├── smart-tag-closed.component.html
+│   │   │   │   │   ├── smart-tag-closed.component.scss
+│   │   │   │   │   └── smart-tag-closed.component.ts
+│   │   │   │   ├── smart-tag-open
+│   │   │   │   │   ├── smart-tag-open.component.html
+│   │   │   │   │   ├── smart-tag-open.component.scss
+│   │   │   │   │   └── smart-tag-open.component.ts
+│   │   │   │   ├── subform-form
+│   │   │   │   │   ├── subform-form.component.html
+│   │   │   │   │   ├── subform-form.component.scss
+│   │   │   │   │   └── subform-form.component.ts
+│   │   │   │   ├── subform-layout
+│   │   │   │   │   ├── subform-layout.component.html
+│   │   │   │   │   ├── subform-layout.component.scss
+│   │   │   │   │   └── subform-layout.component.ts
+│   │   │   │   ├── subform-mini-buttons
+│   │   │   │   │   ├── subform-mini-buttons.component.html
+│   │   │   │   │   ├── subform-mini-buttons.component.scss
+│   │   │   │   │   └── subform-mini-buttons.component.ts
+│   │   │   │   ├── tab-communication.service.ts
+│   │   │   │   ├── tag-list
+│   │   │   │   │   ├── tag-list.component.html
+│   │   │   │   │   ├── tag-list.component.scss
+│   │   │   │   │   ├── tag-list.component.spec.ts
+│   │   │   │   │   └── tag-list.component.ts
+│   │   │   │   ├── tag-list-tag
+│   │   │   │   │   ├── tag-list-tag.component.html
+│   │   │   │   │   ├── tag-list-tag.component.scss
+│   │   │   │   │   └── tag-list-tag.component.ts
+│   │   │   │   ├── textinput
+│   │   │   │   │   ├── textinput.component.html
+│   │   │   │   │   ├── textinput.component.scss
+│   │   │   │   │   └── textinput.component.ts
+│   │   │   │   ├── textinput-modal
+│   │   │   │   │   ├── textinput-modal.component.html
+│   │   │   │   │   ├── textinput-modal.component.scss
+│   │   │   │   │   ├── textinput-modal.component.spec.ts
+│   │   │   │   │   └── textinput-modal.component.ts
+│   │   │   │   ├── tinymce-textarea
+│   │   │   │   │   ├── tinymce-textarea.component.html
+│   │   │   │   │   ├── tinymce-textarea.component.scss
+│   │   │   │   │   └── tinymce-textarea.component.ts
+│   │   │   │   ├── toggle-switch
+│   │   │   │   │   ├── toggle-switch.component.html
+│   │   │   │   │   ├── toggle-switch.component.scss
+│   │   │   │   │   └── toggle-switch.component.ts
+│   │   │   │   └── version
+│   │   │   │       ├── version.component.html
+│   │   │   │       ├── version.component.scss
+│   │   │   │       └── version.component.ts
+│   │   │   ├── shared-services
+│   │   │   │   ├── action-types.service.ts
+│   │   │   │   ├── active-companies.service.ts
+│   │   │   │   ├── active-facility-types.service.ts
+│   │   │   │   ├── active-measure-unit-types.service.ts
+│   │   │   │   ├── active-products.service.ts
+│   │   │   │   ├── active-semi-products.service.ts
+│   │   │   │   ├── active-value-chain.service.ts
+│   │   │   │   ├── associated-companies.service.ts
+│   │   │   │   ├── available-selling-facilities-for.company.ts
+│   │   │   │   ├── beyco-token.service.ts
+│   │   │   │   ├── codebook-translations.ts
+│   │   │   │   ├── company-collecting-facilities.service.ts
+│   │   │   │   ├── company-customers.service.ts
+│   │   │   │   ├── company-facilities-for-stock-unit-product.service.ts
+│   │   │   │   ├── company-facilities.service.ts
+│   │   │   │   ├── company-final-product-quote-order-actions.service.ts
+│   │   │   │   ├── company-processing-actions-by-status.service.ts
+│   │   │   │   ├── company-processing-actions.service.ts
+│   │   │   │   ├── company-product-types.service.ts
+│   │   │   │   ├── company-quote-proc-actions-for-facility.service.ts
+│   │   │   │   ├── company-user-customers-by-role.service.ts
+│   │   │   │   ├── company-value-chains.service.ts
+│   │   │   │   ├── component-can-deactivate.ts
+│   │   │   │   ├── connected-companies-for-company.service.ts
+│   │   │   │   ├── countries.service.ts
+│   │   │   │   ├── currencies.service.ts
+│   │   │   │   ├── currency-codes.service.ts
+│   │   │   │   ├── deactivate-guard.service.ts
+│   │   │   │   ├── document-translations.service.ts
+│   │   │   │   ├── enum-sifrant.ts
+│   │   │   │   ├── facility-semi-products-codebook.service.ts
+│   │   │   │   ├── final-product-labels.service.ts
+│   │   │   │   ├── final-products-for-company.service.ts
+│   │   │   │   ├── general-codes.service.ts
+│   │   │   │   ├── general-sifrant.service.ts
+│   │   │   │   ├── menu-shown.service.ts
+│   │   │   │   ├── plot-coordinate-action-enum.ts
+│   │   │   │   ├── plot-coordinates-manager.service.ts
+│   │   │   │   ├── processing-evidence-fields.service.ts
+│   │   │   │   ├── processing-evidence-types.service.ts
+│   │   │   │   ├── product-labels.service.ts
+│   │   │   │   ├── product-types.service.ts
+│   │   │   │   ├── self-onboarding.service.ts
+│   │   │   │   ├── semi-products-for-value-chains.service.ts
+│   │   │   │   ├── stock-orders-for-company.service.ts
+│   │   │   │   ├── theme.service.ts
+│   │   │   │   └── users.service.ts
+│   │   │   ├── system-left-panel
+│   │   │   │   ├── system-left-panel.component.html
+│   │   │   │   ├── system-left-panel.component.scss
+│   │   │   │   ├── system-left-panel.component.spec.ts
+│   │   │   │   └── system-left-panel.component.ts
+│   │   │   ├── user
+│   │   │   │   ├── confirm-email
+│   │   │   │   │   ├── confirm-email.component.html
+│   │   │   │   │   ├── confirm-email.component.scss
+│   │   │   │   │   └── confirm-email.component.ts
+│   │   │   │   ├── login
+│   │   │   │   │   ├── login.component.html
+│   │   │   │   │   ├── login.component.scss
+│   │   │   │   │   └── login.component.ts
+│   │   │   │   ├── register
+│   │   │   │   │   ├── register.component.html
+│   │   │   │   │   ├── register.component.scss
+│   │   │   │   │   └── register.component.ts
+│   │   │   │   ├── register-activation
+│   │   │   │   │   ├── register-activation.component.html
+│   │   │   │   │   ├── register-activation.component.scss
+│   │   │   │   │   ├── register-activation.component.spec.ts
+│   │   │   │   │   └── register-activation.component.ts
+│   │   │   │   ├── reset-password
+│   │   │   │   │   ├── reset-password.component.html
+│   │   │   │   │   ├── reset-password.component.scss
+│   │   │   │   │   ├── reset-password.component.spec.ts
+│   │   │   │   │   └── reset-password.component.ts
+│   │   │   │   ├── reset-password-request
+│   │   │   │   │   ├── reset-password-request.component.html
+│   │   │   │   │   ├── reset-password-request.component.scss
+│   │   │   │   │   ├── reset-password-request.component.spec.ts
+│   │   │   │   │   └── reset-password-request.component.ts
+│   │   │   │   ├── selected-user-company-modal
+│   │   │   │   │   ├── selected-user-company-modal.component.html
+│   │   │   │   │   ├── selected-user-company-modal.component.scss
+│   │   │   │   │   └── selected-user-company-modal.component.ts
+│   │   │   │   ├── self-onboarding-assistant-modal
+│   │   │   │   │   ├── self-onboarding-assistant-modal.component.html
+│   │   │   │   │   ├── self-onboarding-assistant-modal.component.scss
+│   │   │   │   │   └── self-onboarding-assistant-modal.component.ts
+│   │   │   │   ├── self-onboarding-checklist-modal
+│   │   │   │   │   ├── checklist-add-facility-success-modal
+│   │   │   │   │   │   ├── checklist-add-facility-success-modal.component.html
+│   │   │   │   │   │   ├── checklist-add-facility-success-modal.component.scss
+│   │   │   │   │   │   └── checklist-add-facility-success-modal.component.ts
+│   │   │   │   │   ├── checklist-add-farmers-success-modal
+│   │   │   │   │   │   ├── checklist-add-farmers-success-modal.component.html
+│   │   │   │   │   │   ├── checklist-add-farmers-success-modal.component.scss
+│   │   │   │   │   │   └── checklist-add-farmers-success-modal.component.ts
+│   │   │   │   │   ├── checklist-add-processing-action-success-modal
+│   │   │   │   │   │   ├── checklist-add-processing-action-success-modal.component.html
+│   │   │   │   │   │   ├── checklist-add-processing-action-success-modal.component.scss
+│   │   │   │   │   │   └── checklist-add-processing-action-success-modal.component.ts
+│   │   │   │   │   ├── checklist-add-product-success-modal
+│   │   │   │   │   │   ├── checklist-add-product-success-modal.component.html
+│   │   │   │   │   │   ├── checklist-add-product-success-modal.component.scss
+│   │   │   │   │   │   └── checklist-add-product-success-modal.component.ts
+│   │   │   │   │   ├── guided-tour-success-modal
+│   │   │   │   │   │   ├── guided-tour-success-modal.component.html
+│   │   │   │   │   │   ├── guided-tour-success-modal.component.scss
+│   │   │   │   │   │   └── guided-tour-success-modal.component.ts
+│   │   │   │   │   ├── self-onboarding-checklist-modal.component.html
+│   │   │   │   │   ├── self-onboarding-checklist-modal.component.scss
+│   │   │   │   │   └── self-onboarding-checklist-modal.component.ts
+│   │   │   │   ├── self-onboarding-welcome-modal
+│   │   │   │   │   ├── self-onboarding-welcome-modal.component.html
+│   │   │   │   │   ├── self-onboarding-welcome-modal.component.scss
+│   │   │   │   │   └── self-onboarding-welcome-modal.component.ts
+│   │   │   │   ├── user-detail
+│   │   │   │   │   ├── user-detail.component.html
+│   │   │   │   │   ├── user-detail.component.scss
+│   │   │   │   │   ├── user-detail.component.spec.ts
+│   │   │   │   │   └── user-detail.component.ts
+│   │   │   │   ├── user-home
+│   │   │   │   │   ├── user-home.component.html
+│   │   │   │   │   ├── user-home.component.scss
+│   │   │   │   │   └── user-home.component.ts
+│   │   │   │   └── user-list
+│   │   │   │       ├── user-list.component.html
+│   │   │   │       ├── user-list.component.scss
+│   │   │   │       └── user-list.component.ts
+│   │   │   └── value-chain
+│   │   │       ├── value-chain-detail
+│   │   │       │   ├── validation.ts
+│   │   │       │   ├── value-chain-config-item
+│   │   │       │   │   ├── value-chain-config-item.component.html
+│   │   │       │   │   ├── value-chain-config-item.component.scss
+│   │   │       │   │   └── value-chain-config-item.component.ts
+│   │   │       │   ├── value-chain-detail.component.html
+│   │   │       │   ├── value-chain-detail.component.scss
+│   │   │       │   └── value-chain-detail.component.ts
+│   │   │       └── value-chain-list
+│   │   │           ├── value-chain-list.component.html
+│   │   │           ├── value-chain-list.component.scss
+│   │   │           └── value-chain-list.component.ts
+│   │   ├── assets
+│   │   │   ├── env.js
+│   │   │   ├── env.template.js
+│   │   │   ├── farmer-import
+│   │   │   │   ├── Plantilla_listado_de_agricultores_Honduras_es.xlsx
+│   │   │   │   ├── Plantilla_listado_de_agricultores_otros_paises_es.xlsx
+│   │   │   │   ├── Template_list_of_farmers_Rwanda_en.xlsx
+│   │   │   │   └── Template_list_of_farmers_other_countries_en.xlsx
+│   │   │   ├── favicon_package
+│   │   │   │   ├── android-chrome-192x192.png
+│   │   │   │   ├── android-chrome-512x512.png
+│   │   │   │   ├── apple-touch-icon.png
+│   │   │   │   ├── browserconfig.xml
+│   │   │   │   ├── favicon-16x16.png
+│   │   │   │   ├── favicon-32x32.png
+│   │   │   │   ├── favicon.ico
+│   │   │   │   ├── mstile-150x150.png
+│   │   │   │   ├── safari-pinned-tab.svg
+│   │   │   │   └── site.webmanifest
+│   │   │   ├── front-label
+│   │   │   │   ├── file-image-regular.svg
+│   │   │   │   └── file-pdf-solid.svg
+│   │   │   ├── icons
+│   │   │   │   ├── af-b2c-quote.png
+│   │   │   │   ├── af-b2c-quote.svg
+│   │   │   │   ├── back-to-top.png
+│   │   │   │   ├── back-to-top.svg
+│   │   │   │   ├── building-solid.svg
+│   │   │   │   ├── icon-arrow--left.png
+│   │   │   │   ├── icon-arrow--left.svg
+│   │   │   │   ├── icon-arrow--right.png
+│   │   │   │   ├── icon-arrow--right.svg
+│   │   │   │   ├── icon-arrow--up.png
+│   │   │   │   ├── icon-arrow--up.svg
+│   │   │   │   ├── icon-card-cogwheel.png
+│   │   │   │   ├── icon-card-cogwheel.svg
+│   │   │   │   ├── icon-card-home.png
+│   │   │   │   ├── icon-card-home.svg
+│   │   │   │   ├── icon-card-map.png
+│   │   │   │   ├── icon-card-map.svg
+│   │   │   │   ├── icon-card-seedling.png
+│   │   │   │   ├── icon-card-seedling.svg
+│   │   │   │   ├── icon-chevron-down.svg
+│   │   │   │   ├── icon-collectors.svg
+│   │   │   │   ├── icon-confirmed.png
+│   │   │   │   ├── icon-confirmed.svg
+│   │   │   │   ├── icon-dashboard.svg
+│   │   │   │   ├── icon-doc-archive-check.png
+│   │   │   │   ├── icon-doc-archive-check.svg
+│   │   │   │   ├── icon-doc-archive-dot.png
+│   │   │   │   ├── icon-doc-archive-dot.svg
+│   │   │   │   ├── icon-doc-archive.png
+│   │   │   │   ├── icon-doc-archive.svg
+│   │   │   │   ├── icon-doc-check.png
+│   │   │   │   ├── icon-doc-check.svg
+│   │   │   │   ├── icon-doc-dot.png
+│   │   │   │   ├── icon-doc-dot.svg
+│   │   │   │   ├── icon-doc-img-check.png
+│   │   │   │   ├── icon-doc-img-check.svg
+│   │   │   │   ├── icon-doc-img-dot.png
+│   │   │   │   ├── icon-doc-img-dot.svg
+│   │   │   │   ├── icon-doc-img.png
+│   │   │   │   ├── icon-doc-img.svg
+│   │   │   │   ├── icon-doc-inf-check.png
+│   │   │   │   ├── icon-doc-inf-check.svg
+│   │   │   │   ├── icon-doc-inf-dot.png
+│   │   │   │   ├── icon-doc-inf-dot.svg
+│   │   │   │   ├── icon-doc-inf.png
+│   │   │   │   ├── icon-doc-inf.svg
+│   │   │   │   ├── icon-doc-pdf-check.png
+│   │   │   │   ├── icon-doc-pdf-check.svg
+│   │   │   │   ├── icon-doc-pdf-dot.png
+│   │   │   │   ├── icon-doc-pdf-dot.svg
+│   │   │   │   ├── icon-doc-pdf.png
+│   │   │   │   ├── icon-doc-pdf.svg
+│   │   │   │   ├── icon-doc-small.png
+│   │   │   │   ├── icon-doc-small.svg
+│   │   │   │   ├── icon-doc-word-check.png
+│   │   │   │   ├── icon-doc-word-check.svg
+│   │   │   │   ├── icon-doc-word-dot.png
+│   │   │   │   ├── icon-doc-word-dot.svg
+│   │   │   │   ├── icon-doc-word.png
+│   │   │   │   ├── icon-doc-word.svg
+│   │   │   │   ├── icon-doc-xls-check.png
+│   │   │   │   ├── icon-doc-xls-check.svg
+│   │   │   │   ├── icon-doc-xls-dot.png
+│   │   │   │   ├── icon-doc-xls-dot.svg
+│   │   │   │   ├── icon-doc-xls.png
+│   │   │   │   ├── icon-doc-xls.svg
+│   │   │   │   ├── icon-doc.png
+│   │   │   │   ├── icon-doc.svg
+│   │   │   │   ├── icon-dots.png
+│   │   │   │   ├── icon-dots.svg
+│   │   │   │   ├── icon-farmers.svg
+│   │   │   │   ├── icon-filter.png
+│   │   │   │   ├── icon-filter.svg
+│   │   │   │   ├── icon-flag--germany.png
+│   │   │   │   ├── icon-flag--germany.svg
+│   │   │   │   ├── icon-flag--rwanda.png
+│   │   │   │   ├── icon-flag--rwanda.svg
+│   │   │   │   ├── icon-flag--spain.png
+│   │   │   │   ├── icon-flag--spain.svg
+│   │   │   │   ├── icon-flag--united-kingdom.png
+│   │   │   │   ├── icon-flag--united-kingdom.svg
+│   │   │   │   ├── icon-footsteps.svg
+│   │   │   │   ├── icon-info.png
+│   │   │   │   ├── icon-info.svg
+│   │   │   │   ├── icon-input.svg
+│   │   │   │   ├── icon-my-collectors.svg
+│   │   │   │   ├── icon-my-customers.svg
+│   │   │   │   ├── icon-my-farmers.svg
+│   │   │   │   ├── icon-my-stock.svg
+│   │   │   │   ├── icon-orders.svg
+│   │   │   │   ├── icon-output.svg
+│   │   │   │   ├── icon-pineapple.png
+│   │   │   │   ├── icon-products.png
+│   │   │   │   ├── icon-products.svg
+│   │   │   │   ├── icon-qrcode.png
+│   │   │   │   ├── icon-qrcode.svg
+│   │   │   │   ├── icon-remove.png
+│   │   │   │   ├── icon-remove.svg
+│   │   │   │   ├── icon-search.png
+│   │   │   │   ├── icon-search.svg
+│   │   │   │   ├── icon-self-onboarding-assistant.svg
+│   │   │   │   ├── icon-settings.png
+│   │   │   │   ├── icon-settings.svg
+│   │   │   │   ├── icon-sliders-arrow--left.png
+│   │   │   │   ├── icon-sliders-arrow--left.svg
+│   │   │   │   ├── icon-sliders-arrow--right.png
+│   │   │   │   ├── icon-sliders-arrow--right.svg
+│   │   │   │   ├── icon-social-facebook.png
+│   │   │   │   ├── icon-social-facebook.svg
+│   │   │   │   ├── icon-social-instagram.png
+│   │   │   │   ├── icon-social-instagram.svg
+│   │   │   │   ├── icon-social-other.png
+│   │   │   │   ├── icon-social-other.svg
+│   │   │   │   ├── icon-social-twitter.png
+│   │   │   │   ├── icon-social-twitter.svg
+│   │   │   │   ├── icon-social-youtube.png
+│   │   │   │   ├── icon-social-youtube.svg
+│   │   │   │   ├── icon-stakeholder-chain.png
+│   │   │   │   ├── icon-stakeholder-chain.svg
+│   │   │   │   ├── icon-stakeholder-factory.png
+│   │   │   │   ├── icon-stakeholder-factory.svg
+│   │   │   │   ├── icon-stakeholder-pair.png
+│   │   │   │   ├── icon-stakeholder-pair.svg
+│   │   │   │   ├── icon-status-eye.png
+│   │   │   │   ├── icon-status-eye.svg
+│   │   │   │   ├── icon-view.png
+│   │   │   │   ├── icon-view.svg
+│   │   │   │   ├── ison-footsteps.png
+│   │   │   │   ├── journey-leaf.png
+│   │   │   │   ├── journey-leaf.svg
+│   │   │   │   ├── journey-qr-code.png
+│   │   │   │   ├── journey-qr-code.svg
+│   │   │   │   ├── journey-ship.png
+│   │   │   │   ├── journey-ship.svg
+│   │   │   │   ├── journey-warehouse.png
+│   │   │   │   ├── journey-warehouse.svg
+│   │   │   │   ├── slide-left.png
+│   │   │   │   ├── slide-left.svg
+│   │   │   │   ├── slide-right.png
+│   │   │   │   └── slide-right.svg
+│   │   │   ├── landing-page
+│   │   │   │   ├── bmz-logo.jpg
+│   │   │   │   ├── giz-logo.jpg
+│   │   │   │   ├── ina-logo.jpg
+│   │   │   │   ├── landing-background.jpg
+│   │   │   │   └── landing-inatrace-logo.png
+│   │   │   ├── locale
+│   │   │   │   ├── de.json
+│   │   │   │   ├── en.json
+│   │   │   │   ├── es.json
+│   │   │   │   └── rw.json
+│   │   │   ├── logo
+│   │   │   │   ├── af-b2c-logo--angeliques-finest-front.png
+│   │   │   │   ├── af-b2c-logo--angeliques-finest-front.svg
+│   │   │   │   ├── af-b2c-logo--angeliques-finest.png
+│   │   │   │   ├── af-b2c-logo--angeliques-finest.svg
+│   │   │   │   ├── afc-smile.jpg
+│   │   │   │   ├── afc-smile70.png
+│   │   │   │   ├── header-bg-graphics.png
+│   │   │   │   └── header-bg-graphics.svg
+│   │   │   ├── logo-INATrace
+│   │   │   │   ├── logo-INA.png
+│   │   │   │   ├── logo-INATrace-w-symbol.svg
+│   │   │   │   └── logo-INATrace-w.svg
+│   │   │   ├── product-label-card
+│   │   │   │   └── product-card-placeholder.png
+│   │   │   └── webfonts
+│   │   │       ├── PathwayGothicOne-Regular.ttf
+│   │   │       ├── fa-brands-400.eot
+│   │   │       ├── fa-brands-400.svg
+│   │   │       ├── fa-brands-400.ttf
+│   │   │       ├── fa-brands-400.woff
+│   │   │       ├── fa-brands-400.woff2
+│   │   │       ├── fa-regular-400.eot
+│   │   │       ├── fa-regular-400.svg
+│   │   │       ├── fa-regular-400.ttf
+│   │   │       ├── fa-regular-400.woff
+│   │   │       ├── fa-regular-400.woff2
+│   │   │       ├── fa-solid-900.eot
+│   │   │       ├── fa-solid-900.svg
+│   │   │       ├── fa-solid-900.ttf
+│   │   │       ├── fa-solid-900.woff
+│   │   │       └── fa-solid-900.woff2
+│   │   ├── environments
+│   │   │   ├── environment.prod.ts
+│   │   │   └── environment.ts
+│   │   ├── index.html
+│   │   ├── interfaces
+│   │   │   ├── CodebookHelperService.ts
+│   │   │   └── Validation.ts
+│   │   ├── main.ts
+│   │   ├── polyfills.ts
+│   │   ├── shared
+│   │   │   ├── rxutils.ts
+│   │   │   ├── types.ts
+│   │   │   ├── utils.ts
+│   │   │   └── validation.ts
+│   │   ├── styles.scss
+│   │   └── test.ts
+│   ├── tsconfig.app.json
+│   ├── tsconfig.base.json
+│   ├── tsconfig.json
+│   ├── tsconfig.spec.json
+│   ├── tslint.json
+│   └── update-version.js
+├── frontend-build.log
+├── frontend-build.txt
+├── mobile
+│   ├── LICENSE
+│   ├── README.md
+│   ├── app
+│   │   ├── (app)
+│   │   │   ├── (farmers)
+│   │   │   │   ├── [type].tsx
+│   │   │   │   ├── _layout.tsx
+│   │   │   │   ├── info
+│   │   │   │   │   ├── [id].tsx
+│   │   │   │   │   └── edit-guest.tsx
+│   │   │   │   ├── new-farmer.tsx
+│   │   │   │   └── view
+│   │   │   │       ├── [type].tsx
+│   │   │   │       └── add-plot.tsx
+│   │   │   ├── _layout.tsx
+│   │   │   ├── data-sync.tsx
+│   │   │   ├── index.tsx
+│   │   │   ├── map-download.tsx
+│   │   │   └── user-settings.tsx
+│   │   ├── _layout.tsx
+│   │   └── login.tsx
+│   ├── app.config.js
+│   ├── assets
+│   │   ├── fonts
+│   │   │   └── SpaceMono-Regular.ttf
+│   │   └── images
+│   │       ├── adaptive-icon.png
+│   │       ├── favicon.png
+│   │       ├── icon.png
+│   │       └── splash.png
+│   ├── babel.config.js
+│   ├── components
+│   │   ├── common
+│   │   │   ├── Card.tsx
+│   │   │   ├── FlashListComponents.tsx
+│   │   │   ├── Input.tsx
+│   │   │   ├── SearchInput.tsx
+│   │   │   ├── Selector.tsx
+│   │   │   ├── SelectorMultiple.tsx
+│   │   │   └── Topbar.tsx
+│   │   ├── documentation-modal
+│   │   │   └── DocumentationModal.tsx
+│   │   ├── farmers
+│   │   │   ├── NewFarmerButton.tsx
+│   │   │   └── info
+│   │   │       ├── FarmerInformation.tsx
+│   │   │       ├── FarmerInformationGuest.tsx
+│   │   │       └── _components
+│   │   │           └── EditFarmerInfo.tsx
+│   │   ├── home
+│   │   │   ├── HomeNavButton.tsx
+│   │   │   └── SyncDataButton.tsx
+│   │   ├── plots
+│   │   │   ├── ListView.tsx
+│   │   │   ├── MapView.tsx
+│   │   │   └── ViewSwitcher.tsx
+│   │   ├── settings
+│   │   │   └── LanguageSwitcher.tsx
+│   │   └── svg
+│   │       ├── FarmerSvg.tsx
+│   │       ├── LoginLowerBlob.tsx
+│   │       ├── LoginUpperBlob.tsx
+│   │       ├── MarkerPlotSvg.tsx
+│   │       ├── MarkerSvg.tsx
+│   │       └── PlotSvg.tsx
+│   ├── constants
+│   │   ├── Colors.ts
+│   │   └── Shadow.ts
+│   ├── context
+│   │   ├── AuthContext.tsx
+│   │   ├── guestCountries.json
+│   │   ├── guestProductTypes.json
+│   │   └── useStorageState.ts
+│   ├── eas.json
+│   ├── locales
+│   │   ├── de.json
+│   │   ├── en.json
+│   │   ├── es.json
+│   │   ├── i18n.ts
+│   │   └── rw.json
+│   ├── nativewind-env.d.ts
+│   ├── package-lock.json
+│   ├── package.json
+│   ├── realm
+│   │   ├── schemas.ts
+│   │   └── useRealm.ts
+│   ├── state
+│   │   └── state.ts
+│   ├── tailwind.config.js
+│   ├── tsconfig.json
+│   ├── types
+│   │   ├── auth.ts
+│   │   ├── company.ts
+│   │   ├── country.ts
+│   │   ├── farmer.ts
+│   │   ├── plot.ts
+│   │   ├── svg.ts
+│   │   └── user.ts
+│   └── utils
+│       └── cn.ts
+├── project_tree.txt
+└── projecttree.txt
+
+636 directories, 2995 files
